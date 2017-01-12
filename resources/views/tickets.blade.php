@@ -11,11 +11,11 @@
 
 	<title>Arbeitsschein Online Service</title>
 
-	<!-- Bootstrap Core CSS -->
-	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
-	<!-- Custom CSS -->
-	<link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
 	<!-- Font-Links -->
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -70,13 +70,15 @@
           <div id="menu-toggle-div">
            <img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle">
          </div>
+         <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
-         <br>
-         <div>
-          <p id="welcome">HERZLICH WILLKOMMEN ZUM<br>ARBEITSSCHEIN ONLINE SERVICE! </p>
-          <hr>
-          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logo">
-        </div>
+         <p id="LabelContent">TICKETS</p>
+         <form action="Ticket_Hinzufuegen">
+           <button id="bHinzufuegen">+TICKET HINZUFÜGEN</button>
+         </form>
+         <form action="Tickets_Uebersicht">
+          <button id="bUebersicht">ÜBERSICHT</button>
+        </form>
       </div>
     </div>
   </div>
@@ -85,6 +87,7 @@
 
 </div>
 <!-- /#wrapper -->
+
 
 <!-- jQuery -->
 <script src="{{ asset('assets/js/jquery.js') }}"></script>
@@ -99,10 +102,20 @@
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");
 
- });
+   if(document.getElementById("menu-toggle").textContent == ">"){
+    document.getElementById("menu-toggle").innerHTML = "<";
+  }else{
+    document.getElementById("menu-toggle").innerHTML = ">";
+  }       
+});
 
 </script>
 
 </body>
 
 </html>
+
+
+
+
+

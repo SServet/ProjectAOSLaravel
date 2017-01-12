@@ -11,11 +11,11 @@
 
 	<title>Arbeitsschein Online Service</title>
 
-	<!-- Bootstrap Core CSS -->
-	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
-	<!-- Custom CSS -->
-	<link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
 	<!-- Font-Links -->
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -70,13 +70,23 @@
           <div id="menu-toggle-div">
            <img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle">
          </div>
+         <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
-         <br>
-         <div>
-          <p id="welcome">HERZLICH WILLKOMMEN ZUM<br>ARBEITSSCHEIN ONLINE SERVICE! </p>
-          <hr>
-          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logo">
-        </div>
+         <p id="LabelContent">TICKETS > ÜBERSICHT</p>
+         <table id="uebersicht_Table">
+          <tr>
+            <th>TNr.</th>
+            <th>BEZEICHNUNG</th>
+            <th>KUNDENNAME</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><img src="{{ asset('assets/img/blackBurger.png') }}" style="width: 30px"/></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -98,7 +108,7 @@
   $("#menu-toggle").click(function(e) {
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");
-
+   
  });
 
 </script>
@@ -106,3 +116,8 @@
 </body>
 
 </html>
+
+
+
+
+

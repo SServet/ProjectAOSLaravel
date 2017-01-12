@@ -12,13 +12,13 @@
 	<title>Arbeitsschein Online Service</title>
 
 	<!-- Bootstrap Core CSS -->
-	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
-	<!-- Custom CSS -->
-	<link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
-	<!-- Font-Links -->
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <!-- Font-Links -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -70,13 +70,16 @@
           <div id="menu-toggle-div">
            <img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle">
          </div>
+         <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
-         <br>
-         <div>
-          <p id="welcome">HERZLICH WILLKOMMEN ZUM<br>ARBEITSSCHEIN ONLINE SERVICE! </p>
-          <hr>
-          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logo">
-        </div>
+         <p id="LabelContent">ARBEITSSCHEINE</p>
+         <form action="/Arbeitsschein_Hinzufuegen">
+           <button id="bHinzufuegen">+ARBEITSCHEIN HINZUFÜGEN</button>
+         </form>
+         <form action="/Arbeitsschein_Uebersicht">
+          <button id="bUebersicht">ÜBERSICHT</button>
+        </form>
+
       </div>
     </div>
   </div>
@@ -99,10 +102,20 @@
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");
 
- });
+   if(document.getElementById("menu-toggle").textContent == ">"){
+    document.getElementById("menu-toggle").innerHTML = "<";
+  }else{
+    document.getElementById("menu-toggle").innerHTML = ">";
+  }       
+});
 
 </script>
 
 </body>
 
 </html>
+
+
+
+
+

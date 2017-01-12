@@ -11,17 +11,17 @@
 
 	<title>Arbeitsschein Online Service</title>
 
-	<!-- Bootstrap Core CSS -->
-	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
-	<!-- Custom CSS -->
-	<link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
-	<!-- Font-Links -->
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <!-- Font-Links -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -70,13 +70,23 @@
           <div id="menu-toggle-div">
            <img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle">
          </div>
+         <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
-         <br>
-         <div>
-          <p id="welcome">HERZLICH WILLKOMMEN ZUM<br>ARBEITSSCHEIN ONLINE SERVICE! </p>
-          <hr>
-          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logo">
-        </div>
+         <p id="LabelContent">PROJEKTE > ÜBERSICHT</p>
+         <table id="uebersicht_Table">
+          <tr>
+            <th>PNr.</th>
+            <th>BEZEICHNUNG</th>
+            <th>KUNDENNAME</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><img src="img/blackBurger.png" style="width: 30px"/></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -98,7 +108,7 @@
   $("#menu-toggle").click(function(e) {
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");
-
+   
  });
 
 </script>
@@ -106,3 +116,8 @@
 </body>
 
 </html>
+
+
+
+
+
