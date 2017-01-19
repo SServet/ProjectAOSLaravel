@@ -9,7 +9,9 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Arbeitsschein Online Service</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+  <title>Arbeitsschein Online Service</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -95,15 +97,15 @@
          </tr>
          <tr>
            <td><p class="inputLabels">Erstelldatum</p></td>
-           <td><input type="date" id="Erstelldatum" class="inputArea"></td>
+           <td><input type="text" id="Erstelldatum" class="inputArea"></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgeschlossen Am</p></td>
-           <td><input type="date" id="AbgeschlossenAm" class="inputArea"></td>
+           <td><input type="text" id="AbgeschlossenAm" class="inputArea"></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgerechnet Am</p></td>
-           <td><input type="date" id="AbgerechnetAm" class="inputArea"></td>
+           <td><input type="text" id="AbgerechnetAm" class="inputArea"></td>
          </tr>
 
 
@@ -120,7 +122,12 @@
 <!-- jQuery -->
 <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
 <script>
+
  $(document).ready(function() {
   var date = new Date();
 
@@ -133,6 +140,11 @@
 
   var today = year + "-" + month + "-" + day;       
   $("#Erstelldatum").attr("value", today);
+
+  $( "#Erstelldatum" ).datepicker({
+    numberOfMonths: 2
+  });
+  
 });
 </script>
 
