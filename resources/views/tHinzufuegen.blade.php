@@ -9,7 +9,13 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
+<<<<<<< HEAD
 	<title>Arbeitsschein Online Service</title>
+=======
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+  <title>Arbeitsschein Online Service</title>
+>>>>>>> 10dffc32c9da288740dd5d9b321d485fae965d32
 
   <!-- Bootstrap Core CSS -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -95,6 +101,7 @@
          </tr>
          <tr>
            <td><p class="inputLabels">Erstelldatum</p></td>
+<<<<<<< HEAD
            <td><input type="date" id="Erstelldatum" class="inputArea"></td>
          </tr>
          <tr>
@@ -104,6 +111,17 @@
          <tr>
            <td><p class="inputLabels">Abgerechnet Am</p></td>
            <td><input type="date" id="AbgerechnetAm" class="inputArea"></td>
+=======
+           <td><input type="text" id="Erstelldatum" class="inputArea"></td>
+         </tr>
+         <tr>
+           <td><p class="inputLabels">Abgeschlossen Am</p></td>
+           <td><input type="text" id="AbgeschlossenAm" class="inputArea"></td>
+         </tr>
+         <tr>
+           <td><p class="inputLabels">Abgerechnet Am</p></td>
+           <td><input type="text" id="AbgerechnetAm" class="inputArea"></td>
+>>>>>>> 10dffc32c9da288740dd5d9b321d485fae965d32
          </tr>
 
 
@@ -120,7 +138,16 @@
 <!-- jQuery -->
 <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
+<<<<<<< HEAD
 <script>
+=======
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<script>
+
+>>>>>>> 10dffc32c9da288740dd5d9b321d485fae965d32
  $(document).ready(function() {
   var date = new Date();
 
@@ -133,6 +160,14 @@
 
   var today = year + "-" + month + "-" + day;       
   $("#Erstelldatum").attr("value", today);
+<<<<<<< HEAD
+=======
+
+  $( "#Erstelldatum" ).datepicker({
+    numberOfMonths: 2
+  });
+  
+>>>>>>> 10dffc32c9da288740dd5d9b321d485fae965d32
 });
 </script>
 

@@ -1,9 +1,13 @@
 APP_ENV=local
+<<<<<<< HEAD:env
 <<<<<<< HEAD:.env.example
 APP_KEY= 
 =======
 APP_KEY=base64:heGA2E9fS3qkejdP/Q9tfttciCoG4FXCMFHhVdqji/s=
 >>>>>>> 5ada04068f67d641412a641d8c6dbfa3d24ece69:env
+=======
+APP_KEY=base64:heGA2E9fS3qkejdP/Q9tfttciCoG4FXCMFHhVdqji/s=
+>>>>>>> 10dffc32c9da288740dd5d9b321d485fae965d32:env
 APP_DEBUG=true
 APP_LOG_LEVEL=debug
 APP_URL=http://localhost
