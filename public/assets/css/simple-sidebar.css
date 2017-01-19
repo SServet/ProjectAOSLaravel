@@ -1,0 +1,309 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+ @font-face {
+    font-family: myFirstFont;
+    src: url(fonts/KozGoPr6N-Light.otf);
+}
+
+
+ body{
+    overflow-x: hidden;
+    font-family: myFirstFont;
+ }
+
+ .inputLabels{
+    text-align: left;
+    padding-right: 100px;
+}
+
+#LabelAOS{
+    margin-top: -10px;
+    margin-left: 30px;
+    font-size: 27.4px;
+    color: white;
+}
+
+#Tätigkeit{
+    margin-left: 103px;
+}
+
+.dropdown-menu{
+    margin-left: 103px;
+    width: 250px;
+}
+
+
+input[id="Bezeichnung"]{
+    font-size: 20px;
+    height: 40px;
+}
+
+textarea[id="Beschreibung"]{
+    height: 200px;
+    resize: none; 
+    overflow-y: scroll;
+    font-size: 20px;
+    margin-bottom: +5px;
+}
+
+
+#uebersicht_Table th{
+    height: 70px;
+    width: 280px;
+    text-align: center;
+    background-color: #2f2f2f;
+    color: white;
+    font-weight: normal;
+    border-right: 1px black;
+}
+
+#uebersicht_Table td{
+    background-color: lightgray;
+    height: 60px;
+}
+
+#uebersicht_Table th:last-child{
+    width: 100px;
+}
+
+
+.importExportButton{
+    color: white;
+    background-color: gray;
+    width: 150px;
+    border: none;
+}
+
+#importExportTable{
+   border-collapse: separate;
+   border-spacing: 15px ;
+   margin-left: -15px;
+}
+
+
+
+#labelImport, #labelExport{
+    font-weight: lighter;
+}
+
+
+#SubtitleAOS{
+    margin-top: -45px;
+    font-size: 15px;
+    color: white;
+    margin-left: 30px;
+}
+
+#menu-toggle{
+    margin-top: -10px;
+}
+
+#menu-toggle:hover{
+    content: url("../img/blackBurger.png");
+}
+
+a:link,a:hover, a:active {
+    text-decoration: none;
+}
+
+#logo{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logoRight{
+    width: 20%;
+    float: right;
+}
+
+#divLabelAOS{  
+    background-color: #00aef0;
+    left: 250px;
+    height: 65px;
+    
+}
+
+
+#LabelContent{
+    text-align: left;
+    font-size: 40px;
+}
+
+
+
+#bHinzufuegen{
+    background-color: #00aef0;
+    color: white;
+    font-size: 20px;
+    border: none;
+    float: left;
+    white-space: nowrap;
+}
+
+#bUebersicht{
+    background-color: #7a7d82;
+    color: white;
+    font-size: 20px;
+    border: none;
+    float: left;
+    margin-left: 10px;
+}
+
+.importExportLabel{
+    width: 100%;
+    text-align: left;
+}
+
+@media all and (max-width: 400px) {
+    #welcome{font-size: 20px;}
+    #bUebersicht { margin-left: 0px;}
+    #logoRight{width: 200px; float: right;}
+    #menu-toggle{float: left;}
+    .importExportButton{margin-left: -25px; margin-right: 5px;}
+    .importExportLabel{display: block;}
+}
+@media all and (max-width: 1400px) {
+    #logo{width: 500px;}
+}
+
+@media all and (max-width: 600px) {
+    #logo{width: 290px;}
+}
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: #e8e8e8;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+    text-align: left;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li:not(.sidebar-brand) {
+    text-indent: 20px;
+    line-height: 40px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #999999;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: black;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #999999;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #menu-toggle-div {
+        text-decoration: none;
+        text-align: left;
+        float: left;
+    }
+
+    #page-content-wrapper{
+        padding: 20px;
+        position: relative;
+        font-size: 30px;
+        text-align: center;
+    }
+
+
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
