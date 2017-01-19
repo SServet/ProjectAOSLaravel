@@ -14,12 +14,12 @@ class CreateArtikelTable extends Migration
     public function up()
     {
         Schema::create('Artikel', function (Blueprint $table) {
-            $table->char('ANr',64);
-            $table->char('AgID',5);
+            $table->string('ANr');
+            $table->integer('AgID',5)-references('AgID')->on('Artikelgruppe');
             $table->string('Artikelname');
             $table->string('Verkaufspreis');
-            $table->string('Einheit');
-            $table->string('Mwst');
+            $table->string('Einheit')->nullable();
+            $table->integer('Mwst');
             $table->string('Bezeichnung');
             $table->primary('ANr');
             

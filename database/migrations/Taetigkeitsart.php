@@ -16,7 +16,7 @@ class CreateTaetigkeitsartTable extends Migration
         Schema::create('Taetigkeitsart', function (Blueprint $table) {
             $table->increments('TKID');
             $table->string('Bezeichnung');
-           
+            $table->primary('TKID'); 
             
         });
     }

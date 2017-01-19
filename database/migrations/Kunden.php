@@ -16,21 +16,22 @@ class CreateKundenTable extends Migration
         Schema::create('Kunden', function (Blueprint $table) {
             $table->increments('KID');
             $table->string('Anrede');
-            $table->string('Titel');
+            $table->string('Titel')->nullable();
             $table->string('Vorname');
             $table->string('Nachname');
-            $table->string('Firmenname');
+            $table->string('Firmenname')->nullable();
             $table->string('Land');
             $table->integer('PLZ');
             $table->string('Ort');
             $table->string('Anschrift');
-            $table->string('Telefon');
-            $table->string('Mobil');
-            $table->string('Fax');
-            $table->string('Email');
-            $table->string('Web');
+            $table->string('Telefon')->nullable();
+            $table->string('Mobil')->nullable();
+            $table->string('Fax')->nullable();
+            $table->string('EMail');
+            $table->string('Web')->nullable();
             $table->string('UIDNummer');
             $table->integer('Steuernummer');
+            $table->primary('KID');
             
         });
     }

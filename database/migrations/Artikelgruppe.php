@@ -14,8 +14,9 @@ class CreateArtikelgruppeTable extends Migration
     public function up()
     {
         Schema::create('Artikelgruppe', function (Blueprint $table) {
-            $table->increments('AGID');
+            $table->increments('AgID');
             $table->string('Bezeichnung');
+            $table->primary('AgID'); 
            
             
         });

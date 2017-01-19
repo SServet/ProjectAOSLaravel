@@ -15,19 +15,20 @@ class CreateArbeitsscheinTable extends Migration
     {
         Schema::create('Arbeitsschein', function (Blueprint $table) {
             $table->increments('AsID');
-            $table->string('KID');
-            $table->string('MID');
+            $table->string('KID')->references('KID')->on('Kunden');
+            $table->string('MID')->references('MID')->on('Mitarbeiter');
             $table->string('Beschreibung');
-            $table->string('TTID');
-            $table->string('TKID');
-            $table->string('DatumVon');
-            $table->string('DatumBis');
-            $table->integer('UhrzeitVon');
-            $table->string('UhrzeitBis');
-            $table->string('VerrechneteZeit');
-            $table->string('Kulanzzeit');
+            $table->string('TTID')->references('TTID')->on('Termintyp');
+            $table->string('TKID')->references('TKID')->on('Taetigkeitsart');
+            $table->date('DatumVon');
+            $table->date('DatumBis')->nullable();
+            $table->time('UhrzeitVon');
+            $table->time('UhrzeitBis')-->nullable();
+            $table->decimal('VerrechneteZeit',6,2);
+            $table->decimal('Kulanzzeit',6,2);
             $table->string('Kulanzgrund');
-            //nicht korrekt
+            $table->primary('AsID'); 
+            
             
         });
     }
@@ -39,6 +40,6 @@ class CreateArbeitsscheinTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Kunden');
+        Schema::drop('Arbeitsschein');
     }
 }
