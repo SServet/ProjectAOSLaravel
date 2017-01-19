@@ -15,14 +15,16 @@ class CreateTicketTable extends Migration
     {
         Schema::create('Ticket', function (Blueprint $table) {
             $table->increments('TID');
-            $table->char('KID',5);
-            $table->char('MID',5);
+            $table->string('ATID')->references('ATID')->on('ArbeitscheinTicket');
+            $table->integer('KID')->references('KID')->on('Kunden');
+            $table->integer('MID')->references('MID')->on('Mitarbeter');
             $table->string('Bezeichnung');
-            $table->string('Bezeichnung');
+            $table->string('Beschreibung')->nullable();
             $table->date('Erstelldatum');
-            $table->date('AbgeschlossenAm');
-            $table->time('AbgerechnetAm');
-            $table->string('ATID');
+            $table->date('AbgeschlossenAm')->nullable();
+            $table->date('AbgerechnetAm')->nullable();
+            $table->primary('TID');
+          
           
         });
     }

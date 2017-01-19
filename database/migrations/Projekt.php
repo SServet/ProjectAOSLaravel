@@ -15,16 +15,18 @@ class CreateProjektTable extends Migration
     {
         Schema::create('Projekt', function (Blueprint $table) {
             $table->increments('PID');
-            $table->char('KID',5);
-            $table->char('MID',5);
+             $table->string('APID')->references('APID')->on('ArbeitscheinProjekt');
+            $table->integer('KID')->references('KID')->on('Kunden');
+            $table->integer('MID')->references('MID')->on('Mitarbeter');
             $table->string('Bezeichnung');
-            $table->string('Beschreibung');
-            $table->decimal('Projektvolumen',10,2)
+            $table->string('Beschreibung')->nullable();
+            $table->decimal('Projektvolumen',10,2);
             $table->date('Bestelldatum');
-            $table->date('AbgeschlossenAm');
-            $table->time('AbgerechnetAm');
-            $table->string('APID');
+            $table->date('AbgeschlossenAm')->nullable();
+            $table->date('AbgerechnetAm')->nullable();
             $table->string('Projektart');
+            $table->primary('PID');
+          
           
         });
     }
@@ -36,6 +38,6 @@ class CreateProjektTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Ticket');
+        Schema::drop('Projetk');
     }
 }

@@ -17,7 +17,7 @@ class CreateMitarbeiterTable extends Migration
             $table->increments('MID');
             $table->string('Rolle');
             $table->string('Anrede');
-            $table->string('Titel');
+            $table->string('Titel')->nullable();
             $table->string('Vorname');
             $table->string('Nachname');
             $table->string('Benutzername');
@@ -26,11 +26,12 @@ class CreateMitarbeiterTable extends Migration
             $table->integer('PLZ');
             $table->string('Ort');
             $table->string('Anschrift');
-            $table->string('Telefon');
-            $table->string('Mobil');
-            $table->string('Fax');
-            $table->string('Email');
-            $table->string('Web');            
+            $table->string('Telefon')->nullable();
+            $table->string('Mobil')->nullable();
+            $table->string('Fax')->nullable();
+            $table->string('EMail');
+            $table->string('Web'); 
+            $table->primary('MID');           
             
         });
     }

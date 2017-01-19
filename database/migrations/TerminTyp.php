@@ -16,6 +16,7 @@ class CreateTermintypTable extends Migration
         Schema::create('Termintyp', function (Blueprint $table) {
             $table->increments('TTID');
             $table->string('Bezeichnung');
+            $table->primary('TTID'); 
             
             });
     }

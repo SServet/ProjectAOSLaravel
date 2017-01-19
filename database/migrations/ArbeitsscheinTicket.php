@@ -14,19 +14,20 @@ class CreateArbeitsscheinTicketTable extends Migration
     public function up()
     {
         Schema::create('ArbeitsscheinTicket', function (Blueprint $table) {
-            $table->increments('ATID'5);
-            $table->char('MID',5);
+            $table->increments('ATID');
+            $table->integer('MID')->references('MID')->on('Mitarbeter');
             $table->string('Beschreibung');
-            $table->char('ANr',64);
-            $table->char('TTID',5);
-            $table->char('TKID',5);
+            $table->string('ANr')->references('ANr')->on('Artikel');
+            $table->int('TTID')->references('TTID')->on('Termintyp');
+            $table->int('TKID',5)->references('TKID')->on('Taetigkeitsart');
             $table->date('DatumVon');
-            $table->date('DatumBis');
+            $table->date('DatumBis')->nullable();
             $table->time('UhrzeitVon');
-            $table->time('UhrzeitBis');
+            $table->time('UhrzeitBis')->nullable();
             $table->decimal('VerrechneteZeit',6,2);
             $table->decimal('Kulanzzeit',6,2);
-            $table->string('Kulanzgrund',6,2);
+            $table->string('Kulanzgrund');
+            $table->primary('ATID');
         });
     }
 
@@ -37,6 +38,6 @@ class CreateArbeitsscheinTicketTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Artikel');
+        Schema::drop('ArbeitsscheinTicket');
     }
 }
