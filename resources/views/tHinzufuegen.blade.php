@@ -86,26 +86,26 @@
            </tr>
            <tr>
             <td><p class="inputLabels">Bezeichnung</p></td>
-            <td><input type="text" id="Bezeichnung" class="inputArea"></td>
+            <td><input type="text" id="Bezeichnung" class="form-control input-lg"></td>
           </tr>
           <tr>
             <td><p class="inputLabels">Beschreibung</p></td>
-            <td><textarea id="Beschreibung" class="inputArea" style=""></textarea></td>
+            <td><textarea id="Beschreibung" class="form-control input-lg" style=""></textarea></td>
           </tr>
           <tr>
            <td><p class="inputLabels">Dienstleistung</p></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Erstelldatum</p></td>
-           <td><input type="text" id="Erstelldatum" class="inputArea"></td>
+           <td><input type="date" id="Erstelldatum" class="form-control input-lg"></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgeschlossen Am</p></td>
-           <td><input type="text" id="AbgeschlossenAm" class="inputArea"></td>
+           <td><input type="date" id="AbgeschlossenAm" class="form-control input-lg"></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgerechnet Am</p></td>
-           <td><input type="text" id="AbgerechnetAm" class="inputArea"></td>
+           <td><input type="date" id="AbgerechnetAm" class="form-control input-lg"></td>
          </tr>
 
 
@@ -120,7 +120,6 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="{{ asset('assets/js/jquery.js') }}"></script>
 
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -142,16 +141,27 @@
   $("#Erstelldatum").attr("value", today);
 
   $( "#Erstelldatum" ).datepicker({
-    numberOfMonths: 2
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd" 
+  });
+
+  $( "#AbgeschlossenAm" ).datepicker({
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd" 
   });
   
+  $( "#AbgerechnetAm" ).datepicker({
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd"
+  });
+
 });
 </script>
 
 
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
 
 <!-- Menu Toggle Script  -->
 <script>
