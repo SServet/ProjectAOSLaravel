@@ -38,7 +38,11 @@
          <ul class="sidebar-nav">
           <li class="sidebar-brand">
            <div id="divLabelAOS">
+<<<<<<< HEAD
             <a href="/"/>
+=======
+            <a href="index.html"/>
+>>>>>>> Enes
             <p id="LabelAOS">AOS</p>
             <p id="SubtitleAOS">Arbeitsschein Online Service</p>
           </div>
@@ -46,6 +50,7 @@
             <a href="/">STARTSEITE</a>
           </li>
           <li>
+<<<<<<< HEAD
             <a href="/Tickets">TICKETS</a>
           </li>
           <li>
@@ -56,6 +61,18 @@
           </li>
           <li>
             <a href="/Einstellungen">EINSTELLUNGEN</a>
+=======
+            <a href="/tickets">TICKETS</a>
+          </li>
+          <li>
+            <a href="/projekte">PROJEKTE</a>
+          </li>
+          <li>
+            <a href="/arbeitsschein">ARBEITSSCHEINE</a>
+          </li>
+          <li>
+            <a href="/einstellungen">EINSTELLUNGEN</a>
+>>>>>>> Enes
           </li>
         </ul>
       </div>

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['uses' => 'IndexController@showIndex']);
+<<<<<<< HEAD
 
 Route::get('/Arbeitsschein', ['uses' => 'ArbeitsscheinController@showArbeitsschein']);
 Route::get('/Arbeitsschein_Hinzufuegen', ['uses' => 'ArbeitsscheinController@showArbeitsscheinHinzufuegen']);
@@ -26,3 +27,5 @@ Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufu
 Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 
 Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+=======
+>>>>>>> Enes
