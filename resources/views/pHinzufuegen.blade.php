@@ -9,6 +9,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
 	<title>Arbeitsschein Online Service</title>
 
   <!-- Bootstrap Core CSS -->
@@ -20,12 +22,6 @@
   <!-- Font-Links -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-
-
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-  <link rel="stylesheet" href="/resources/demos/style.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,7 +98,7 @@
            </tr>
            <tr>
             <td><p class="inputLabels">Projektvolumen</p></td>
-            <td><input type="number" id="Projektvolumen" class="form-control input-lg" step="0.5" ></textarea></td>
+            <td><input type="number" id="Projektvolumen" placeholder="in Euro" class="form-control input-lg" step="0.01" ></td>
           </tr>
           <tr>
            <td><p class="inputLabels">Bestelldatum</p></td>
@@ -111,7 +107,6 @@
          <tr>
            <td><p class="inputLabels">Abgeschlossen Am</p></td>
            <td><input type="date" id="AbgeschlossenAm" class="form-control input-lg"></td>
-           <td><p>Date: <input type="text" id="datepicker"></p></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgerechnet Am</p></td>
@@ -132,7 +127,6 @@
 
 
         </table>
-        <input type="text" class="form-control">
       </div>
     </div>
   </div>
@@ -142,34 +136,47 @@
 </div>
 <!-- /#wrapper -->
 
-
-
-
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
 <script>
 
-  $('#sandbox-container input').datepicker({
-    todayBtn: "linked",
-    clearBtn: true,
-    language: "de",
-    calendarWeeks: true,
-    autoclose: true,
-    todayHighlight: true
-});
+ $(document).ready(function() {
+  var date = new Date();
 
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+
+  if (month < 10) month = "0" + month;
+  if (day < 10) day = "0" + day;
+
+  var today = year + "-" + month + "-" + day; 
+   
+  $("#Bestelldatum").attr("value", today);
+
+  $( "#Bestelldatum" ).datepicker({
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd" 
+  });
+  $( "#AbgeschlossenAm" ).datepicker({
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd" 
+  });
+  $( "#AbgerechnetAm" ).datepicker({
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd" 
+  });
+  
+});
 </script>
 
 
 
 
 
+
 <!-- jQuery -->
-<!-- jQuery -->
-<script src="{{ asset('assets/js/jquery.js') }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

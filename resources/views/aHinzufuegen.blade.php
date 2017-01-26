@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 	<title>Arbeitsschein Online Service</title>
 
   <!-- Bootstrap Core CSS -->
@@ -17,9 +17,8 @@
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
-	<!-- Font-Links -->
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="Css/datepicker.css" />
+  <!-- Font-Links -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -142,35 +141,50 @@
 
 
 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+<script>
+
+ $(document).ready(function() {
+  var date = new Date();
+
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+
+  if (month < 10) month = "0" + month;
+  if (day < 10) day = "0" + day;
+
+  var today = year + "-" + month + "-" + day;       
+  $("#DatumVon").attr("value", today);
+
+  $( "#DatumVon" ).datepicker({
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd" 
+  });
+  
+  $( "#DatumBis" ).datepicker({
+    numberOfMonths: 2,
+    dateFormat: "yy-mm-dd"
+  });
+
+});
+</script>
+
+
 <!-- /#page-content-wrapper -->
 
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<!-- cdn for modernizr, if you haven't included it already -->
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
-<!-- polyfiller file to detect and load polyfills -->
-<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
-<!-- Menu Toggle Script  -->
 <script>
   $("#menu-toggle").click(function(e) {
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");
 
  });
-
-  var datefield=document.createElement("input")
-  datefield.setAttribute("type", "date")
-    if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
-      document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
-    document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
-    document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
-  }
-
 
 </script>
 
