@@ -46,16 +46,16 @@
             <a href="/">STARTSEITE</a>
           </li>
           <li>
-            <a href="/tickets">TICKETS</a>
+            <a href="/Tickets">TICKETS</a>
           </li>
           <li>
-            <a href="/projekte">PROJEKTE</a>
+            <a href="/Projekte">PROJEKTE</a>
           </li>
           <li>
-            <a href="/arbeitsschein">ARBEITSSCHEINE</a>
+            <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
           </li>
           <li>
-            <a href="/einstellungen">EINSTELLUNGEN</a>
+            <a href="/Einstellungen">EINSTELLUNGEN</a>
           </li>
         </ul>
       </div>
