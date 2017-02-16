@@ -18,8 +18,8 @@ class CreateArbeitsscheinTicketTable extends Migration
             $table->integer('MID')->references('MID')->on('Mitarbeter');
             $table->string('Beschreibung');
             $table->string('ANr')->references('ANr')->on('Artikel');
-            $table->int('TTID')->references('TTID')->on('Termintyp');
-            $table->int('TKID')->references('TKID')->on('Taetigkeitsart');
+            $table->integer('TTID')->references('TTID')->on('Termintyp');
+            $table->integer('TKID')->references('TKID')->on('Taetigkeitsart');
             $table->date('DatumVon');
             $table->date('DatumBis')->nullable();
             $table->time('UhrzeitVon');
@@ -39,4 +39,5 @@ class CreateArbeitsscheinTicketTable extends Migration
     public function down()
     {
         Schema::drop('ArbeitsscheinTicket');
+    }
 }

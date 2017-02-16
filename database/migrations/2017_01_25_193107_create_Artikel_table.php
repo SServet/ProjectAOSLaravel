@@ -15,7 +15,7 @@ class CreateArtikelTable extends Migration
     {
         Schema::create('Artikel', function (Blueprint $table) {
             $table->string('ANr');
-            $table->integer('AgID')-references('AgID')->on('Artikelgruppe');
+            $table->integer('AgID')->references('AgID')->on('Artikelgruppe');
             $table->string('Artikelname');
             $table->string('Verkaufspreis');
             $table->string('Einheit')->nullable();

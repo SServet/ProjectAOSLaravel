@@ -18,7 +18,7 @@ class CreateArbeitsscheinProjektTable extends Migration
             $table->integer('MID')->references('MID')->on('Mitarbeiter');
             $table->string('Beschreibung');
             $table->string('ANr')->references('ANr')->on('Artikel');
-            $table->int('TTID')->references('TTID')->on('Termintyp');
+            $table->integer('TTID')->references('TTID')->on('Termintyp');
             $table->char('TKID',5)->references('TKID')->on('Taetigkeitsart');
             $table->date('DatumVon');
             $table->date('DatumBis')->nullable();
