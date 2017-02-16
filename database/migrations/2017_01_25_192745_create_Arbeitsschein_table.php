@@ -24,9 +24,9 @@ class CreateArbeitsscheinTable extends Migration
             $table->date('DatumBis')->nullable();
             $table->time('UhrzeitVon');
             $table->time('UhrzeitBis')->nullable();
-            $table->decimal('VerrechneteZeit',6,2);
-            $table->decimal('Kulanzzeit',6,2);
-            $table->string('Kulanzgrund');
+            $table->decimal('VerrechneteZeit',6,2)->nullable();
+            $table->decimal('Kulanzzeit',6,2)->nullable();
+            $table->string('Kulanzgrund')->nullable();
            });
     }
 

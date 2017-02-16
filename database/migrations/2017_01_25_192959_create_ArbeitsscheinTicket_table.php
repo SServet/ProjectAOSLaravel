@@ -15,7 +15,7 @@ class CreateArbeitsscheinTicketTable extends Migration
     {
         Schema::create('ArbeitsscheinTicket', function (Blueprint $table) {
             $table->increments('ATID');
-            $table->integer('MID')->references('MID')->on('Mitarbeter');
+            $table->integer('MID')->references('MID')->on('Mitarbeiter');
             $table->string('Beschreibung');
             $table->string('ANr')->references('ANr')->on('Artikel');
             $table->integer('TTID')->references('TTID')->on('Termintyp');
@@ -24,9 +24,9 @@ class CreateArbeitsscheinTicketTable extends Migration
             $table->date('DatumBis')->nullable();
             $table->time('UhrzeitVon');
             $table->time('UhrzeitBis')->nullable();
-            $table->decimal('VerrechneteZeit',6,2);
-            $table->decimal('Kulanzzeit',6,2);
-            $table->string('Kulanzgrund');
+            $table->decimal('VerrechneteZeit',6,2)->nullable();
+            $table->decimal('Kulanzzeit',6,2)->nullable();
+            $table->string('Kulanzgrund')->nullable();
             
         });
     }

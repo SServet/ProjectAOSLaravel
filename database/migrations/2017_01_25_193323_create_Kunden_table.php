@@ -24,13 +24,13 @@ class CreateKundenTable extends Migration
             $table->integer('PLZ');
             $table->string('Ort');
             $table->string('Anschrift');
+            $table->string('EMail');
             $table->string('Telefon')->nullable();
             $table->string('Mobil')->nullable();
-            $table->string('Fax')->nullable();
-            $table->string('EMail');
+            $table->string('Fax')->nullable();            
             $table->string('Web')->nullable();
-            $table->string('UIDNummer');
-            $table->integer('Steuernummer');
+            $table->string('UIDNummer')->nullable();
+            $table->integer('Steuernummer')->nullable();
             
             
         });

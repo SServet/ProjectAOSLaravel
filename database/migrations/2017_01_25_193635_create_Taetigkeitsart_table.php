@@ -27,6 +27,6 @@ class CreateTaetigkeitsartTable extends Migration
      */
     public function down()
     {
-        chema::drop('Taetigkeitsart');
+        Schema::drop('Taetigkeitsart');
     }
 }

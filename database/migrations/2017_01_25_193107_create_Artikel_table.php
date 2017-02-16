@@ -17,7 +17,7 @@ class CreateArtikelTable extends Migration
             $table->string('ANr');
             $table->integer('AgID')->references('AgID')->on('Artikelgruppe');
             $table->string('Artikelname');
-            $table->string('Verkaufspreis');
+            $table->string('Verkaufspreis')->nullable();
             $table->string('Einheit')->nullable();
             $table->integer('Mwst');
             $table->string('Bezeichnung');

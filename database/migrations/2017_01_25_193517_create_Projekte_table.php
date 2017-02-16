@@ -20,11 +20,11 @@ class CreateProjekteTable extends Migration
             $table->integer('MID')->references('MID')->on('Mitarbeter');
             $table->string('Bezeichnung');
             $table->string('Beschreibung')->nullable();
-            $table->decimal('Projektvolumen',10,2);
+            $table->decimal('Projektvolumen',10,2)->nullable();
             $table->date('Bestelldatum');
             $table->date('AbgeschlossenAm')->nullable();
             $table->date('AbgerechnetAm')->nullable();
-            $table->string('Projektart');
+            $table->string('Projektart')->nullable();
          
           
           
