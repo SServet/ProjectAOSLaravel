@@ -33,6 +33,12 @@
 
       <body>
 
+        <?php
+          $kunden = DB::table('kunden')->get();
+          $mitarbeiter = DB::table('mitarbeiter')->get();
+          $projekte = DB::table('projekte')->get();
+        ?>
+
        <div id="wrapper">
 
         <!-- Sidebar -->
@@ -84,8 +90,11 @@
              <tr>
                <td><p class="inputLabels">Kunde</p></td>
                <td>
-                  <select data-placeholder="Mitarbeiter auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2">
+                  <select data-placeholder="Kunde auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2">
                     <option value=""></option>
+                    @foreach ($kunden as $kunde):
+                      <option>{{$kunde->KID}}. {{$kunde->Nachname}} {{$kunde->Vorname}}</option>
+                    @endforeach
                  </select>
                </td>
              </tr>
@@ -94,6 +103,12 @@
                <td>
                    <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
                         <option value=""></option>
+                        <?php
+                          $mitarbeiter = DB::table('mitarbeiter')->get();
+                        ?>
+                      @foreach ($mitarbeiter as $mitarb):
+                        <option>{{$mitarb->MID}}. {{$mitarb->Nachname}} {{$mitarb->Vorname}}</option>
+                      @endforeach
                      </select>
                </td>
              </tr>
@@ -105,15 +120,18 @@
               <td><p class="inputLabels">Beschreibung</p></td>
               <td><textarea id="Beschreibung" class="form-control input-lg" ></textarea></td>
             </tr>
-            <tr>
-             <td><p class="inputLabels">Dienstleistung</p></td>
-             <td>
-                  <select data-placeholder="Dienstleistung auswählen..." id="dienstleistung_select" class="chosen-select" style="width:350px;" tabindex="2">
-                    <option value=""></option>
-                 </select>
-               </td>
-           </tr>
            <tr>
+           <tr>
+                 <td><p class="inputLabels">Projektart</p></td>
+                 <td>
+                        <select data-placeholder="Projektart auswählen..." id="projektart_select" class="chosen-select" style="width:350px;" tabindex="2">
+                          <option value=""></option>
+                          @foreach ($projekte as $projekt):
+                            <option>{{$projekt->Projektart}}</option>
+                          @endforeach
+                       </select>
+                 </td>
+             </tr>
             <td><p class="inputLabels">Projektvolumen</p></td>
             <td><input type="number" id="Projektvolumen" placeholder="in Euro" class="form-control input-lg" step="0.01" ></td>
           </tr>
@@ -129,14 +147,7 @@
            <td><p class="inputLabels">Abgerechnet Am</p></td>
            <td><input type="date" id="AbgerechnetAm" class="form-control input-lg"></td>
          </tr>
-         <tr>
-           <td><p class="inputLabels">Projektart</p></td>
-           <td>
-                  <select data-placeholder="Projektart auswählen..." id="projektart_select" class="chosen-select" style="width:350px;" tabindex="2">
-                    <option value=""></option>
-                 </select>
-           </td>
-          </tr>
+         
 
 
 
