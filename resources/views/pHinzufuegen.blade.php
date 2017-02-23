@@ -22,7 +22,6 @@
   <!-- Font-Links -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -78,12 +77,25 @@
          <div>
            <p id="LabelContent">PROJEKTE > HINZUFÜGEN</p>
            <hr>
+           <!-- Chosen -->
+            <!-- CSS -->
+              <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
            <table id="inputTable">
              <tr>
                <td><p class="inputLabels">Kunde</p></td>
+               <td>
+                  <select data-placeholder="Mitarbeiter auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2">
+                    <option value=""></option>
+                 </select>
+               </td>
              </tr>
              <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
+               <td>
+                   <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
+                        <option value=""></option>
+                     </select>
+               </td>
              </tr>
              <tr>
               <td><p class="inputLabels">Bezeichnung</p></td>
@@ -95,6 +107,11 @@
             </tr>
             <tr>
              <td><p class="inputLabels">Dienstleistung</p></td>
+             <td>
+                  <select data-placeholder="Dienstleistung auswählen..." id="dienstleistung_select" class="chosen-select" style="width:350px;" tabindex="2">
+                    <option value=""></option>
+                 </select>
+               </td>
            </tr>
            <tr>
             <td><p class="inputLabels">Projektvolumen</p></td>
@@ -115,13 +132,10 @@
          <tr>
            <td><p class="inputLabels">Projektart</p></td>
            <td>
-             <div class="dropdown">
-               <input type="text" id="Projektart" class="form-control input-lg dropdown-toggle" data-toggle="dropdown" style="margin-left: auto;"> 
-               <ul class="dropdown-menu" style="margin-left: auto;">
-                <li><a href="#">Pauschal</a></li>
-                <li><a href="#">Aufwand</a></li></li>
-              </ul>
-            </div>
+                  <select data-placeholder="Projektart auswählen..." id="projektart_select" class="chosen-select" style="width:350px;" tabindex="2">
+                    <option value=""></option>
+                 </select>
+           </td>
           </tr>
 
 
@@ -167,7 +181,7 @@
     numberOfMonths: 2,
     dateFormat: "yy-mm-dd" 
   });
-  
+  $(".chosen-select").chosen();
 });
 </script>
 
@@ -180,6 +194,9 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
 
 <!-- Menu Toggle Script  -->
 <script>

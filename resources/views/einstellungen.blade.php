@@ -86,10 +86,17 @@
                             <td><button class="importExportButton">ARTIKEL</button></td>
                         </tr>
                         <tr>
-
                             <th>Termintypen</th>
                         </tr>
-                        <div >
+                        <tr>
+                            <td>
+                                <select class="chosen" style="width:150px;">
+                                    <option>PHP</option>
+                                    <option>PHP Array</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <div>
                         </div>
                     </table>
                     <br>
@@ -102,6 +109,9 @@
 </div>
 <!-- /#wrapper -->
 
+<!-- Chosen Plugin -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+
 <!-- jQuery -->
 <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
@@ -110,6 +120,8 @@
 
 <!-- Menu Toggle Script  -->
 <script>
+
+  $(".chosen").chosen({width: "50%"});
 
   $("#menu-toggle").click(function(e) {
      e.preventDefault();

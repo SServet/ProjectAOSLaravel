@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 	<title>Arbeitsschein Online Service</title>
 
+
   <!-- Bootstrap Core CSS -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -19,7 +20,6 @@
 
   <!-- Font-Links -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,27 +77,45 @@
          <div>
            <p id="LabelContent">ARBEITSSCHEIN > HINZUFÜGEN</p>
            <hr>
+           <!-- Chosen -->
+           <!-- CSS -->
+              <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
            <table id="inputTable">
              <tr>
                <td><p class="inputLabels">Kunde</p></td>
+               <td>
+                 <select data-placeholder="Kunden auswählen..." id="kunden_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2">
+                    <option value=""></option>
+                    <option value>K1</option>
+                    <option value>K9</option>
+                    <option value>Caner</option>
+                    <option value>0989</option>
+                    <option value>Siebentausend</option>
+                 </select>
+               </td>
              </tr>
              <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
+               <td>
+                 <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
+                    <option value=""></option>
+                 </select>
+               </td>
              </tr>
              <tr>
               <td><p class="inputLabels">Termintyp</p></td>
+              <td>
+                <select data-placeholder="Termintyp auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
+                      <option value=""></option>
+                   </select>
+              </td>
             </tr>
             <tr>
               <td><p class="inputLabels">Tätigkeit</p></td>
               <td>
-                <div class="dropdown">
-                  <input type="text" id="Tätigkeit" class="form-control input-lg dropdown-toggle" data-toggle="dropdown" style="margin-left: auto;"> 
-                  <ul class="dropdown-menu" style="margin-left: auto;">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                  </ul>
-                </div>
+                <select data-placeholder="Tätigkeit auswählen..." id="taetigkeit_select" class="chosen-select" style="width:350px;" tabindex="2">
+                    <option value=""></option>
+                 </select>
               </td>
             </tr>
             <tr>
@@ -143,6 +161,7 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
 
 <script>
 
@@ -168,7 +187,7 @@
     numberOfMonths: 2,
     dateFormat: "yy-mm-dd"
   });
-
+  $(".chosen-select").chosen();
 });
 </script>
 
