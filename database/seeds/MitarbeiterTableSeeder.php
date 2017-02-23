@@ -26,5 +26,19 @@ class MitarbeiterTableSeeder extends Seeder
             'Ort' => 'Neustadt',
             'EMail' => 'i12001@student.htlwrn.ac.at',
         ]);
+
+        Mitarbeiter::create([
+            'MID' => '2',
+            'Benutzername' => 'Cani',
+            'Passwort' => '1ee',
+            'Rolle' => 'Techniker',
+            'Anrede' => 'Herr',
+            'Vorname' => 'Caner',
+            'Nachname' => 'Demirbag',
+            'Land' => 'Oesterreich',
+            'PLZ' => '2700',
+            'Ort' => 'Neustadt',
+            'EMail' => 'i12016@student.htlwrn.ac.at',
+        ]);
     }
 }
