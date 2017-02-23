@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	<title>Arbeitsschein Online Service</title>
+  <title>Arbeitsschein Online Service</title>
 
 
   <!-- Bootstrap Core CSS -->
@@ -32,90 +32,105 @@
 
       <body>
 
-       <div id="wrapper">
+        <?php
+        $kunden = DB::table('kunden')->get();
+        $mitarbeiter = DB::table('mitarbeiter')->get();
+        $termintyp = DB::table('termintyp')->get();
+        $taetigkeitsart = DB::table('taetigkeitsart')->get();
+        ?>
+
+
+        <div id="wrapper">
 
 
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-         <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-           <div id="divLabelAOS">
-            <a href="/"/>
-            <p id="LabelAOS">AOS</p>
-            <p id="SubtitleAOS">Arbeitsschein Online Service</p>
-          </div>
-          <li>
-            <a href="/">STARTSEITE</a>
-          </li>
-          <li>
-            <a href="/Tickets">TICKETS</a>
-          </li>
-          <li>
-            <a href="/Projekte">PROJEKTE</a>
-          </li>
-          <li>
-            <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
-          </li>
-          <li>
-            <a href="/Einstellungen">EINSTELLUNGEN</a>
-          </li>
-        </ul>
-      </div>
-      <!-- /#sidebar-wrapper -->
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper">
+           <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+             <div id="divLabelAOS">
+              <a href="/"/>
+              <p id="LabelAOS">AOS</p>
+              <p id="SubtitleAOS">Arbeitsschein Online Service</p>
+            </div>
+            <li>
+              <a href="/">STARTSEITE</a>
+            </li>
+            <li>
+              <a href="/Tickets">TICKETS</a>
+            </li>
+            <li>
+              <a href="/Projekte">PROJEKTE</a>
+            </li>
+            <li>
+              <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
+            </li>
+            <li>
+              <a href="/Einstellungen">EINSTELLUNGEN</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
-      <!-- Page Content -->
-      <div id="page-content-wrapper">
-       <div class="container-fluid">
-        <div class="row">
-         <div class="col-lg-12">
-          <div id="menu-toggle-div">
-           <img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle">
-         </div>
-         <br>
-         <br>
-         <div>
-           <p id="LabelContent">ARBEITSSCHEIN > HINZUFÜGEN</p>
-           <hr>
-           <!-- Chosen -->
-           <!-- CSS -->
-              <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
-           <table id="inputTable">
-             <tr>
-               <td><p class="inputLabels">Kunde</p></td>
-               <td>
-                 <select data-placeholder="Kunden auswählen..." id="kunden_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+         <div class="container-fluid">
+          <div class="row">
+           <div class="col-lg-12">
+            <div id="menu-toggle-div">
+             <img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle">
+           </div>
+           <br>
+           <br>
+           <div>
+             <p id="LabelContent">ARBEITSSCHEIN > HINZUFÜGEN</p>
+             <hr>
+             <!-- Chosen -->
+             <!-- CSS -->
+             <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
+             <table id="inputTable">
+               <tr>
+                 <td><p class="inputLabels">Kunde</p></td>
+                 <td>
+                   <select data-placeholder="Kunden auswählen..." id="kunden_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2">
                     <option value=""></option>
-                    <option value>K1</option>
-                    <option value>K9</option>
-                    <option value>Caner</option>
-                    <option value>0989</option>
-                    <option value>Siebentausend</option>
-                 </select>
-               </td>
-             </tr>
-             <tr>
+                    @foreach ($kunden as $kunde)
+                    <option>{{$kunde->KID}}. {{$kunde->Nachname}} {{$kunde->Vorname}}</option>
+                    @endforeach
+                  </select>
+                </td>
+              </tr>
+              <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
                <td>
                  <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
-                    <option value=""></option>
-                 </select>
-               </td>
-             </tr>
-             <tr>
+                  <option value=""></option>
+                   @foreach ($mitarbeiter as $mitarb)
+                    <option>{{$mitarb->MID}}. {{$mitarb->Nachname}} {{$mitarb->Vorname}}</option>
+                    @endforeach
+                </select>
+              </td>
+            </tr>
+            <tr>
               <td><p class="inputLabels">Termintyp</p></td>
               <td>
                 <select data-placeholder="Termintyp auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
-                      <option value=""></option>
-                   </select>
+                  <option value=""></option>
+                  @foreach ($termintyp as $tt)
+                    <option>{{$tt->TTID}}. {{$tt->Bezeichnung}}</option>
+                    @endforeach
+                </select>
               </td>
             </tr>
             <tr>
               <td><p class="inputLabels">Tätigkeit</p></td>
               <td>
                 <select data-placeholder="Tätigkeit auswählen..." id="taetigkeit_select" class="chosen-select" style="width:350px;" tabindex="2">
-                    <option value=""></option>
-                 </select>
+                  <option value=""></option>
+                  @foreach ($taetigkeitsart as $tk)
+                    <option>{{$tk->TKID}}. {{$tk->Bezeichnung}}</option>
+                    @endforeach
+                </select>
               </td>
             </tr>
             <tr>

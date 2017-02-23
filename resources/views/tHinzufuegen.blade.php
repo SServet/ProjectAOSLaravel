@@ -33,6 +33,12 @@
 
       <body>
 
+       <?php
+        $kunden = DB::table('kunden')->get();
+        $mitarbeiter = DB::table('mitarbeiter')->get();
+        $arbeitsscheinticket = DB::table('arbeitsscheinticket')->get();
+        ?>
+
        <div id="wrapper">
 
         <!-- Sidebar -->
@@ -82,10 +88,24 @@
               <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
          <table  id="inputTable">
            <tr>
+             <tr>
+             <td><p class="inputLabels">Arbeitsschein-Ticket</p></td>
+               <td>
+                <select data-placeholder="Arbeitsschein-Ticket auswählen..." id="Arbeitsschein-Ticket_select" class="chosen-select" style="width:350px;" tabindex="2">
+                  <option value=""></option>
+                   @foreach ($arbeitsscheinticket as $at)
+                    <option>{{$at->ATID}}</option>
+                    @endforeach
+                </select>
+              </td>
+            </tr>
              <td><p class="inputLabels">Kunde</p></td>
              <td>
                   <select data-placeholder="Kunde auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2">
                     <option value=""></option>
+                    @foreach ($kunden as $kunde)
+                    <option>{{$kunde->KID}}. {{$kunde->Nachname}} {{$kunde->Vorname}}</option>
+                    @endforeach
                  </select>
                </td>
            </tr>
@@ -94,6 +114,9 @@
              <td>
                   <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
                     <option value=""></option>
+                    @foreach ($mitarbeiter as $mitarb)
+                    <option>{{$mitarb->MID}}. {{$mitarb->Nachname}} {{$mitarb->Vorname}}</option>
+                    @endforeach
                  </select>
                </td>
            </tr>
@@ -105,14 +128,7 @@
             <td><p class="inputLabels">Beschreibung</p></td>
             <td><textarea id="Beschreibung" class="form-control input-lg" style=""></textarea></td>
           </tr>
-          <tr>
-           <td><p class="inputLabels">Dienstleistung</p></td>
-           <td>
-                  <select data-placeholder="Dienstleistung auswählen..." id="dienstleistung_select" class="chosen-select" style="width:350px;" tabindex="2">
-                    <option value=""></option>
-                 </select>
-               </td>
-         </tr>
+          
          <tr>
            <td><p class="inputLabels">Erstelldatum</p></td>
            <td><input type="date" id="Erstelldatum" class="form-control input-lg"></td>
