@@ -13,43 +13,41 @@ class KundenTableSeeder extends Seeder
     public function run()
     {
        \DB::table("Kunden")->delete();
-        Kunden::create([
-        	
+        Kunden::create([        	
         	'Anrede' => 'Herr',
         	'Titel' => 'Dr',
         	'Vorname' => 'Marko',
             'Nachname' => 'Peric',
             'Firmenname' => 'GMBH',
+            'EMail' => 'i12015@student.htlwrn.ac.at',
             'Land' => 'Peric',
             'PLZ' => '2700',
             'Ort' => 'Neustadt',
-            'Anschrift' => 'Hauptstrase 12',
-            'EMail' => 'i12015@student.htlwrn.ac.at',
+            'Strasse' => 'Hauptstrase 12',            
             'Telefon' => '067664689761',
-            'Mobil' =>'',
-            'Fax' => '',
-            'Web' => '',
-            'UIDNummer' => '',
+            'Mobil' =>' ',
+            'Fax' => ' ',
+            'Web' => ' ',
+            'UIDNummer' => ' ',
             'Steuernummer' => '1234'
         ]);
 
-         Kunden::create([
-            
+         Kunden::create([            
             'Anrede' => 'Herr',
             'Titel' => 'Dr',
             'Vorname' => 'Servet',
             'Nachname' => 'Simsek',
             'Firmenname' => 'GMBH',
+            'EMail' => 'i120455@student.htlwrn.ac.at',
             'Land' => 'Neustadt',
             'PLZ' => '2700',
             'Ort' => 'Neustadt',
-            'Anschrift' => 'Hauptstrase 12',
-            'EMail' => 'i120455@student.htlwrn.ac.at',
+            'Strasse' => 'Hauptstrase 12',            
             'Telefon' => '0676654659761',
-            'Mobil' =>'',
-            'Fax' => '',
-            'Web' => '',
-            'UIDNummer' => '',
+            'Mobil' =>' ',
+            'Fax' => ' ',
+            'Web' => ' ',
+            'UIDNummer' => ' ',
             'Steuernummer' => '7894'
         ]);
     }

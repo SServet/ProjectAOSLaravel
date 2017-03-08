@@ -15,19 +15,19 @@ class CreateKundenTable extends Migration
     {
          Schema::create('Kunden', function (Blueprint $table) {
             $table->increments('KID');
-            $table->string('Anrede');
+            $table->string('Anrede')->nullable();
             $table->string('Titel')->nullable();
-            $table->string('Vorname');
-            $table->string('Nachname');
+            $table->string('Vorname')->nullable();
+            $table->string('Nachname')->nullable();
             $table->string('Firmenname')->nullable();
-            $table->string('Land');
-            $table->integer('PLZ');
-            $table->string('Ort');
-            $table->string('Anschrift');
-            $table->string('EMail');
+            $table->string('Email')->nullable();
+            $table->string('Land')->nullable();  
+            $table->integer('PLZ')->nullable();          
+            $table->string('Ort')->nullable();            
+            $table->string('Strasse')->nullable();            
             $table->string('Telefon')->nullable();
             $table->string('Mobil')->nullable();
-            $table->string('Fax')->nullable();            
+            $table->string('Fax')->nullable();           
             $table->string('Web')->nullable();
             $table->string('UIDNummer')->nullable();
             $table->integer('Steuernummer')->nullable();
