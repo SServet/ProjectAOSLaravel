@@ -31,6 +31,11 @@
 
       <body>
 
+        <?php
+        $tickets = DB::table('ticket')->get();
+        $kunden = DB::table('kunden')->get();
+        ?>
+
        <div id="wrapper">
 
         <!-- Sidebar -->
@@ -79,6 +84,35 @@
          <form action="Tickets_Uebersicht">
           <button id="bUebersicht">ÜBERSICHT</button>
         </form>
+        <br>
+        <br>
+        <p id="LabelContent" style="font-size: 25px;">OFFENE TICKETS</p>
+        <table id="offene_Table">
+          <tr>
+            <th>TNr.</th>
+            <th>BEZEICHNUNG</th>
+            <th>KUNDENNAME</th>
+            <th></th>
+          </tr>
+          <tr>
+            @foreach ($tickets as $ticket)
+            <td>
+              {{$ticket->TID}}
+            </td>
+            <td>
+              {{$ticket->Bezeichnung}}
+            </td>
+            <td>
+              @foreach ($kunden as $kunde)
+                @if($kunde->KID == $ticket->KID)
+                  {{$kunde->Vorname}} {{$kunde->Nachname}}
+                @endif
+              @endforeach
+            </td>
+            @endforeach
+            <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

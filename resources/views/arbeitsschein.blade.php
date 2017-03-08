@@ -30,7 +30,6 @@
       </head>
 
       <body>
-
        <div id="wrapper">
 
         <!-- Sidebar -->
@@ -79,7 +78,8 @@
          <form action="/Arbeitsschein_Uebersicht">
           <button id="bUebersicht">ÜBERSICHT</button>
         </form>
-
+        <br>
+        <br>
       </div>
     </div>
   </div>

@@ -52,8 +52,6 @@ textarea[id="Beschreibung"]{
 
 
 #uebersicht_Table th{
-    height: 70px;
-    width: 280px;
     text-align: center;
     background-color: #2f2f2f;
     color: white;
@@ -70,6 +68,34 @@ textarea[id="Beschreibung"]{
     width: 100px;
 }
 
+#uebersicht_Table{
+    width: 280px !important;
+    height: 70px !important;
+}
+
+#offene_Table{
+    font-size: 20px;
+}
+
+#offene_Table th{
+    text-align: center;
+    background-color: #3c3c3c;
+    width: 250px;
+    color: white;
+    font-weight: normal;
+}
+
+#offene_Table td{
+    background-color: #dfdfdf;
+}
+
+#offene_Table th:first-child{
+    width: 100px;
+}
+
+#offene_Table th:last-child{
+    width: 50px;
+}
 
 .importExportButton{
     color: white;
@@ -133,8 +159,6 @@ a:link,a:hover, a:active {
     text-align: left;
     font-size: 40px;
 }
-
-
 
 #bHinzufuegen{
     background-color: #00aef0;
