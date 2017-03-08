@@ -109,8 +109,8 @@
                 @endif
               @endforeach
             </td>
-            @endforeach
             <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+            @endforeach
           </tr>
         </table>
       </div>
