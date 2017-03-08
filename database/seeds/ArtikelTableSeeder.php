@@ -15,12 +15,12 @@ class ArtikelTableSeeder extends Seeder
         \DB::table("Artikel")->delete();
         Artikel::create([
         	'ANr' => '1',
-        	'AgID' => '23',
+        	'AgID' => '6',
         	'Artikelname' => 'Logitech',
         	'Verkaufspreis' => 12.00,
         	'Einheit' => '12',
         	'Mwst' => 10,
-        	'Bezeichnung' => 'Tastatur'
+        	'Beschreibung' => 'Tastatur'
         
         ]);
 
@@ -31,7 +31,7 @@ class ArtikelTableSeeder extends Seeder
         	'Verkaufspreis' => 18.00,
         	'Einheit' => '1',
         	'Mwst' => 10,
-        	'Bezeichnung' => 'Maus'
+        	'Beschreibung' => 'Maus'
         
         ]);
     }
