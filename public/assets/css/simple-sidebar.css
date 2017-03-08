@@ -62,15 +62,15 @@ textarea[id="Beschreibung"]{
 #uebersicht_Table td{
     background-color: lightgray;
     height: 60px;
+    width: 300px;
 }
 
-#uebersicht_Table th:last-child{
-    width: 100px;
+#uebersicht_Table td:first-child{
+    width: 150px !important;
 }
 
-#uebersicht_Table{
-    width: 280px !important;
-    height: 70px !important;
+#uebersicht_Table td:last-child{
+    width: 100px !important;
 }
 
 #offene_Table{

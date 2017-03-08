@@ -84,7 +84,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><img src="{{ asset('assets/img/blackBurger.png') }}" style="width: 30px"/></td>
+            <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>  
           </tr>
         </table>
       </div>
