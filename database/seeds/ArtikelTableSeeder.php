@@ -12,7 +12,7 @@ class ArtikelTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table("Artikel")->delete();
+        \DB::table("artikel")->delete();
         artikel::create([
         	'aNr' => '1',
         	'agid' => '6',

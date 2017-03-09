@@ -11,7 +11,7 @@ class TermintypTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table("Termintyp")->delete();
+        \DB::table("termintyp")->delete();
         termintyp::create([
         	'ttid' => '1',
         	'description' => 'Update'
