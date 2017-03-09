@@ -14,7 +14,7 @@ class Artikelgruppe extends Authenticatable
      *
      * @var array
      */
-    protected $table = "Artikelgruppe";
+    protected $table = "artikelgruppe";
 
     protected $fillable = [
         'agid','description'

@@ -14,7 +14,7 @@ class Kunden extends Authenticatable
      *
      * @var array
      */
-    protected $table = "Kunden";
+    protected $table = "kunden";
 
     protected $fillable = [
         'kid', 'salutation', 'title', 'firstname', 'lastname', 'country', 'plz', 'city', 'email','telephone','mobilephone','fax','web','UIDNumber','taxID'
