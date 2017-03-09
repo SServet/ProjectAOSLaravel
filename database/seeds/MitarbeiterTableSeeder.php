@@ -12,7 +12,7 @@ class MitarbeiterTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table("Mitarbeiter")->delete();
+        \DB::table("mitarbeiter")->delete();
         user::create([
             'id' => '1',
         	'firstname' => 'Marco',
