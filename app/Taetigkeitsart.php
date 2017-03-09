@@ -14,7 +14,7 @@ class Taetigkeitsart extends Authenticatable
      *
      * @var array
      */
-    protected $table = "Taetigkeitsart";
+    protected $table = "taetigkeitsart";
 
     protected $fillable = [
         'tkid','description'
