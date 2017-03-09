@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 	<title>Arbeitsschein Online Service</title>
 
 	<!-- Bootstrap Core CSS -->
@@ -30,6 +30,10 @@
     </head>
 
     <body>
+
+        <?php
+        $termintyp = DB::table('termintyp')->get();
+        ?>
 
     	<div id="wrapper">
 
@@ -81,6 +85,9 @@
                        </div>
                        <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
                        <br>
+                        <!-- Chosen -->
+                        <!-- CSS -->
+                       <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
                        <table id="importExportTable">
                         <tr>
                             <th id="labelImport">&nbsp;IMPORT:</th>
@@ -99,9 +106,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <select class="chosen" style="width:150px;">
-                                    <option>PHP</option>
-                                    <option>PHP Array</option>
+                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:170px;" tabindex="2">
+                                    <option value=""></option>
+                                    @foreach ($termintyp as $tt)
+                                    <option>{{$tt->ttid}}. {{$tt->description}}</option>
+                                    @endforeach
                                 </select>
                             </td>
                         </tr>
@@ -118,19 +127,12 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- Chosen Plugin -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
-
-<!-- jQuery -->
-<script src="{{ asset('assets/js/jquery.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
 
 <!-- Menu Toggle Script  -->
 <script>
-
-  $(".chosen").chosen({width: "50%"});
 
   $("#menu-toggle").click(function(e) {
      e.preventDefault();
@@ -142,6 +144,9 @@
         document.getElementById("menu-toggle").innerHTML = ">";
     }       
 });
+   $(document).ready(function() {
+     $(".chosen-select").chosen();
+ });
 
 </script>
 

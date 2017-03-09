@@ -125,7 +125,7 @@
             <tr>
               <td><p class="inputLabels">Termintyp</p></td>
               <td>
-                <select data-placeholder="Termintyp auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
+                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2">
                   <option value=""></option>
                   @foreach ($termintyp as $tt)
                     <option>{{$tt->ttid}}. {{$tt->description}}</option>
