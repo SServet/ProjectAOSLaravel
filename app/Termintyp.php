@@ -14,7 +14,7 @@ class Termintyp extends Authenticatable
      *
      * @var array
      */
-    protected $table = "Termintyp";
+    protected $table = "termintyp";
 
     protected $fillable = [
         'ttid','description'
