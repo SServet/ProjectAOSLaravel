@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Mitarbeiter as Mitarbeiter;
+use App\User as User;
 
 class MitarbeiterTableSeeder extends Seeder
 {
@@ -13,32 +13,34 @@ class MitarbeiterTableSeeder extends Seeder
     public function run()
     {
         \DB::table("Mitarbeiter")->delete();
-        Mitarbeiter::create([
-        	'MID' => '1',
-        	'Benutzername' => 'Adi',
-        	'Passwort' => '1234',
-        	'Rolle' => 'Techniker',
-            'Anrede' => 'Herr',
-            'Vorname' => 'Enes',
-            'Nachname' => 'Adiguezel',
-            'Land' => 'Oesterreich',
-            'PLZ' => '2700',
-            'Ort' => 'Neustadt',
-            'EMail' => 'i12001@student.htlwrn.ac.at',
+        User::create([
+            'id' => '1',
+        	'firstname' => 'Marco',
+            'lastname' => 'Hajek',
+            'email' => 'admin@marco-hajek.me',
+            'password' => bcrypt('test'),
+            'isAdmin' => 1,
+            'salutation' => 'Herr',
+            'title' => '',
+            'country' => 'Oesterreich',
+            'plz' => '2700',
+            'city' => 'Wiener Neustadt',
+            'address' => 'Doktor Eckenergasse 25'
         ]);
 
-        Mitarbeiter::create([
-            'MID' => '2',
-            'Benutzername' => 'Cani',
-            'Passwort' => '1ee',
-            'Rolle' => 'Techniker',
-            'Anrede' => 'Herr',
-            'Vorname' => 'Caner',
-            'Nachname' => 'Demirbag',
-            'Land' => 'Oesterreich',
-            'PLZ' => '2700',
-            'Ort' => 'Neustadt',
-            'EMail' => 'i12016@student.htlwrn.ac.at',
+        User::create([
+            'id' => '2',
+            'firstname' => 'Enes',
+            'lastname' => 'Adiguezel',
+            'email' => 'i12001@student.htlwrn.ac.at',
+            'password' => bcrypt('adi'),
+            'isAdmin' => 0,
+            'salutation' => 'Herr',
+            'title' => '',
+            'country' => 'Oesterreich',
+            'plz' => '2700',
+            'city' => 'Wiener Neustadt',
+            'address' => 'Doktor Eckenergasse 25'
         ]);
     }
 }

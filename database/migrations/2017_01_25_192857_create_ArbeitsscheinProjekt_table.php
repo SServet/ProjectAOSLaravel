@@ -13,20 +13,20 @@ class CreateArbeitsscheinProjektTable extends Migration
      */
     public function up()
     {
-        Schema::create('ArbeitsscheinProjekt', function (Blueprint $table) {
-            $table->increments('APID');
-            $table->integer('MID')->references('MID')->on('Mitarbeiter');
-            $table->string('Beschreibung');
-            $table->string('ANr')->references('ANr')->on('Artikel');
-            $table->integer('TTID')->references('TTID')->on('Termintyp');
-            $table->char('TKID',5)->references('TKID')->on('Taetigkeitsart');
-            $table->date('DatumVon');
-            $table->date('DatumBis')->nullable();
-            $table->time('UhrzeitVon');
-            $table->time('UhrzeitBis')->nullable();
-            $table->decimal('VerrechneteZeit',6,2)->nullable();
-            $table->decimal('Kulanzzeit',6,2)->nullable();
-            $table->string('Kulanzgrund')->nullable();
+        Schema::create('arbeitsscheinProjekt', function (Blueprint $table) {
+            $table->increments('apid');
+            $table->integer('mid')->references('mid')->on('mitarbeiter');
+            $table->string('description');
+            $table->string('aNr')->references('aNr')->on('artikel');
+            $table->integer('ttid')->references('ttid')->on('termintyp');
+            $table->char('tkid',5)->references('tkid')->on('taetigkeitsart');
+            $table->date('dateFrom');
+            $table->date('dateTo')->nullable();
+            $table->time('timeFrom');
+            $table->time('timeTo')->nullable();
+            $table->decimal('billedTime',6,2)->nullable();
+            $table->decimal('kulanzzeit',6,2)->nullable();
+            $table->string('kulanzgrund')->nullable();
             
         });
     }
@@ -38,6 +38,6 @@ class CreateArbeitsscheinProjektTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ArbeitsscheinProjekt');
+        Schema::drop('arbeitsscheinProjekt');
     }
 }

@@ -17,7 +17,7 @@ class Artikelgruppe extends Authenticatable
     protected $table = "Artikelgruppe";
 
     protected $fillable = [
-        'AgID','Bezeichnung'
+        'agid','description'
     ];
 
     public $timestamps = false;

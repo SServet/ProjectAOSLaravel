@@ -13,9 +13,9 @@ class CreateTaetigkeitsartTable extends Migration
      */
     public function up()
     {
-        Schema::create('Taetigkeitsart', function (Blueprint $table) {
-            $table->increments('TKID');
-            $table->string('Bezeichnung');
+        Schema::create('taetigkeitsart', function (Blueprint $table) {
+            $table->increments('tkid');
+            $table->string('description');
           
         });
     }
@@ -27,6 +27,6 @@ class CreateTaetigkeitsartTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Taetigkeitsart');
+        Schema::drop('taetigkeitsart');
     }
 }

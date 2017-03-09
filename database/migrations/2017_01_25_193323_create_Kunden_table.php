@@ -13,24 +13,24 @@ class CreateKundenTable extends Migration
      */
     public function up()
     {
-         Schema::create('Kunden', function (Blueprint $table) {
-            $table->increments('KID');
-            $table->string('Anrede')->nullable();
-            $table->string('Titel')->nullable();
-            $table->string('Vorname')->nullable();
-            $table->string('Nachname')->nullable();
-            $table->string('Firmenname')->nullable();
-            $table->string('Email')->nullable();
-            $table->string('Land')->nullable();  
-            $table->integer('PLZ')->nullable();          
-            $table->string('Ort')->nullable();            
-            $table->string('Strasse')->nullable();            
-            $table->string('Telefon')->nullable();
-            $table->string('Mobil')->nullable();
-            $table->string('Fax')->nullable();           
-            $table->string('Web')->nullable();
-            $table->string('UIDNummer')->nullable();
-            $table->integer('Steuernummer')->nullable();
+         Schema::create('kunden', function (Blueprint $table) {
+            $table->increments('kid');
+            $table->string('salutation')->nullable();
+            $table->string('title')->nullable();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('companyname')->nullable();
+            $table->string('email')->nullable();
+            $table->string('country')->nullable();  
+            $table->integer('plz')->nullable();          
+            $table->string('city')->nullable();            
+            $table->string('street')->nullable();            
+            $table->string('telephone')->nullable();
+            $table->string('mobilphone')->nullable();
+            $table->string('fax')->nullable();           
+            $table->string('web')->nullable();
+            $table->string('UIDNumber')->nullable();
+            $table->integer('taxID')->nullable();
             
             
         });
@@ -43,6 +43,6 @@ class CreateKundenTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Kunden');
+        Schema::drop('kunden');
     }
 }

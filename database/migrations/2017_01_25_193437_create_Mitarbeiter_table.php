@@ -14,23 +14,22 @@ class CreateMitarbeiterTable extends Migration
     public function up()
     {
         Schema::create('Mitarbeiter', function (Blueprint $table) {
-            $table->increments('MID');
-            $table->string('Benutzername')->unique();
-            $table->string('Passwort');
-            $table->string('Rolle');
-            $table->string('Anrede');
-            $table->string('Titel')->nullable();
-            $table->string('Vorname');
-            $table->string('Nachname');            
-            $table->string('Land');
-            $table->integer('PLZ');
-            $table->string('Ort');
-            $table->string('Anschrift')->nullable();
-            $table->string('EMail');
-            $table->string('Telefon')->nullable();
-            $table->string('Mobil')->nullable();
-            $table->string('Fax')->nullable();
-            $table->string('Web')->nullable();
+            $table->increments('id');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->tinyInteger('isAdmin');
+            $table->string('salutation');
+            $table->string('title');
+            $table->string('country');
+            $table->string('plz');
+            $table->string('city');
+            $table->string('address')->nullable();
+            $table->string('telphone')->nullable();
+            $table->string('mobilephone')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('web')->nullable();
             $table->rememberToken();
             $table->timestamps();
                      

@@ -17,7 +17,7 @@ class Termintyp extends Authenticatable
     protected $table = "Termintyp";
 
     protected $fillable = [
-        'TTID','Bezeichnung'
+        'ttid','description'
     ];
 
     public $timestamps = false;

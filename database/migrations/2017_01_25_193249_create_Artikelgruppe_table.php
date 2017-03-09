@@ -13,9 +13,9 @@ class CreateArtikelgruppeTable extends Migration
      */
     public function up()
     {
-        Schema::create('Artikelgruppe', function (Blueprint $table) {
-            $table->increments('AgID');
-            $table->string('Bezeichnung');
+        Schema::create('artikelgruppe', function (Blueprint $table) {
+            $table->increments('agid');
+            $table->string('description');
      
            
             
@@ -29,6 +29,6 @@ class CreateArtikelgruppeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Artikelgruppe');
+        Schema::drop('artikelgruppe');
     }
 }

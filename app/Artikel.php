@@ -17,7 +17,7 @@ class Artikel extends Authenticatable
     protected $table = "Artikel";
 
     protected $fillable = [
-        'ANr','AgID','Artikelname','Verkaufspreis','Einheit','Mwst','Bezeichnung'
+        'aNr','agid','articlename','salePrice','unit','mwst','description'
     ];
 
     public $timestamps = false;

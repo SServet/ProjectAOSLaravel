@@ -37,6 +37,7 @@
           $kunden = DB::table('kunden')->get();
           $mitarbeiter = DB::table('mitarbeiter')->get();
           $projekte = DB::table('projekte')->get();
+          $user = Auth::user();
         ?>
 
        <div id="wrapper">
@@ -46,12 +47,12 @@
          <ul class="sidebar-nav">
           <li class="sidebar-brand">
            <div id="divLabelAOS">
-            <a href="/"/>
+            <a href="/home"/>
             <p id="LabelAOS">AOS</p>
             <p id="SubtitleAOS">Arbeitsschein Online Service</p>
           </div>
           <li>
-            <a href="/">STARTSEITE</a>
+            <a href="/home">STARTSEITE</a>
           </li>
           <li>
             <a href="/Tickets">TICKETS</a>
@@ -62,9 +63,19 @@
           <li>
             <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
           </li>
+          @if ($user->isAdmin == 1)
+            <li>
+              <a href="/Einstellungen">EINSTELLUNGEN</a>
+            </li>
+            @endif
           <li>
-            <a href="/Einstellungen">EINSTELLUNGEN</a>
-          </li>
+                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+                   document.getElementById('logout-form').submit();"> Logout
+                </a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+            </li>
         </ul>
       </div>
 
@@ -93,7 +104,7 @@
                   <select data-placeholder="Kunde auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2">
                     <option value=""></option>
                     @foreach ($kunden as $kunde):
-                      <option>{{$kunde->KID}}. {{$kunde->Nachname}} {{$kunde->Vorname}}</option>
+                      <option>{{$kunde->kid}}. {{$kunde->lastname}} {{$kunde->firstname}}</option>
                     @endforeach
                  </select>
                </td>
@@ -107,7 +118,7 @@
                           $mitarbeiter = DB::table('mitarbeiter')->get();
                         ?>
                       @foreach ($mitarbeiter as $mitarb):
-                        <option>{{$mitarb->MID}}. {{$mitarb->Nachname}} {{$mitarb->Vorname}}</option>
+                        <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
                       @endforeach
                      </select>
                </td>
@@ -127,7 +138,7 @@
                         <select data-placeholder="Projektart auswählen..." id="projektart_select" class="chosen-select" style="width:350px;" tabindex="2">
                           <option value=""></option>
                           @foreach ($projekte as $projekt):
-                            <option>{{$projekt->Projektart}}</option>
+                            <option>{{$projekt->projectType}}</option>
                           @endforeach
                        </select>
                  </td>

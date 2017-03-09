@@ -30,6 +30,11 @@
       </head>
 
       <body>
+
+      <?php
+        $user = Auth::user();
+      ?>
+
        <div id="wrapper">
 
         <!-- Sidebar -->
@@ -37,12 +42,12 @@
          <ul class="sidebar-nav">
           <li class="sidebar-brand">
            <div id="divLabelAOS">
-            <a href="/"/>
+            <a href="/home"/>
             <p id="LabelAOS">AOS</p>
             <p id="SubtitleAOS">Arbeitsschein Online Service</p>
           </div>
           <li>
-            <a href="/">STARTSEITE</a>
+            <a href="/home">STARTSEITE</a>
           </li>
           <li>
             <a href="/Tickets">TICKETS</a>
@@ -53,9 +58,19 @@
           <li>
             <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
           </li>
+          @if ($user->isAdmin == 1)
+            <li>
+              <a href="/Einstellungen">EINSTELLUNGEN</a>
+            </li>
+            @endif
           <li>
-            <a href="/Einstellungen">EINSTELLUNGEN</a>
-          </li>
+                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+                   document.getElementById('logout-form').submit();"> Logout
+                </a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+            </li>
         </ul>
       </div>
 

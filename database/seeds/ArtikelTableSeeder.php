@@ -14,24 +14,24 @@ class ArtikelTableSeeder extends Seeder
     {
         \DB::table("Artikel")->delete();
         Artikel::create([
-        	'ANr' => '1',
-        	'AgID' => '6',
-        	'Artikelname' => 'Logitech',
-        	'Verkaufspreis' => 12.00,
-        	'Einheit' => '12',
-        	'Mwst' => 10,
-        	'Beschreibung' => 'Tastatur'
+        	'aNr' => '1',
+        	'agid' => '6',
+        	'articlename' => 'Logitech',
+        	'salePrice' => 12.00,
+        	'unit' => '12',
+        	'mwst' => 10,
+        	'description' => 'Tastatur'
         
         ]);
 
         Artikel::create([
-        	'ANr' => '2',
-        	'AgID' => '4',
-        	'Artikelname' => 'Samsung',
-        	'Verkaufspreis' => 18.00,
-        	'Einheit' => '1',
-        	'Mwst' => 10,
-        	'Beschreibung' => 'Maus'
+        	'aNr' => '2',
+        	'agid' => '4',
+        	'articlename' => 'Samsung',
+        	'salePrice' => 18.00,
+        	'unit' => '1',
+        	'mwst' => 10,
+        	'description' => 'Maus'
         
         ]);
     }

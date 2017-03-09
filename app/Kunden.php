@@ -17,7 +17,7 @@ class Kunden extends Authenticatable
     protected $table = "Kunden";
 
     protected $fillable = [
-        'KID', 'Anrede', 'Titel', 'Vorname', 'Nachname', 'Land', 'PLZ', 'Ort', 'EMail','Telefon','Mobil','Fax','Web','UIDNummer','Steuernummer'
+        'kid', 'salutation', 'title', 'firstname', 'lastname', 'country', 'plz', 'city', 'email','telephone','mobilephone','fax','web','UIDNumber','taxID'
     ];
 
     public $timestamps = false;

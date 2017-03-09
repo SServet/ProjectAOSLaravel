@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Mitarbeiter extends Authenticatable
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -17,7 +17,7 @@ class Mitarbeiter extends Authenticatable
     protected $table = "Mitarbeiter";
 
     protected $fillable = [
-        'MID', 'Benutzername', 'Passwort', 'Rolle', 'Anrede', 'Vorname', 'Nachname', 'Land', 'PLZ', 'Ort', 'EMail'
+        'firstname', 'lastname', 'email', 'password'
     ];
 
     /**
@@ -28,7 +28,5 @@ class Mitarbeiter extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public $timestamps = false;
     
 }

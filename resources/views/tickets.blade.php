@@ -34,6 +34,7 @@
         <?php
         $tickets = DB::table('ticket')->get();
         $kunden = DB::table('kunden')->get();
+        $user = Auth::user();
         ?>
 
        <div id="wrapper">
@@ -43,12 +44,12 @@
          <ul class="sidebar-nav">
           <li class="sidebar-brand">
            <div id="divLabelAOS">
-            <a href="/"/>
+            <a href="/home"/>
             <p id="LabelAOS">AOS</p>
             <p id="SubtitleAOS">Arbeitsschein Online Service</p>
           </div>
           <li>
-            <a href="/">STARTSEITE</a>
+            <a href="/home">STARTSEITE</a>
           </li>
           <li>
             <a href="/Tickets">TICKETS</a>
@@ -59,9 +60,19 @@
           <li>
             <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
           </li>
+          @if ($user->isAdmin == 1)
+            <li>
+              <a href="/Einstellungen">EINSTELLUNGEN</a>
+            </li>
+            @endif
           <li>
-            <a href="/Einstellungen">EINSTELLUNGEN</a>
-          </li>
+                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+                   document.getElementById('logout-form').submit();"> Logout
+                </a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+            </li>
         </ul>
       </div>
 
@@ -97,20 +108,20 @@
           <tr>
             @foreach ($tickets as $ticket)
             <td>
-              {{$ticket->TID}}
+              {{$ticket->tid}}
             </td>
             <td>
-              {{$ticket->Bezeichnung}}
+              {{$ticket->description}}
             </td>
             <td>
               @foreach ($kunden as $kunde)
-                @if($kunde->KID == $ticket->KID)
-                  {{$kunde->Vorname}} {{$kunde->Nachname}}
+                @if($kunde->kid == $ticket->kid)
+                  {{$kunde->firstname}} {{$kunde->lastname}}
                 @endif
               @endforeach
             </td>
-            @endforeach
             <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+            @endforeach
           </tr>
         </table>
       </div>

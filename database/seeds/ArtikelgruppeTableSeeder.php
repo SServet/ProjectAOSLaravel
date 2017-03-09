@@ -12,80 +12,80 @@ class ArtikelgruppeTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table("Artikelgruppe")->delete();
+        \DB::table("artikelgruppe")->delete();
         Artikelgruppe::create([
-        	'AgID' => '1',
-        	'Bezeichnung' => 'Gruppe',
+        	'agid' => '1',
+        	'description' => 'Gruppe',
         
         ]);
 
         Artikelgruppe::create([
-        	'AgID' => '2',
-        	'Bezeichnung' => 'Domäne',
+        	'agid' => '2',
+        	'description' => 'Domäne',
         
         ]);
 
         Artikelgruppe::create([
-            'AgID' => '3',
-            'Bezeichnung' => 'Dienstleistung',
+            'agid' => '3',
+            'description' => 'Dienstleistung',
         
         ]);
 
         Artikelgruppe::create([
-            'AgID' => '4',
-            'Bezeichnung' => 'Registierkassa',
+            'agid' => '4',
+            'description' => 'Registierkassa',
         
         ]);
         Artikelgruppe::create([
-            'AgID' => '5',
-            'Bezeichnung' => 'Kunden',
+            'agid' => '5',
+            'description' => 'Kunden',
         
         ]);
         Artikelgruppe::create([
-            'AgID' => '6',
-            'Bezeichnung' => 'IV2013',
+            'agid' => '6',
+            'description' => 'IV2013',
         
         ]);
         Artikelgruppe::create([
-            'AgID' => '7',
-            'Bezeichnung' => 'Drucker, Fax & Telefon',
+            'agid' => '7',
+            'description' => 'Drucker, Fax & Telefon',
         
         ]);
         Artikelgruppe::create([
-            'AgID' => '8',
-            'Bezeichnung' => 'Zahlung',
-        
-        ]);
-
-        Artikelgruppe::create([
-            'AgID' => '9',
-            'Bezeichnung' => 'Exchange Online',
-        
-        ]);
-        Artikelgruppe::create([
-            'AgID' => '10',
-            'Bezeichnung' => 'Lizenzen',
+            'agid' => '8',
+            'description' => 'Zahlung',
         
         ]);
 
         Artikelgruppe::create([
-            'AgID' => '11',
-            'Bezeichnung' => 'Zahlung',
+            'agid' => '9',
+            'description' => 'Exchange Online',
         
         ]);
         Artikelgruppe::create([
-            'AgID' => '12',
-            'Bezeichnung' => 'Tinte & Toner',
+            'agid' => '10',
+            'description' => 'Lizenzen',
+        
+        ]);
+
+        Artikelgruppe::create([
+            'agid' => '11',
+            'description' => 'Zahlung',
         
         ]);
         Artikelgruppe::create([
-            'AgID' => '13',
-            'Bezeichnung' => 'Netzwerk',
+            'agid' => '12',
+            'description' => 'Tinte & Toner',
         
         ]);
         Artikelgruppe::create([
-            'AgID' => '14',
-            'Bezeichnung' => 'Diverse',
+            'agid' => '13',
+            'description' => 'Netzwerk',
+        
+        ]);
+        Artikelgruppe::create([
+            'agid' => '14',
+            'description' => 'Diverse',
         
         ]);
     }

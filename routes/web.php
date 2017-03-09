@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', ['uses' => 'IndexController@showIndex']);
+Route::get('/home', ['uses' => 'IndexController@showIndex']);
+
 
 Route::get('/Arbeitsschein', ['uses' => 'ArbeitsscheinController@showArbeitsschein']);
 Route::get('/Arbeitsschein_Hinzufuegen', ['uses' => 'ArbeitsscheinController@showArbeitsscheinHinzufuegen']);
-Route::get('/Arbeitsscheine_Uebersicht', ['uses' => 'ArbeitsscheinController@showArbeitsscheinUebersicht']);
+Route::get('/Arbeitsschein_Uebersicht', ['uses' => 'ArbeitsscheinController@showArbeitsscheinUebersicht']);
 
 Route::get('/Projekte', ['uses' => 'ProjektController@showProjekt']);
 Route::get('/Projekt_Hinzufuegen', ['uses' => 'ProjektController@showProjektHinzufuegen']);
@@ -26,3 +27,4 @@ Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufu
 Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 
 Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+Auth::routes();

@@ -17,7 +17,7 @@ class Taetigkeitsart extends Authenticatable
     protected $table = "Taetigkeitsart";
 
     protected $fillable = [
-        'TKID','Bezeichnung'
+        'tkid','description'
     ];
 
     public $timestamps = false;

@@ -13,9 +13,9 @@ class CreateTermintypTable extends Migration
      */
     public function up()
     {
-        Schema::create('Termintyp', function (Blueprint $table) {
-            $table->increments('TTID');
-            $table->string('Bezeichnung');         
+        Schema::create('termintyp', function (Blueprint $table) {
+            $table->increments('ttid');
+            $table->string('description');         
             
             });
     }
@@ -27,6 +27,6 @@ class CreateTermintypTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Termintyp');
+        Schema::drop('termintyp');
     }
 }
