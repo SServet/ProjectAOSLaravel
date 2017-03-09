@@ -14,7 +14,7 @@ class Artikel extends Authenticatable
      *
      * @var array
      */
-    protected $table = "Artikel";
+    protected $table = "artikel";
 
     protected $fillable = [
         'aNr','agid','articlename','salePrice','unit','mwst','description'

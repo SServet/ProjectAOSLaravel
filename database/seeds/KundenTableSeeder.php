@@ -13,7 +13,7 @@ class KundenTableSeeder extends Seeder
     public function run()
     {
        \DB::table("Kunden")->delete();
-        Kunden::create([        	
+        kunden::create([        	
         	'salutation' => 'Herr',
         	'title' => 'Dr',
         	'firstname' => 'Marko',
@@ -32,7 +32,7 @@ class KundenTableSeeder extends Seeder
             'taxID' => '1234'
         ]);
 
-         Kunden::create([            
+         kunden::create([            
             'salutation' => 'Herr',
             'title' => 'Dr',
             'firstname' => 'Servet',

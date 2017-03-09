@@ -36,6 +36,6 @@ class CreateTicketTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Ticket');
+        Schema::drop('ticket');
     }
 }

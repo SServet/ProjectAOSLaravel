@@ -13,77 +13,77 @@ class ArtikelgruppeTableSeeder extends Seeder
     public function run()
     {
         \DB::table("artikelgruppe")->delete();
-        Artikelgruppe::create([
+        artikelgruppe::create([
         	'agid' => '1',
         	'description' => 'Gruppe',
         
         ]);
 
-        Artikelgruppe::create([
+        artikelgruppe::create([
         	'agid' => '2',
         	'description' => 'Domäne',
         
         ]);
 
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '3',
             'description' => 'Dienstleistung',
         
         ]);
 
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '4',
             'description' => 'Registierkassa',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '5',
             'description' => 'Kunden',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '6',
             'description' => 'IV2013',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '7',
             'description' => 'Drucker, Fax & Telefon',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '8',
             'description' => 'Zahlung',
         
         ]);
 
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '9',
             'description' => 'Exchange Online',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '10',
             'description' => 'Lizenzen',
         
         ]);
 
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '11',
             'description' => 'Zahlung',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '12',
             'description' => 'Tinte & Toner',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '13',
             'description' => 'Netzwerk',
         
         ]);
-        Artikelgruppe::create([
+        artikelgruppe::create([
             'agid' => '14',
             'description' => 'Diverse',
         

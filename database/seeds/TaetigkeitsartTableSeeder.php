@@ -13,18 +13,18 @@ class TaetigkeitsartTableSeeder extends Seeder
     public function run()
     {
         \DB::table("Taetigkeitsart")->delete();
-        Taetigkeitsart::create([
+        taetigkeitsart::create([
         	'tkid' => '1',
         	'description' => 'Fernwartung'
         
         ]);
 
-        Taetigkeitsart::create([
+        taetigkeitsart::create([
             'tkid' => '2',
             'description' => 'Vor Ort'
         
         ]);
-         Taetigkeitsart::create([
+         taetigkeitsart::create([
             'tkid' => '3',
             'description' => 'SSIT-Technik'
         

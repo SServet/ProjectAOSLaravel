@@ -12,24 +12,24 @@ class TermintypTableSeeder extends Seeder
     public function run()
     {
         \DB::table("Termintyp")->delete();
-        Termintyp::create([
+        termintyp::create([
         	'ttid' => '1',
         	'description' => 'Update'
         
         ]);
 
-        Termintyp::create([
+        termintyp::create([
             'ttid' => '2',
             'description' => 'Installation'
         
         ]);
 
-        Termintyp::create([
+        termintyp::create([
             'ttid' => '3',
             'description' => 'Konfiguration'
         
         ]);
-        Termintyp::create([
+        termintyp::create([
             'ttid' => '4',
             'description' => 'Vorbereitung'
         
