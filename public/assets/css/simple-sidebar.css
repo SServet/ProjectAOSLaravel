@@ -126,10 +126,11 @@ textarea[id="Beschreibung"]{
 
 #menu-toggle{
     margin-top: -10px;
+    opacity: 0.5;
 }
 
 #menu-toggle:hover{
-    content: url("../img/blackBurger.png");
+    opacity: 1.0;
 }
 
 a:link,a:hover, a:active {

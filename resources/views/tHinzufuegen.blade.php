@@ -38,6 +38,7 @@
         $mitarbeiter = DB::table('mitarbeiter')->get();
         $arbeitsscheinticket = DB::table('arbeitsscheinticket')->get();
         $user = Auth::user();
+        $tickets = DB::table('ticket')->get();
         ?>
 
        <div id="wrapper">
@@ -87,7 +88,7 @@
         <div class="row">
          <div class="col-lg-12">
           <div id="menu-toggle-div">
-           <img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle">
+           <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
          </div>
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
@@ -126,7 +127,7 @@
                   <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
                     <option value=""></option>
                     @foreach ($mitarbeiter as $mitarb)
-                    <option>{{$mitarb->mid}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
+                    <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
                     @endforeach
                  </select>
                </td>
@@ -152,7 +153,9 @@
            <td><p class="inputLabels">Abgerechnet Am</p></td>
            <td><input type="date" id="AbgerechnetAm" class="form-control input-lg"></td>
          </tr>
-
+         <tr>
+          <td><button id="bHinzufuegen">HINZUFÜGEN</button></td>
+         </tr>
 
        </table>
      </div>
