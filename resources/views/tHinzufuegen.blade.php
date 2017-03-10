@@ -36,7 +36,7 @@
        <?php
         $kunden = DB::table('kunden')->get();
         $mitarbeiter = DB::table('mitarbeiter')->get();
-        $arbeitsscheinticket = DB::table('arbeitsscheinticket')->get();
+        $arbeitsscheinticket = DB::table('arbeitsscheinTicket')->get();
         $user = Auth::user();
         $tickets = DB::table('ticket')->get();
         ?>
