@@ -15,17 +15,17 @@ class MitarbeiterTableSeeder extends Seeder
         \DB::table("mitarbeiter")->delete();
         user::create([
             'id' => '1',
-        	'firstname' => 'Marco',
-            'lastname' => 'Hajek',
-            'email' => 'admin@marco-hajek.me',
-            'password' => bcrypt('test'),
+        	'firstname' => 'Süleyman',
+            'lastname' => 'Sari',
+            'email' => 's.sari@ssit.at',
+            'password' => bcrypt('ssit'),
             'isAdmin' => 1,
             'salutation' => 'Herr',
             'title' => '',
             'country' => 'Oesterreich',
-            'plz' => '2700',
-            'city' => 'Wiener Neustadt',
-            'address' => 'Doktor Eckenergasse 25'
+            'plz' => '2630',
+            'city' => 'Ternitz',
+            'address' => 'Dr. Karl Renner Straße 91/o/3'
         ]);
 
         user::create([
