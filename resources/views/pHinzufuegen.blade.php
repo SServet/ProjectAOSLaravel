@@ -174,6 +174,8 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.js') }}"></script>
 
 <script>
 
