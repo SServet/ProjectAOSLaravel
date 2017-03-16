@@ -218,9 +218,6 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
 
 <!-- Menu Toggle Script  -->
 <script>
