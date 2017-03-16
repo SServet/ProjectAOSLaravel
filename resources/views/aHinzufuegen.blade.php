@@ -187,7 +187,8 @@
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.js') }}"></script>
 
 <script>
 
@@ -213,8 +214,7 @@
     numberOfMonths: 2,
     dateFormat: "yy-mm-dd"
   });
-  $(".chosen-select").chosen({touch:true});
-  $(".chzn-select-deselect").chosen({allow_single_deselect:true,touch:true});
+  $(".chosen-select").chosen();
 });
 </script>
 
