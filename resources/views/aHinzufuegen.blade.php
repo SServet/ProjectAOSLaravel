@@ -213,7 +213,8 @@
     numberOfMonths: 2,
     dateFormat: "yy-mm-dd"
   });
-  $(".chosen-select").chosen();
+  $(".chosen-select").chosen({touch:true});
+  $(".chzn-select-deselect").chosen({allow_single_deselect:true,touch:true});
 });
 </script>
 
