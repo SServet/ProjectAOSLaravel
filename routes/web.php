@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufuegen']);
 	Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 	Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+	Route::post('/SubmitProject', ['as' => 'SubmitProject', 'uses' => 'ProjektController@submit']);
+	Route::post('/SubmitArbeitS', ['as' => 'SubmitArbeitS', 'uses' => 'ArbeitsscheinController@submit']);
+	Route::post('/SubmitTicket', ['as' => 'SubmitTicket', 'uses' => 'TicketController@submit']);
 });
 
 Auth::routes();
