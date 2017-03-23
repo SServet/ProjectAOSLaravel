@@ -98,7 +98,7 @@
            <!-- CSS -->
            <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
            
-           <form action="{{ route('Submit') }}" method="post">
+           <form action="{{ route('SubmitProject') }}" method="post">
              <table id="inputTable">
                <tr>
                  <td><p class="inputLabels">Kunde</p></td>

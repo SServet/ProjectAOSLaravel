@@ -35,6 +35,8 @@ class ProjektController extends Controller
         $projekt->finishedOn = $request->get('finishedOn');
         $projekt->settledOn = $request->get('settledOn');
 
-        echo $projekt->save();
+        $projekt->save();
+
+        return view('projekte');
     }
 }

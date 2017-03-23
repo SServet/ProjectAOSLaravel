@@ -15,7 +15,6 @@ class CreateTicketTable extends Migration
     {
         Schema::create('ticket', function (Blueprint $table) {
             $table->increments('tid');
-            $table->string('atid')->references('atid')->on('arbeitscheinTicket');
             $table->integer('kid')->references('kid')->on('kunden');
             $table->integer('mid')->references('mid')->on('mitarbeter');
             $table->string('label');
@@ -23,9 +22,6 @@ class CreateTicketTable extends Migration
             $table->date('creationDate');
             $table->date('finishedOn')->nullable();
             $table->date('settledOn')->nullable();
-         
-          
-          
         });
     }
 

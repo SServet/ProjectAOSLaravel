@@ -72,38 +72,41 @@
             </li>
             @endif
             <li>
-                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-                   document.getElementById('logout-form').submit();"> Logout
-                </a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-                </form>
-            </li>
-          </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+              <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+              document.getElementById('logout-form').submit();"> Logout
+            </a>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+          </li>
+        </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-         <div class="container-fluid">
-          <div class="row">
-           <div class="col-lg-12">
-            <div id="menu-toggle-div">
-             <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
-           </div>
-           <br>
-           <br>
-           <div>
-             <p id="LabelContent">ARBEITSSCHEIN > HINZUFÜGEN</p>
-             <hr>
-             <!-- Chosen -->
-             <!-- CSS -->
-             <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+       <div class="container-fluid">
+        <div class="row">
+         <div class="col-lg-12">
+          <div id="menu-toggle-div">
+           <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
+         </div>
+         <br>
+         <br>
+         <div>
+           <p id="LabelContent">ARBEITSSCHEIN > HINZUFÜGEN</p>
+           <hr>
+           <!-- Chosen -->
+           <!-- CSS -->
+           <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
+
+
+           <form action="{{ route('SubmitArbeitS') }}" method="post">
              <table id="inputTable">
                <tr>
                  <td><p class="inputLabels">Kunde</p></td>
                  <td>
-                   <select data-placeholder="Kunden auswählen..." id="kunden_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2">
+                   <select data-placeholder="Kunden auswählen..." id="kunden_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="kid">
                     <option value=""></option>
                     @foreach ($kunden as $kunde)
                     <option>{{$kunde->kid}}. {{$kunde->lastname}} {{$kunde->firstname}}</option>
@@ -114,73 +117,81 @@
               <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
                <td>
-                 <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
+                 <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
                   <option value=""></option>
-                   @foreach ($mitarbeiter as $mitarb)
-                    <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
-                    @endforeach
+                  @foreach ($mitarbeiter as $mitarb)
+                  <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
+                  @endforeach
                 </select>
               </td>
             </tr>
             <tr>
               <td><p class="inputLabels">Termintyp</p></td>
               <td>
-                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2">
+                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
                   <option value=""></option>
                   @foreach ($termintyp as $tt)
-                    <option>{{$tt->ttid}}. {{$tt->description}}</option>
-                    @endforeach
+                  <option>{{$tt->ttid}}. {{$tt->description}}</option>
+                  @endforeach
                 </select>
               </td>
             </tr>
             <tr>
               <td><p class="inputLabels">Tätigkeit</p></td>
               <td>
-                <select data-placeholder="Tätigkeit auswählen..." id="taetigkeit_select" class="chosen-select" style="width:350px;" tabindex="2">
+                <select data-placeholder="Tätigkeit auswählen..." id="taetigkeit_select" class="chosen-select" style="width:350px;" tabindex="2" name="tkid">
                   <option value=""></option>
                   @foreach ($taetigkeitsart as $tk)
-                    <option>{{$tk->tkid}}. {{$tk->description}}</option>
-                    @endforeach
+                  <option>{{$tk->tkid}}. {{$tk->description}}</option>
+                  @endforeach
                 </select>
               </td>
             </tr>
             <tr>
              <td><p class="inputLabels">Datum von</p></td>
-             <td><input type="date" id="DatumVon" class="form-control input-lg"></td>
+             <td><input type="date" id="DatumVon" class="form-control input-lg" name="dateFrom"></td>
            </tr>
            <tr>
              <td><p class="inputLabels">Datum bis</p></td>
-             <td><input type="date" id="DatumBis" class="form-control input-lg"></td>
+             <td><input type="date" id="DatumBis" class="form-control input-lg" name="dateTo"></td>
            </tr>
            <tr>
              <td><p class="inputLabels">Uhrzeit von</p></td>
-             <td><input type="time" id="UhrzeitVon" class="form-control input-lg"></td>
+             <td><input type="time" id="UhrzeitVon" class="form-control input-lg" name="timeFrom"></td>
            </tr>
            <tr>
              <td><p class="inputLabels">Uhrzeit bis</p></td>
-             <td><input type="time" id="UhrzeitBis" class="form-control input-lg"></td>
+             <td><input type="time" id="UhrzeitBis" class="form-control input-lg" name="timeTo"></td>
            </tr>
            <tr>
              <td><p class="inputLabels">Beschreibung</p></td>
-             <td><textarea id="Beschreibung" class="form-control input-lg" ></textarea></td>
+             <td><textarea id="Beschreibung" class="form-control input-lg" name="description"></textarea></td>
            </tr>
            <tr>
             <td><p class="inputLabels">Kulanzgrund</p></td>
-            <td><input type="textarea" id="Kulanzgrund" class="form-control input-lg" step="0.5" ></td>
+            <td><input type="textarea" id="Kulanzgrund" class="form-control input-lg" step="0.5" name="kulanzgrund"></td>
           </tr>
           <tr>
             <td><p class="inputLabels">Kulanzzeit</p></td>
-            <td><input type="number" id="Kulanzzeit" class="form-control input-lg" step="0.5" ></td>
+            <td><input type="number" id="Kulanzzeit" class="form-control input-lg" step="0.5" name="kulanzzeit"></td>
           </tr>
           <tr>
             <td><p class="inputLabels">Verrechnete Zeit</p></td>
-            <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" step="0.5" ></td>
+            <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" step="0.5" name="billedTime"></td>
           </tr>
+          <tr></tr>
+          <tr>
+            <td></td>
+            <td>
+              <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
+            </td>
+          </tr>
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </table>
-
-      </div>
+      </form> 
     </div>
   </div>
+</div>
 </div>
 
 

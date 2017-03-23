@@ -28,7 +28,8 @@ Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersi
 
 Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
 
-Route::post('/Submit', ['as' => 'Submit', 'uses' => 'ProjektController@submit',
-]);
+Route::post('/SubmitProject', ['as' => 'SubmitProject', 'uses' => 'ProjektController@submit']);
+Route::post('/SubmitArbeitS', ['as' => 'SubmitArbeitS', 'uses' => 'ArbeitsscheinController@submit']);
+Route::post('/SubmitTicket', ['as' => 'SubmitTicket', 'uses' => 'TicketController@submit']);
 
 Auth::routes();
