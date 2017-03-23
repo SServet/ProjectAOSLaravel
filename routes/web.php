@@ -27,4 +27,8 @@ Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufu
 Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 
 Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+
+Route::post('/Submit', ['as' => 'Submit', 'uses' => 'ProjektController@submit',
+]);
+
 Auth::routes();

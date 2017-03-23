@@ -3,15 +3,15 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
-	<title>Arbeitsschein Online Service</title>
+  <title>Arbeitsschein Online Service</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -34,48 +34,48 @@
       <body>
 
         <?php
-          $kunden = DB::table('kunden')->get();
-          $mitarbeiter = DB::table('mitarbeiter')->get();
-          $projekte = DB::table('projekte')->get();
-          $user = Auth::user();
+        $kunden = DB::table('kunden')->get();
+        $mitarbeiter = DB::table('mitarbeiter')->get();
+        $projekte = DB::table('projekte')->get();
+        $user = Auth::user();
         ?>
 
-       <div id="wrapper">
+        <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-         <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-           <div id="divLabelAOS">
-            <a href="/home"/>
-            <p id="LabelAOS">AOS</p>
-            <p id="SubtitleAOS">Arbeitsschein Online Service</p>
-          </div>
-          <li>
-            <a href="/home">STARTSEITE</a>
-          </li>
-          <li>
-            <a href="/Tickets">TICKETS</a>
-          </li>
-          <li>
-            <a href="/Projekte">PROJEKTE</a>
-          </li>
-          <li>
-            <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
-          </li>
-          @if ($user->isAdmin == 1)
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper">
+           <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+             <div id="divLabelAOS">
+              <a href="/home"/>
+              <p id="LabelAOS">AOS</p>
+              <p id="SubtitleAOS">Arbeitsschein Online Service</p>
+            </div>
+            <li>
+              <a href="/home">STARTSEITE</a>
+            </li>
+            <li>
+              <a href="/Tickets">TICKETS</a>
+            </li>
+            <li>
+              <a href="/Projekte">PROJEKTE</a>
+            </li>
+            <li>
+              <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
+            </li>
+            @if ($user->isAdmin == 1)
             <li>
               <a href="/Einstellungen">EINSTELLUNGEN</a>
             </li>
             @endif
-          <li>
-                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-                   document.getElementById('logout-form').submit();"> Logout
-                </a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-                </form>
-            </li>
+            <li>
+              <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+              document.getElementById('logout-form').submit();"> Logout
+            </a>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+          </li>
         </ul>
       </div>
 
@@ -95,77 +95,84 @@
            <p id="LabelContent">PROJEKTE > HINZUFÜGEN</p>
            <hr>
            <!-- Chosen -->
-            <!-- CSS -->
-              <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
-           <table id="inputTable">
-             <tr>
-               <td><p class="inputLabels">Kunde</p></td>
-               <td>
-                  <select data-placeholder="Kunde auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2">
+           <!-- CSS -->
+           <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
+           
+           <form action="{{ route('Submit') }}" method="post">
+             <table id="inputTable">
+               <tr>
+                 <td><p class="inputLabels">Kunde</p></td>
+                 <td>
+                  <select data-placeholder="Kunde auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2" name="kid">
                     <option value=""></option>
                     @foreach ($kunden as $kunde):
-                      <option>{{$kunde->kid}}. {{$kunde->lastname}} {{$kunde->firstname}}</option>
+                    <option>{{$kunde->kid}}. {{$kunde->lastname}} {{$kunde->firstname}}</option>
                     @endforeach
-                 </select>
-               </td>
-             </tr>
-             <tr>
+                  </select>
+                </td>
+              </tr>
+              <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
                <td>
-                   <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2">
-                        <option value=""></option>
-                        <?php
-                          $mitarbeiter = DB::table('mitarbeiter')->get();
-                        ?>
-                      @foreach ($mitarbeiter as $mitarb):
-                        <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
-                      @endforeach
-                     </select>
-               </td>
-             </tr>
-             <tr>
+                 <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
+                  <option value=""></option>
+                  <?php
+                  $mitarbeiter = DB::table('mitarbeiter')->get();
+                  ?>
+                  @foreach ($mitarbeiter as $mitarb):
+                  <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
+                  @endforeach
+                </select>
+              </td>
+            </tr>
+            <tr>
               <td><p class="inputLabels">Bezeichnung</p></td>
-              <td><input type="text" id="Bezeichnung" class="form-control input-lg"></td>
+              <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label"></td>
             </tr>
             <tr>
               <td><p class="inputLabels">Beschreibung</p></td>
-              <td><textarea id="Beschreibung" class="form-control input-lg" ></textarea></td>
+              <td><textarea id="Beschreibung" class="form-control input-lg" name="description"></textarea></td>
             </tr>
-           <tr>
-           <tr>
-                 <td><p class="inputLabels">Projektart</p></td>
-                 <td>
-                        <select data-placeholder="Projektart auswählen..." id="projektart_select" class="chosen-select" style="width:350px;" tabindex="2">
-                          <option value=""></option>
-                          @foreach ($projekte as $projekt):
-                            <option>{{$projekt->projectType}}</option>
-                          @endforeach
-                       </select>
-                 </td>
-             </tr>
+            <tr>
+             <tr>
+               <td><p class="inputLabels">Projektart</p></td>
+               <td>
+                <select data-placeholder="Projektart auswählen..." id="projektart_select" class="chosen-select" style="width:350px;" tabindex="2" name="projectType">
+                  <option value=""></option>
+                  <option>Pauschal</option>
+                  <option>Aufwand</option>
+                </select>
+              </td>
+            </tr>
             <td><p class="inputLabels">Projektvolumen</p></td>
-            <td><input type="number" id="Projektvolumen" placeholder="in Euro" class="form-control input-lg" step="0.01" ></td>
+            <td><input type="number" id="Projektvolumen" placeholder="in Euro" class="form-control input-lg" step="0.01" name="projectVolume"></td>
           </tr>
           <tr>
            <td><p class="inputLabels">Bestelldatum</p></td>
-           <td><input type="date" id="Bestelldatum" class="form-control input-lg"></td>
+           <td><input type="date" id="Bestelldatum" class="form-control input-lg" name="dateOfOrder"></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgeschlossen Am</p></td>
-           <td><input type="date" id="AbgeschlossenAm" class="form-control input-lg"></td>
+           <td><input type="date" id="AbgeschlossenAm" class="form-control input-lg" name="finishedOn"></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgerechnet Am</p></td>
-           <td><input type="date" id="AbgerechnetAm" class="form-control input-lg"></td>
+           <td><input type="date" id="AbgerechnetAm" class="form-control input-lg" name="settledOn"></td>
          </tr>
-         
+         <tr></tr>
+         <tr>
+          <td></td>
+          <td>
+          <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
+          </td>
+        </tr>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      </table>
 
-
-
-        </table>
-      </div>
-    </div>
+    </form> 
   </div>
+</div>
+</div>
 </div>
 <!-- /#page-content-wrapper -->
 
@@ -190,7 +197,7 @@
   if (day < 10) day = "0" + day;
 
   var today = year + "-" + month + "-" + day; 
-   
+
   $("#Bestelldatum").attr("value", today);
 
   $( "#Bestelldatum" ).datepicker({
