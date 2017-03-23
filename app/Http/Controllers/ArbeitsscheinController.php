@@ -39,6 +39,6 @@ class ArbeitsscheinController extends Controller
 
 		$arbeit->save();
 
-		return view('arbeitsschein');
+		return redirect('Arbeitsschein');
 	}
 }

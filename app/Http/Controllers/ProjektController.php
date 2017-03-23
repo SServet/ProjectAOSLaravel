@@ -37,6 +37,6 @@ class ProjektController extends Controller
 
         $projekt->save();
 
-        return view('projekte');
+        return redirect('Projekte');
     }
 }

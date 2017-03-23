@@ -15,7 +15,7 @@ class CreateProjekteTable extends Migration
     {
         Schema::create('projekte', function (Blueprint $table) {
             $table->increments('pid');
-            $table->string('apid')->references('apid')->on('arbeitscheinProjekt');
+            $table->string('apid')->references('apid')->on('arbeitscheinProjekt')->nullable();
             $table->integer('kid')->references('kid')->on('kunden');
             $table->integer('mid')->references('mid')->on('mitarbeter');
             $table->string('label');
