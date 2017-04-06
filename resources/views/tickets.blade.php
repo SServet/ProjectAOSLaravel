@@ -97,6 +97,7 @@
         </form>
         <br>
         <br>
+        <br>
         <p id="LabelContent" style="font-size: 25px;">OFFENE TICKETS</p>
         <table id="offene_Table">
           <tr>
@@ -105,8 +106,10 @@
             <th>KUNDENNAME</th>
             <th></th>
           </tr>
-          <tr>
+          <br>
             @foreach ($tickets as $ticket)
+
+          <tr>
             <td>
               {{$ticket->tid}}
             </td>
@@ -121,8 +124,9 @@
               @endforeach
             </td>
             <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
-            @endforeach
+
           </tr>
+            @endforeach
         </table>
       </div>
     </div>

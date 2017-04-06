@@ -46,6 +46,13 @@ input[id="Bezeichnung"]{
     height: 40px;
 }
 
+#submitButton{
+    background-color: #00aef0;
+    color: white;
+    padding-left: 10em;
+    padding-right: 11em;
+}
+
 textarea[id="Beschreibung"]{
     height: 200px;
     resize: none; 
