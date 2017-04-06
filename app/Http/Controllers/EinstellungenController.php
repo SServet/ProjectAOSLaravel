@@ -46,7 +46,6 @@ class EinstellungenController extends Controller
 			$data = Excel::load($path, function($reader) {})->get();
 			if(!empty($data) && $data->count()){
 				foreach ($data->toArray() as $v) {
-					print_r(array_values($data->toArray() ));
 					if(!empty($v)){
 		
 							//$insert[] = ['aNr' => $v['artikelnummer'], 'description' => $v['beschreibung'], 'unit' => $v['einheit'], 'agid' => $v['agid'], 'mwst' => $v['mwst'], 'articlename' => $v['name'], 'saleprice' => $v['verkaufspreis']];
@@ -59,17 +58,14 @@ class EinstellungenController extends Controller
 								DB::table('artikel')->insert($insert);
 							}
 							$insert= array();
-
 						
 					}
-				}
-
-				
+				}				
 				
 			}
 
 		}
-
+		return view('einstellungen');
 	}
 
 
@@ -78,12 +74,10 @@ class EinstellungenController extends Controller
 	{
 		if($request->hasFile('import_file')){
 			$path = $request->file('import_file')->getRealPath();
-
 			$data = Excel::load($path, function($reader) {})->get();
 
 			if(!empty($data) && $data->count()){
 				foreach ($data->toArray() as $v) {
-					print_r(array_values($data->toArray() ));
 					if(!empty($v)){
 		
 						$insert[] = ['kid' => $v['kid'], 'salutation' => $v['salutation'], 'title' => $v['title'], 'firstname' => $v['firstname'], 'lastname' => $v['lastname'],'companyname' => $v['companyname'],'country'  => $v['country'], 'plz'  => $v['plz'], 'city'  => $v['city'], 'street' => $v['street'], 'email'  => $v['email'],'telephone'  => $v['telephone'],'mobilephone' => $v['mobilephone'],'fax'  => $v['fax'],'web'  => $v['web'],'UIDNumber'  => $v['uidnumber'],'taxID'  => $v['taxid']];
@@ -106,6 +100,7 @@ class EinstellungenController extends Controller
 			}
 
 		}
-			
+		
+		return view('einstellungen');
 	}
 }
