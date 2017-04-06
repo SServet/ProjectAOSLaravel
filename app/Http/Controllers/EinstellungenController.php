@@ -56,7 +56,7 @@ class EinstellungenController extends Controller
 							
 							if(!empty($insert)){
 						
-								DB::table('Artikel')->insert($insert);
+								DB::table('artikel')->insert($insert);
 							}
 							$insert= array();
 
@@ -93,7 +93,7 @@ class EinstellungenController extends Controller
 
 							if(!empty($insert)){
 						
-								DB::table('Kunden')->insert($insert);
+								DB::table('kunden')->insert($insert);
 							}
 							$insert= array();
 
