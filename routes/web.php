@@ -50,3 +50,4 @@ Route::get('exportKundentoCSV(/{type}', 'EinstellungenController@exportKundentoC
 Route::get('exportArtikeltoCSV(/{type}', 'EinstellungenController@exportArtikeltoCSV');
 Route::post('importArtikelfromCSV', 'EinstellungenController@importArtikelfromCSV');
 Route::post('importKundenfromCSV', 'EinstellungenController@importKundenfromCSV');
+Auth::routes();
