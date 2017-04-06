@@ -27,4 +27,10 @@ Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufu
 Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 
 Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+
+Route::get('exportKundentoCSV(/{type}', 'EinstellungenController@exportKundentoCSV');
+Route::get('exportArtikeltoCSV(/{type}', 'EinstellungenController@exportArtikeltoCSV');
+Route::post('importArtikelfromCSV', 'EinstellungenController@importArtikelfromCSV');
+Route::post('importKundenfromCSV', 'EinstellungenController@importKundenfromCSV');
+
 Auth::routes();

@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Artikel extends Authenticatable
+class Artikel extends Model
 {
+
+
     use Notifiable;
 
     /**
@@ -14,12 +17,12 @@ class Artikel extends Authenticatable
      *
      * @var array
      */
-    protected $table = "artikel";
 
+    public $table = 'Artikel';
     protected $fillable = [
         'aNr','agid','articlename','salePrice','unit','mwst','description'
     ];
 
-    public $timestamps = false;
-    
+
 }
+

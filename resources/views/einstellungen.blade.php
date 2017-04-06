@@ -94,13 +94,29 @@
                             <th id="labelExport">EXPORT:</th>
                         </tr>
                         <tr>
-                            <td><button class="importExportButton">KUNDEN</button></td>
-                            <td><button class="importExportButton">KUNDEN</button></td>
+                            <td>
+                                <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importKundenfromCSV') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="import_file" />
+                                    {{ csrf_field() }}
+                                    <button class="importExportButton">KUNDEN</button></a>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                            </td>
+                            <td><a href="{{ URL::to('exportKundentoCSV(/csv') }}" ><button class="importExportButton">KUNDEN</button></a></td>
                         </tr>
                         <tr>
-                            <td><button class="importExportButton">ARTIKEL</button></td>
-                            <td><button class="importExportButton">ARTIKEL</button></td>
+                            <td>
+                                <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importArtikelfromCSV') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="import_file" />
+                                    {{ csrf_field() }}
+                                    <button class="importExportButton">ARTIKEL</button></a>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                </form>
+                            </td>
+                            <td><a href="{{ URL::to('exportArtikeltoCSV(/csv') }}" ><button class="importExportButton">ARTIKEL</button></a></td>
                         </tr>
+
                         <tr>
                             <th>Termintypen</th>
                         </tr>
@@ -147,6 +163,8 @@
    $(document).ready(function() {
      $(".chosen-select").chosen();
  });
+
+
 
 </script>
 

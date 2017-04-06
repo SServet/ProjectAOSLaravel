@@ -25,6 +25,18 @@ class ArtikelTableSeeder extends Seeder
         ]);
 
         artikel::create([
+            'aNr' => '3',
+            'agid' => '6',
+            'articlename' => 'Logitech',
+            'salePrice' => 12.00,
+            'unit' => '12',
+            'mwst' => 10,
+            'description' => 'Tastatur'
+        
+        ]);
+
+
+        artikel::create([
         	'aNr' => '2',
         	'agid' => '4',
         	'articlename' => 'Samsung',

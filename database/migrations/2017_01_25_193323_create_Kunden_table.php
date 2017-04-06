@@ -22,11 +22,11 @@ class CreateKundenTable extends Migration
             $table->string('companyname')->nullable();
             $table->string('email')->nullable();
             $table->string('country')->nullable();  
-            $table->integer('plz')->nullable();          
+            $table->string('plz')->nullable();          
             $table->string('city')->nullable();            
             $table->string('street')->nullable();            
             $table->string('telephone')->nullable();
-            $table->string('mobilphone')->nullable();
+            $table->string('mobilephone')->nullable();
             $table->string('fax')->nullable();           
             $table->string('web')->nullable();
             $table->string('UIDNumber')->nullable();
