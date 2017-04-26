@@ -41,6 +41,7 @@
        $tickets = DB::table('ticket')->get();
        $termintyp = DB::table('termintyp')->get();
        $taetigkeitsart = DB::table('taetigkeitsart')->get();
+       $artikel = DB::table('artikel')->get();
 
        use Illuminate\Support\Facades\Input;
        ?>
@@ -103,95 +104,103 @@
        <!-- CSS -->
        <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
 
-       <form action="{{ route('SubmitTicket') }}" method="post">
+       <form action="{{ route('SubmitATicket') }}" method="post">
          <table  id="inputTable">
           <tr>
            <td><p class="inputLabels">Ticket-Referenz</p></td>
            <td>
-            <input type="text" id="Ticket-Referenz" class="form-control input-lg" name="label" value="{{Input::get('tid')}}" readonly>
+            <input type="text" id="Ticket-Referenz" class="form-control input-lg" name="tid" value="{{Input::get('tid')}}" readonly>
           </td>
         </tr>
         <tr>
-           <td><p class="inputLabels">Mitarbeiter</p></td>
-           <td>
-            <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
-              <option value=""></option>
-              @foreach ($mitarbeiter as $mitarb)
-              <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
-              @endforeach
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td><p class="inputLabels">Bezeichnung</p></td>
-          <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label"></td>
-        </tr>
-        <tr>
-          <td><p class="inputLabels">Beschreibung</p></td>
-          <td><textarea id="Beschreibung" class="form-control input-lg" style="" name="description"></textarea></td>
-        </tr>
-        <tr>
-           <td><p class="inputLabels">Termintyp</p></td>
-           <td>
-            <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
-              <option value=""></option>
-              @foreach ($termintyp as $typ)
-              <option>{{$typ->ttid}}. {{$typ->description}}</option>
-              @endforeach
-            </select>
-          </td>
-        </tr>
-        <tr>
-           <td><p class="inputLabels">Tätigkeitsart</p></td>
-           <td>
-            <select data-placeholder="Tätigkeitsart auswählen..." id="taetigkeitsart_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
-              <option value=""></option>
-              @foreach ($taetigkeitsart as $art)
-              <option>{{$art->tkid}}. {{$art->description}}</option>
-              @endforeach
-            </select>
-          </td>
-        </tr>
-        <tr>
-             <td><p class="inputLabels">Datum von</p></td>
-             <td><input type="date" id="DatumVon" class="form-control input-lg" name="dateFrom"></td>
-        </tr>
-        <tr>
-             <td><p class="inputLabels">Datum bis</p></td>
-             <td><input type="date" id="DatumBis" class="form-control input-lg" name="dateTo"></td>
-        </tr>
-        <tr>
-             <td><p class="inputLabels">Uhrzeit von</p></td>
-             <td><input type="time" id="UhrzeitVon" class="form-control input-lg" name="timeFrom"></td>
-        </tr>
-        <tr>
-             <td><p class="inputLabels">Uhrzeit bis</p></td>
-             <td><input type="time" id="UhrzeitBis" class="form-control input-lg" name="timeTo"></td>
-        </tr>
-        <tr>
-            <td><p class="inputLabels">Kulanzgrund</p></td>
-            <td><input type="textarea" id="Kulanzgrund" class="form-control input-lg" step="0.5" name="kulanzgrund"></td>
-        </tr>
-        <tr>
-            <td><p class="inputLabels">Kulanzzeit</p></td>
-            <td><input type="number" id="Kulanzzeit" class="form-control input-lg" step="0.5" name="kulanzzeit"></td>
-        </tr>
-        <tr>
-            <td><p class="inputLabels">Verrechnete Zeit</p></td>
-            <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" step="0.5" name="billedTime"></td>
-        </tr>
-      <tr></tr>
-      <tr>
-        <td></td>
-        <td>
-          <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
+         <td><p class="inputLabels">Mitarbeiter</p></td>
+         <td>
+          <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
+            <option value=""></option>
+            @foreach ($mitarbeiter as $mitarb)
+            <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
+            @endforeach
+          </select>
         </td>
       </tr>
-      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    </table>
+      <tr>
+       <td><p class="inputLabels">Artikel</p></td>
+       <td>
+        <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select" style="width:350px;" tabindex="2" name="aid">
+          <option value=""></option>
+          @foreach ($artikel as $art)
+          <option>{{$art->aNr}}. {{$art->description}}</option>
+          @endforeach
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><p class="inputLabels">Beschreibung</p></td>
+      <td><textarea id="Beschreibung" class="form-control input-lg" style="" name="description"></textarea></td>
+    </tr>
+    <tr>
+     <td><p class="inputLabels">Termintyp</p></td>
+     <td>
+      <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
+        <option value=""></option>
+        @foreach ($termintyp as $typ)
+        <option>{{$typ->ttid}}. {{$typ->description}}</option>
+        @endforeach
+      </select>
+    </td>
+  </tr>
+  <tr>
+   <td><p class="inputLabels">Tätigkeitsart</p></td>
+   <td>
+    <select data-placeholder="Tätigkeitsart auswählen..." id="taetigkeitsart_select" class="chosen-select" style="width:350px;" tabindex="2" name="tkid">
+      <option value=""></option>
+      @foreach ($taetigkeitsart as $art)
+      <option>{{$art->tkid}}. {{$art->description}}</option>
+      @endforeach
+    </select>
+  </td>
+</tr>
+<tr>
+ <td><p class="inputLabels">Datum von</p></td>
+ <td><input type="date" id="DatumVon" class="form-control input-lg" name="dateFrom"></td>
+</tr>
+<tr>
+ <td><p class="inputLabels">Datum bis</p></td>
+ <td><input type="date" id="DatumBis" class="form-control input-lg" name="dateTo"></td>
+</tr>
+<tr>
+ <td><p class="inputLabels">Uhrzeit von</p></td>
+ <td><input type="time" id="UhrzeitVon" class="form-control input-lg" name="timeFrom"></td>
+</tr>
+<tr>
+ <td><p class="inputLabels">Uhrzeit bis</p></td>
+ <td><input type="time" id="UhrzeitBis" class="form-control input-lg" name="timeTo"></td>
+</tr>
+<tr>
+  <td><p class="inputLabels">Kulanzgrund</p></td>
+  <td><input type="textarea" id="Kulanzgrund" class="form-control input-lg" step="0.5" name="kulanzgrund"></td>
+</tr>
+<tr>
+  <td><p class="inputLabels">Kulanzzeit</p></td>
+  <td><input type="number" id="Kulanzzeit" class="form-control input-lg" step="0.5" min="0.0" name="kulanzzeit"></td>
+</tr>
+<tr>
+  <td><p class="inputLabels">Verrechnete Zeit</p></td>
+  <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" step="0.5" min="0.0" name="billedTime"></td>
+</tr>
+<tr></tr>
+<tr>
+  <td></td>
+  <td>
+    <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
 
-    </form> 
-  </div>
+  </td>
+</tr>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</table>
+
+</form> 
+</div>
 </div>
 </div>
 </div>
