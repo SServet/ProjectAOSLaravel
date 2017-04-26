@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Redirect;
 
 class TicketController extends Controller
 {
@@ -14,6 +15,10 @@ class TicketController extends Controller
 
 	public function showTicketHinzufuegen(){
 		return view('tHinzufuegen');
+	}
+
+	public function showATicketHinzufuegen(){
+		return view('atHinzufuegen');
 	}
 
 	public function showTicketUebersicht(){
@@ -36,5 +41,9 @@ class TicketController extends Controller
 		$ticket->save();
 
 		return redirect('Tickets');
+	}
+
+	public static function addAT($tid){
+	    return view('atHinzufuegen');
 	}
 }

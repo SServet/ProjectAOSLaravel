@@ -17,11 +17,11 @@
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
-	<!-- Font-Links -->
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <!-- Font-Links -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -35,44 +35,46 @@
         $tickets = DB::table('ticket')->get();
         $kunden = DB::table('kunden')->get();
         $user = Auth::user();
+
+        use App\Http\Controllers\TicketController;
         ?>
 
-       <div id="wrapper">
+        <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-         <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-           <div id="divLabelAOS">
-            <a href="/home"/>
-            <p id="LabelAOS">AOS</p>
-            <p id="SubtitleAOS">Arbeitsschein Online Service</p>
-          </div>
-          <li>
-            <a href="/home">STARTSEITE</a>
-          </li>
-          <li>
-            <a href="/Tickets">TICKETS</a>
-          </li>
-          <li>
-            <a href="/Projekte">PROJEKTE</a>
-          </li>
-          <li>
-            <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
-          </li>
-          @if ($user->isAdmin == 1)
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper">
+           <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+             <div id="divLabelAOS">
+              <a href="/home"/>
+              <p id="LabelAOS">AOS</p>
+              <p id="SubtitleAOS">Arbeitsschein Online Service</p>
+            </div>
+            <li>
+              <a href="/home">STARTSEITE</a>
+            </li>
+            <li>
+              <a href="/Tickets">TICKETS</a>
+            </li>
+            <li>
+              <a href="/Projekte">PROJEKTE</a>
+            </li>
+            <li>
+              <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
+            </li>
+            @if ($user->isAdmin == 1)
             <li>
               <a href="/Einstellungen">EINSTELLUNGEN</a>
             </li>
             @endif
-          <li>
-                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-                   document.getElementById('logout-form').submit();"> Logout
-                </a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-                </form>
-            </li>
+            <li>
+              <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+              document.getElementById('logout-form').submit();"> Logout
+            </a>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+          </li>
         </ul>
       </div>
 
@@ -107,7 +109,7 @@
             <th></th>
           </tr>
           <br>
-            @foreach ($tickets as $ticket)
+          @foreach ($tickets as $ticket)
 
           <tr>
             <td>
@@ -118,45 +120,52 @@
             </td>
             <td>
               @foreach ($kunden as $kunde)
-                @if($kunde->kid == $ticket->kid)
-                  {{$kunde->firstname}} {{$kunde->lastname}}
-                @endif
+              @if($kunde->kid == $ticket->kid)
+              {{$kunde->firstname}} {{$kunde->lastname}}
+              @endif
               @endforeach
             </td>
             <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
 
-          </tr>
-            @endforeach
-        </table>
+            <td>
+              <form action="{{ url('/ATicket_Hinzufuegen') }}" method="post">
+              <input type="hidden" name="tid" value="{{$ticket->tid}}"/>
+                <button type="submit" class="btn .btn-default" id="addAT"> + ArbeitsscheinTicket </button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              </form>
+              <td>
+              </tr>
+              @endforeach
+            </table>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- /#page-content-wrapper -->
+
   </div>
-</div>
-<!-- /#page-content-wrapper -->
-
-</div>
-<!-- /#wrapper -->
+  <!-- /#wrapper -->
 
 
-<!-- jQuery -->
-<script src="{{ asset('assets/js/jquery.js') }}"></script>
+  <!-- jQuery -->
+  <script src="{{ asset('assets/js/jquery.js') }}"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
-<!-- Menu Toggle Script  -->
-<script>
+  <!-- Menu Toggle Script  -->
+  <script>
 
-  $("#menu-toggle").click(function(e) {
-   e.preventDefault();
-   $("#wrapper").toggleClass("toggled");
+    $("#menu-toggle").click(function(e) {
+     e.preventDefault();
+     $("#wrapper").toggleClass("toggled");
 
-   if(document.getElementById("menu-toggle").textContent == ">"){
-    document.getElementById("menu-toggle").innerHTML = "<";
-  }else{
-    document.getElementById("menu-toggle").innerHTML = ">";
-  }       
-});
+     if(document.getElementById("menu-toggle").textContent == ">"){
+      document.getElementById("menu-toggle").innerHTML = "<";
+    }else{
+      document.getElementById("menu-toggle").innerHTML = ">";
+    }       
+  });
 
 </script>
 

@@ -14,10 +14,26 @@
     margin: auto;
 }
 
+
+#mAnlegen{
+    background-color: #00aef0;
+    color: white;
+    border-collapse: separate;
+   border-spacing: 15px ;
+   margin-left: -45em;
+}
+
  body{
     overflow-x: hidden;
     font-family: myFirstFont;
  }
+
+ #addAT{
+    background-color: #00aef0;
+    color: white;
+    padding-left: 2em;
+    padding-right: 2em;
+}
 
  .inputLabels{
     text-align: left;

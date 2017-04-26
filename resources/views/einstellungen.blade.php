@@ -135,6 +135,10 @@
                         </div>
                     </table>
                     <br>
+                    
+                    <form action="{{url('/Mitarbeiter_Hinzufuegen')}}" method="get">
+                        <button type="submit" id="mAnlegen">Mitarbeiter anlegen</button>
+                    </form>
                 </div>
             </div>
         </div>
