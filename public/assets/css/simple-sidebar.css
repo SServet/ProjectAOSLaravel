@@ -14,6 +14,21 @@
     margin: auto;
 }
 
+#mAnlegen{
+    background-color: #00aef0;
+    color: white;
+    border-collapse: separate;
+    border-spacing: 15px;
+    float: left; 
+}
+
+#kAnlegen{
+    background-color: #00aef0;
+    color: white;
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+
  body{
     overflow-x: hidden;
     font-family: myFirstFont;

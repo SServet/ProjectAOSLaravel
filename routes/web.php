@@ -26,9 +26,14 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufuegen']);
 	Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 	Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+	Route::get('/Mitarbeiter_Hinzufuegen', ['uses' => 'MitarbeiterController@showMitarbeiterAnlegen']);
+	Route::get('/Kunden_Hinzufuegen', ['uses' => 'KundenController@showKundeAnlegen']);
+	//Route::get('pdfview',array('as'=>'pdfview','uses'=>'ItemController@pdfview'));
 	Route::post('/SubmitProject', ['as' => 'SubmitProject', 'uses' => 'ProjektController@submit']);
 	Route::post('/SubmitArbeitS', ['as' => 'SubmitArbeitS', 'uses' => 'ArbeitsscheinController@submit']);
 	Route::post('/SubmitTicket', ['as' => 'SubmitTicket', 'uses' => 'TicketController@submit']);
+	Route::post('/SubmitMitarbeiter', ['as' => 'SubmitMitarbeiter', 'uses' => 'MitarbeiterController@submit']);
+	Route::post('/SubmitKunde', ['as' => 'SubmitKunde', 'uses' => 'KundenController@submit']);
 });
 
 
@@ -50,4 +55,7 @@ Route::get('exportKundentoCSV(/{type}', 'EinstellungenController@exportKundentoC
 Route::get('exportArtikeltoCSV(/{type}', 'EinstellungenController@exportArtikeltoCSV');
 Route::post('importArtikelfromCSV', 'EinstellungenController@importArtikelfromCSV');
 Route::post('importKundenfromCSV', 'EinstellungenController@importKundenfromCSV');
+
+Route::get('pdfview',array('as'=>'pdfview','uses'=>'ItemController@pdfview'));
+
 Auth::routes();

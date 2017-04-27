@@ -99,7 +99,7 @@
                                     <input type="file" name="import_file" />
                                     {{ csrf_field() }}
                                     <button class="importExportButton">KUNDEN</button></a>
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <!--  <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
                                 </form>
                             </td>
                             <td><a href="{{ URL::to('exportKundentoCSV(/csv') }}" ><button class="importExportButton">KUNDEN</button></a></td>
@@ -132,6 +132,17 @@
                         </tr>
                         <div>
                         </div>
+                        <tr>
+                            <td>
+                                <form action="{{url('/Mitarbeiter_Hinzufuegen')}}" method="get">
+                                    <button type="submit" id="mAnlegen">Mitarbeiter anlegen</button>
+                                </form>
+
+                                <form action="{{url('/Kunden_Hinzufuegen')}}" method="get">
+                                    <button type="submit" id="kAnlegen">Kunden anlegen</button>
+                                </form>
+                            </td>
+                        </tr>
                     </table>
                     <br>
                 </div>

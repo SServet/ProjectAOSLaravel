@@ -44,7 +44,6 @@ class ArtikelTableSeeder extends Seeder
         	'unit' => '1',
         	'mwst' => 10,
         	'description' => 'Maus'
-        
         ]);
     }
 }
