@@ -16,6 +16,7 @@ class Arbeitsscheinticket extends Model
 	public $timestamps = false;
 
     protected $fillable = [
+        'tid',
         'mid',
         'description',
         'aNr',

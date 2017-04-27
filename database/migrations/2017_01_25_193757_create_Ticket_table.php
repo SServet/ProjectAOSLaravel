@@ -22,6 +22,7 @@ class CreateTicketTable extends Migration
             $table->date('creationDate');
             $table->date('finishedOn')->nullable();
             $table->date('settledOn')->nullable();
+            $table->integer('isClosed')->default(0);
         });
     }
 

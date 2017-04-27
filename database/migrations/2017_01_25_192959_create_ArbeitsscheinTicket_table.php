@@ -15,6 +15,7 @@ class CreateArbeitsscheinTicketTable extends Migration
     {
         Schema::create('arbeitsscheinTicket', function (Blueprint $table) {
             $table->increments('atID');
+            $table->integer('tid')->references('tid')->on('ticket');
             $table->integer('mid')->references('mid')->on('mitarbeiter');
             $table->string('description');
             $table->string('aNr')->references('aNr')->on('artikel');
