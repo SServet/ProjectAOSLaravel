@@ -33,6 +33,8 @@
 
       <?php
         $user = Auth::user();
+        $tickets = DB::table('ticket')->get();
+        $kunden = DB::table('kunden')->get();
       ?>
 
        <div id="wrapper">
@@ -94,11 +96,23 @@
             <th>KUNDENNAME</th>
             <th></th>
           </tr>
+            @foreach ($tickets as $ticket)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+              {{$ticket->tid}}
+            </td>
+            <td>
+              {{$ticket->description}}
+            </td>
+            <td>
+              @foreach ($kunden as $kunde)
+                @if($kunde->kid == $ticket->kid)
+                  {{$kunde->firstname}} {{$kunde->lastname}}
+                @endif
+              @endforeach
+            </td>
             <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>  
+            @endforeach
           </tr>
         </table>
       </div>

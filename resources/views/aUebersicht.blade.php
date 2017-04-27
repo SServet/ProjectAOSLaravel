@@ -3,13 +3,13 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-	<title>Arbeitsschein Online Service</title>
+  <title>Arbeitsschein Online Service</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -17,11 +17,11 @@
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
-	<!-- Font-Links -->
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <!-- Font-Links -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -33,6 +33,8 @@
 
       <?php
         $user = Auth::user();
+        $arbeitsscheine = DB::table('arbeitsschein')->get();
+        $kunden = DB::table('kunden')->get();
       ?>
 
        <div id="wrapper">
@@ -84,10 +86,9 @@
           <div id="menu-toggle-div">
            <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
          </div>
-         <img src="img/rz_logo.jpg" id="logoRight">
+         <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
-         <p id="LabelContent">ARBEITSSCHEINE > ÜBERSICHT</p>
-         <hr>
+         <p id="LabelContent">ARBEITSSCHEIN > ÜBERSICHT</p>
          <table id="uebersicht_Table">
           <tr>
             <th>ANr.</th>
@@ -95,11 +96,23 @@
             <th>KUNDENNAME</th>
             <th></th>
           </tr>
+            @foreach ($arbeitsscheine as $arbeitsschein)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>
+            <td>
+              {{$arbeitsschein->asid}}
+            </td>
+            <td>
+              {{$arbeitsschein->description}}
+            </td>
+            <td>
+              @foreach ($kunden as $kunde)
+                @if($kunde->kid == $arbeitsschein->kid)
+                  {{$kunde->firstname}} {{$kunde->lastname}}
+                @endif
+              @endforeach
+            </td>
+            <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>  
+            @endforeach
           </tr>
         </table>
       </div>
