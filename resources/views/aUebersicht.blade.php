@@ -88,7 +88,7 @@
          <br>
          <p id="LabelContent">ARBEITSSCHEINE > ÜBERSICHT</p>
          <hr>
-         <table id="uebersicht_Table">
+         <table id="ticket_Table">
           <tr>
             <th>ANr.</th>
             <th>BEZEICHNUNG</th>
