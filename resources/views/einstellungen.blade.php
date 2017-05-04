@@ -90,39 +90,50 @@
                        <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
                        <table id="importExportTable">
                         <tr>
-                            <th id="labelImport">&nbsp;IMPORT:</th>
-                            <th id="labelExport">EXPORT:</th>
+                            <th id="labelImport">&nbsp;Import:</th>
+                            
                         </tr>
-                        <tr>
-                            <td>
-                                <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importKundenfromCSV') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="import_file" />
-                                    {{ csrf_field() }}
-                                    <button class="importExportButton">KUNDEN</button></a>
-                                  <!--  <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-                                </form>
-                            </td>
-                            <td><a href="{{ URL::to('exportKundentoCSV(/csv') }}" ><button class="importExportButton">KUNDEN</button></a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importArtikelfromCSV') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="import_file" />
-                                    {{ csrf_field() }}
-                                    <button class="importExportButton">ARTIKEL</button></a>
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                </form>
-                            </td>
-                            <td><a href="{{ URL::to('exportArtikeltoCSV(/csv') }}" ><button class="importExportButton">ARTIKEL</button></a></td>
+                        <form style="margin-top: 15px;padding: 10px;" action="{{ URL::to('importKundenfromCSV') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                        <tr>
+                            <td>            
+                                <label for="inputfile" class="btn">Datei auswählen...</label>                   
+                                <input style="visibility:hidden; display:none; border: 1px;" id="inputfile" class="inputfile" type="file" name="import_file" />
+                                {{ csrf_field() }} 
+
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">                              
+                            </td>                           
                         </tr>
+                        <tr>
+                             <td>
+                                Typ:
+                                <button class="importExportButton">Kunden</button></a>
+                                <button class="importExportButton">Artikel</button></a>
+                                <br><br>
+                            </td>
+                        </tr>
+                         </form>                         
+                        <tr>
+                            <th id="labelImport">&nbsp;Export:</th>                            
+                        </tr>
+                        <tr>
+                             <td>
+                                Typ:
+                                 <a href="{{ URL::to('exportKundentoCSV(/csv') }}" ><button class="importExportButton">Kunden</button></a>
+                                <a href="{{ URL::to('exportArtikeltoCSV(/csv') }}" ><button class="importExportButton">Artikel</button></a>
+                            </td>
+                        </tr>
+
+
+                        
+                        
 
                         <tr>
                             <th>Termintypen</th>
                         </tr>
                         <tr>
                             <td>
-                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:170px;" tabindex="2">
+                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2">
                                     <option value=""></option>
                                     @foreach ($termintyp as $tt)
                                     <option>{{$tt->ttid}}. {{$tt->description}}</option>
@@ -130,18 +141,21 @@
                                 </select>
                             </td>
                         </tr>
-                        <div>
-                        </div>
                         <tr>
-                            <td>
-                                <form action="{{url('/Mitarbeiter_Hinzufuegen')}}" method="get">
-                                    <button type="submit" id="mAnlegen">Mitarbeiter anlegen</button>
-                                </form>
-
-                                <form action="{{url('/Kunden_Hinzufuegen')}}" method="get">
-                                    <button type="submit" id="kAnlegen">Kunden anlegen</button>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td style="float:left;width: 150px;">
+                                <form action="{{url('/Mitarbeiter_Hinzufuegen')}}" method="get" style="float:left;width: 150px;">
+                                    <button  class="importExportButton" type="submit" >Mitarbeiter anlegen</button>
                                 </form>
                             </td>
+                            
+                            <td style="float:right;width: 150px;">
+                                <form action="{{url('/Kunden_Hinzufuegen')}}" method="get" style="width: 150px;">
+                                    <button  class="importExportButton" type="submit" >Kunden anlegen</button>
+                                </form>
+                             </td>
                         </tr>
                     </table>
                     <br>
