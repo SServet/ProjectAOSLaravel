@@ -84,7 +84,7 @@
           <div id="menu-toggle-div">
            <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
          </div>
-         <img src="img/rz_logo.jpg" id="logoRight">
+         <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">ARBEITSSCHEINE > ÜBERSICHT</p>
          <hr>

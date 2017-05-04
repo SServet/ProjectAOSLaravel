@@ -90,6 +90,7 @@
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">TICKETS > ÜBERSICHT</p>
+         <hr>
          <table id="ticket_Table">
           <tr>
             <th>TNr.</th>
