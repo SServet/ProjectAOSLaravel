@@ -32,7 +32,10 @@
       <body>
 
       <?php
+        $tickets = DB::table('ticket')->get();
+        $kunden = DB::table('kunden')->get();
         $user = Auth::user();
+        $mitarbeiter = DB::table('mitarbeiter')->get();
       ?>
 
        <div id="wrapper">
@@ -87,19 +90,59 @@
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">TICKETS > ÜBERSICHT</p>
-         <table id="uebersicht_Table">
+         <table id="ticket_Table">
           <tr>
             <th>TNr.</th>
             <th>BEZEICHNUNG</th>
             <th>KUNDENNAME</th>
             <th></th>
           </tr>
+          @foreach ($tickets as $ticket)
+          @if($ticket->isClosed == 1)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>  
+            <td>
+              {{$ticket->tid}}
+            </td>
+            <td>
+              {{$ticket->description}}
+            </td>
+            <td>
+              @foreach ($kunden as $kunde)
+              @if($kunde->kid == $ticket->kid)
+              {{$kunde->firstname}} {{$kunde->lastname}}
+              @endif
+              @endforeach
+            </td>
+            <td><a href="#" onclick="showHide({{$ticket->tid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
           </tr>
+          @endif
+          <tr>
+            <td style="background-color: #EBEBEB;" colspan="4">
+
+              <div id="details{{$ticket->tid}}" style="display:none;" value="{{$ticket->tid}}">
+
+                <form action="{{ url('/TicketClose') }}" method="post">
+                  <p>Erstelldatum: {{$ticket->creationDate}}</p>
+                  <p>Mitarbeiter:      @foreach($mitarbeiter as $mit)
+                    @if($mit->id == $ticket->mid)  
+                    {{$mit->firstname}} {{$mit->lastname}}
+                    @endif
+                    @endforeach
+                  </p>
+                  <p> Abgeschlossen am: {{$ticket->finishedOn}}</p>
+                  <p> Abgerechnet am: {{$ticket->settledOn}}</p>
+                  <p> Beschreibung: {{$ticket->description}}</p>
+                  <button type="submit" class="btn">Ticket schließen</button>
+
+                  <input type="hidden" name="tid" value="{{$ticket->tid}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+                <br\>
+              </div>
+            </td>
+          </tr>
+          @endforeach
         </table>
       </div>
     </div>
@@ -124,6 +167,15 @@
    $("#wrapper").toggleClass("toggled");
    
  });
+
+  function showHide(id){
+    if($("#details"+id).css('display')=='none'){
+      $("#details"+id).css('display','inline');
+
+    }else{
+      $("#details"+id).css('display','none');
+    }
+  }
 
 </script>
 
