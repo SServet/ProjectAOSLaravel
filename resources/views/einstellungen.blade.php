@@ -27,6 +27,22 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+    <script type="text/javascript">
+    function select()
+    {
+    kund=document.getElementById("kundenimp");
+    arti=document.getElementById("artikelimp");
+    if(kund.checked==true)
+        {
+        document.myform.action="{{ URL::to('importKundenfromCSV') }}";
+        }
+    else
+        {
+        document.myform.action="{{ URL::to('importArtikelfromCSV') }}";
+        }
+    }
+  </script>
+
     </head>
 
     <body>
@@ -90,14 +106,14 @@
                        <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
                        <table id="importExportTable">
                         <tr>
-                            <th id="labelImport">&nbsp;Import:</th>
+                            <th id="labelImport">Import:</th>
                             
                         </tr>
 
-                        <form style="margin-top: 15px;padding: 10px;" action="{{ URL::to('importKundenfromCSV') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                       <form name="myform" onsubmit="select()" style="margin-top: 15px;padding: 10px;" class="form-horizontal" method="post" enctype="multipart/form-data">
                         <tr>
                             <td>            
-                                <label for="inputfile" class="btn">Datei auswählen...</label>                   
+                                <label id="dateiau" for="inputfile" class="btn">Datei auswählen...</label>                   
                                 <input style="visibility:hidden; display:none; border: 1px;" id="inputfile" class="inputfile" type="file" name="import_file" />
                                 {{ csrf_field() }} 
 
@@ -106,54 +122,96 @@
                         </tr>
                         <tr>
                              <td>
-                                Typ:
-                                <button class="importExportButton">Kunden</button></a>
-                                <button class="importExportButton">Artikel</button></a>
+                                <label id="labelImport" style="float:left;">Typ:</label>                            
+                                    <input type="radio" id="kundenimp" name="Typ" value="Kunden"> Kunden </input>
+                                    <input type="radio" id="artikelimp" name="Typ" value="Artikel"> Artikel </input>
+                                    <input class="TButton" type="submit" value="Ok" style="float:right;">&nbsp;
+
                                 <br><br>
                             </td>
                         </tr>
-                         </form>                         
+                    </form>                      
                         <tr>
-                            <th id="labelImport">&nbsp;Export:</th>                            
+                            <th id="labelImport">Export:</th>                            
                         </tr>
                         <tr>
                              <td>
-                                Typ:
-                                 <a href="{{ URL::to('exportKundentoCSV(/csv') }}" ><button class="importExportButton">Kunden</button></a>
-                                <a href="{{ URL::to('exportArtikeltoCSV(/csv') }}" ><button class="importExportButton">Artikel</button></a>
+                                <label id="labelImport" style="float:left;">Typ:</label>
+                                 <a href="{{ URL::to('exportKundentoCSV(/csv') }}" ><button id="bUebersicht" style="margin-top:10px;">Kunden</button></a>
+                                <a href="{{ URL::to('exportArtikeltoCSV(/csv') }}" ><button id="bUebersicht" style="margin-top:10px;">Artikel</button></a>
+                                <br><br><br>
                             </td>
                         </tr>
-
-
-                        
-                        
-
                         <tr>
-                            <th>Termintypen</th>
+                            <th id="labelImport" style="bottom:-100px;">Termintypen</th>
                         </tr>
                         <tr>
                             <td>
-                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2">
+
+                                <button type="button" onclick="showHideTH()" id="bUebersicht" >Anlegen</button>
+
+
+                                <button type="button" onclick="showHideTAU()" id="TUmbenennen" class="TButton" >Umbenennen</button>
+
+
+                                <button type="button" onclick="showHideTAL()" id="TLoeschen" class="TButton" >Löschen</button>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="THinzufuegen" style="display:none;">
+                                <div style="background-color: lightGray;font-size:20px;padding:15px;">
+                                        <form action="{{ url('/Einstellungen/TTAnlegen') }}" method="post">
+                                            Bezeichnung:&nbsp;<input type="text" name="TName" style="height:50px;">
+                                            <button type="submit" class="btn" style="width:355px;margin-top:15px;">OK</button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                            <div id="TAuswaehlenU">
+                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" >
                                     <option value=""></option>
                                     @foreach ($termintyp as $tt)
                                     <option>{{$tt->ttid}}. {{$tt->description}}</option>
                                     @endforeach
                                 </select>
+                            <br><br><br>
+
+
+                            </div>
                             </td>
                         </tr>
                         <tr>
-                            <th></th>
+                            <td >
+                            <div id="TAuswaehlenL">
+                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" >
+                                    <option value=""></option>
+                                    @foreach ($termintyp as $tt)
+                                    <option>{{$tt->ttid}}. {{$tt->description}}</option>
+                                    @endforeach
+                                </select>
+                            <br><br><br>
+
+
+                            </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td style="float:left;width: 150px;">
-                                <form action="{{url('/Mitarbeiter_Hinzufuegen')}}" method="get" style="float:left;width: 150px;">
-                                    <button  class="importExportButton" type="submit" >Mitarbeiter anlegen</button>
+                            <th id="labelImport">Mitarbeiter/Kunde Anlegen</th>
+                        </tr>
+                        <tr>
+                            <td style="float:left;">
+                                <form action="{{url('/Mitarbeiter_Hinzufuegen')}}" method="get" style="float:left;">
+                                    <button  id="bUebersicht" type="submit" >Mitarbeiter anlegen</button>
                                 </form>
                             </td>
                             
-                            <td style="float:right;width: 150px;">
-                                <form action="{{url('/Kunden_Hinzufuegen')}}" method="get" style="width: 150px;">
-                                    <button  class="importExportButton" type="submit" >Kunden anlegen</button>
+                            <td style="float:right;">
+                                <form action="{{url('/Kunden_Hinzufuegen')}}" method="get">
+                                    <button  id="bUebersicht" type="submit" >Kunden anlegen</button>
                                 </form>
                              </td>
                         </tr>
@@ -174,6 +232,16 @@
 
 <!-- Menu Toggle Script  -->
 <script>
+$("#inputfile").bind("change", function() {
+    var selected_file_name = $('#inputfile').val();
+    if ( selected_file_name.length > 0 ) {
+        var array = selected_file_name.split("\\");
+        document.getElementById('dateiau').innerHTML = array[array.length-1];
+    }
+    else {
+        
+    }
+});
 
   $("#menu-toggle").click(function(e) {
      e.preventDefault();
@@ -187,7 +255,41 @@
 });
    $(document).ready(function() {
      $(".chosen-select").chosen();
+     $("#TUmbenennen").click();
+     $("#TLoeschen").click();
  });
+
+   function showHideTH(){
+        if($("#THinzufuegen").css('display')=='none'){
+          $("#THinzufuegen").css('display','inline');
+          $("#TAuswaehlenU").css('display','none');
+          $("#TAuswaehlenL").css('display','none');
+        }else{
+          $("#THinzufuegen").css('display','none');
+        }
+   }
+
+   function showHideTAU(){
+        if($("#TAuswaehlenU").css('display')=='none'){
+          $("#TAuswaehlenU").css('display','inline');
+          $("#TAuswaehlenL").css('display','none');
+          $("#THinzufuegen").css('display','none');
+        }else{
+          $("#TAuswaehlenU").css('display','none');
+        }
+   }
+
+   function showHideTAL(){
+        if($("#TAuswaehlenL").css('display')=='none'){
+          $("#TAuswaehlenU").css('display','none');
+          $("#TAuswaehlenL").css('display','inline');
+          $("#THinzufuegen").css('display','none');
+        }else{
+          $("#TAuswaehlenL").css('display','none');
+        }
+   }
+
+
 
 
 

@@ -14,11 +14,22 @@
     margin: auto;
 }
 
+
  #addAT{
     background-color: #00aef0;
     color: white;
     padding-left: 2em;
     padding-right: 2em;
+}
+
+.TButton{
+    
+    background-color: #7a7d82;
+    color: white;
+    font-size: 20px;
+    border: none;
+    float: left;
+    margin-left: 10px;
 }
 
  body{

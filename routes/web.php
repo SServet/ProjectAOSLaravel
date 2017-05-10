@@ -26,12 +26,15 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/TicketClose', ['uses' => 'TicketController@closeTicket']);
 	Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufuegen']);
 	Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
-	
+
 	Route::post('/ATicket_Hinzufuegen', ['uses' => 'TicketController@showATicketHinzufuegen']); 
+
+
 	Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+	Route::post('/Einstellungen/TTAnlegen', ['uses' => 'EinstellungenController@ttAnlegen']);
+
 	Route::get('/Mitarbeiter_Hinzufuegen', ['uses' => 'MitarbeiterController@showMitarbeiterAnlegen']);
 	Route::get('/Kunden_Hinzufuegen', ['uses' => 'KundenController@showKundeAnlegen']);
-	//Route::get('pdfview',array('as'=>'pdfview','uses'=>'ItemController@pdfview'));
 	Route::post('/SubmitProject', ['as' => 'SubmitProject', 'uses' => 'ProjektController@submit']);
 	Route::post('/SubmitArbeitS', ['as' => 'SubmitArbeitS', 'uses' => 'ArbeitsscheinController@submit']);
 	Route::post('/SubmitTicket', ['as' => 'SubmitTicket', 'uses' => 'TicketController@submit']);
