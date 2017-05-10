@@ -87,6 +87,7 @@
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">PROJEKTE</p>
+         <hr>
          <form action="/Projekt_Hinzufuegen">
            <button id="bHinzufuegen">+PROJEKT HINZUFÜGEN</button>
          </form>

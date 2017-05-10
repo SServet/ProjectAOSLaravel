@@ -100,7 +100,6 @@
                           </div>
                        </div>
                        <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
-                       <br>
                         <!-- Chosen -->
                         <!-- CSS -->
                        <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">

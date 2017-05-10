@@ -90,6 +90,7 @@
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">TICKETS</p>
+         <hr>
          <form action="Ticket_Hinzufuegen">
            <button id="bHinzufuegen">+TICKET HINZUFÜGEN</button>
          </form>
@@ -100,7 +101,7 @@
         <br>
         <br>
         <p id="LabelContent" style="font-size: 25px;">OFFENE TICKETS</p>
-        <table id="offene_Table">
+        <table id="ticket_Table">
           <tr>
             <th>TNr.</th>
             <th>BEZEICHNUNG</th>

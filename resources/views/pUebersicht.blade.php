@@ -87,7 +87,8 @@
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">PROJEKTE > ÜBERSICHT</p>
-         <table id="uebersicht_Table">
+         <hr>
+         <table id="ticket_Table">
           <tr>
             <th>PNr.</th>
             <th>BEZEICHNUNG</th>

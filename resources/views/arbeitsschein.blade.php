@@ -87,6 +87,7 @@
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">ARBEITSSCHEINE</p>
+         <hr>
          <form action="/Arbeitsschein_Hinzufuegen">
            <button id="bHinzufuegen">+ARBEITSCHEIN HINZUFÜGEN</button>
          </form>
