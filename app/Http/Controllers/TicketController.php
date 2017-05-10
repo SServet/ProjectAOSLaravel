@@ -72,6 +72,8 @@ class TicketController extends Controller
 
 		$ATicket->save();
 
+		return \App::call('App\Http\Controllers\AT_ItemController@pdfview');
+
 		return redirect('Tickets');
 
 	}

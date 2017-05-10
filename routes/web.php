@@ -62,5 +62,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('pdfview',array('as'=>'pdfview','uses'=>'ItemController@pdfview'));
 
+	Route::get('pdfviewAT',array('as'=>'pdfviewAT','uses'=>'AT_ItemController@pdfview'));
+
+
 });
 Auth::routes();

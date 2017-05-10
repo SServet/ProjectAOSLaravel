@@ -39,6 +39,8 @@ class ArbeitsscheinController extends Controller
 
 		$arbeit->save();
 
+		return \App::call('App\Http\Controllers\ItemController@pdfview');
+
 		return redirect('Arbeitsschein');
 	}
 }

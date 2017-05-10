@@ -70,7 +70,7 @@
 </head>
 <body onload="download()">
 
-  <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logo">
+  <a href="/home"> <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logo"> </a>
 
   <div id="wrapper">
     @foreach ($mitarbeiter as $mitarbeiter)
