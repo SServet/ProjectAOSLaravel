@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Arbeitsscheinprojekt extends Model
 {
-    protected $table = 'arbeitsscheinprojekt';
+    protected $table = 'arbeitsscheinProjekt';
 
     protected $primaryKey = 'apid';
 

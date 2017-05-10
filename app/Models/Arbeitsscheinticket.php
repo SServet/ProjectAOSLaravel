@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Arbeitsscheinticket extends Model
 {
-    protected $table = 'arbeitsscheinticket';
+    protected $table = 'arbeitsscheinTicket';
 
     protected $primaryKey = 'atID';
 
