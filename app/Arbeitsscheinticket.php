@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Arbeitsscheinticket extends Authenticatable
 {
-    protected $table = 'arbeitsscheinticket';
+    protected $table = 'arbeitsscheinTicket';
 
 	public $timestamps = false;
 
