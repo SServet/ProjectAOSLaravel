@@ -79,11 +79,11 @@ textarea[id="Beschreibung"]{
     margin-bottom: +5px;
 }
 
-#ticket_Table{
+#uebersicht_Table{
     font-size: 20px;
 }
 
-#ticket_Table th{
+#uebersicht_Table th{
     text-align: center;
     background-color: #3c3c3c;
     width: 250px;
@@ -91,15 +91,15 @@ textarea[id="Beschreibung"]{
     font-weight: normal;
 }
 
-#ticket_Table td{
+#uebersicht_Table td{
     background-color: #dfdfdf;
 }
 
-#ticket_Table th:first-child{
+#uebersicht_Table th:first-child{
     width: 100px;
 }
 
-#ticket_Table th:last-child{
+#uebersicht_Table th:last-child{
     width: 50px;
 }
 

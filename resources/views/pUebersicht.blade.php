@@ -33,6 +33,8 @@
 
       <?php
         $user = Auth::user();
+        $projekte = DB::table('projekte')->get();
+        $kunden = DB::table('kunden')->get();
       ?>
 
        <div id="wrapper">
@@ -87,19 +89,30 @@
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
          <p id="LabelContent">PROJEKTE > ÜBERSICHT</p>
-         <hr>
-         <table id="ticket_Table">
+         <table id="uebersicht_Table">
           <tr>
             <th>PNr.</th>
             <th>BEZEICHNUNG</th>
             <th>KUNDENNAME</th>
             <th></th>
           </tr>
+            @foreach ($projekte as $projekt)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+              {{$projekt->pid}}
+            </td>
+            <td>
+              {{$projekt->description}}
+            </td>
+            <td>
+              @foreach ($kunden as $kunde)
+                @if($kunde->kid == $projekt->kid)
+                  {{$kunde->firstname}} {{$kunde->lastname}}
+                @endif
+              @endforeach
+            </td>
             <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>
+            @endforeach
           </tr>
         </table>
       </div>
