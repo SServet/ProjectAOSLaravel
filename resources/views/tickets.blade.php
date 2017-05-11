@@ -101,7 +101,7 @@
         <br>
         <br>
         <p id="LabelContent" style="font-size: 25px;">OFFENE TICKETS</p>
-        <table id="ticket_Table">
+        <table id="uebersicht_Table">
           <tr>
             <th>TNr.</th>
             <th>BEZEICHNUNG</th>
