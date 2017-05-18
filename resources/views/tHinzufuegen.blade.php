@@ -115,12 +115,7 @@
           <tr>
            <td><p class="inputLabels">Mitarbeiter</p></td>
            <td>
-            <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
-              <option value=""></option>
-              @foreach ($mitarbeiter as $mitarb)
-              <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
-              @endforeach
-            </select>
+            <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
           </td>
         </tr>
         <tr>
@@ -151,6 +146,7 @@
           <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
         </td>
       </tr>
+      <input type="hidden" name="mid" value="{{$user->id}}"/>
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </table>
 

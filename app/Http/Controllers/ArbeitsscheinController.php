@@ -24,7 +24,7 @@ class ArbeitsscheinController extends Controller
 
 
 		$arbeit->kid = explode('.',$request->get('kid'))[0];
-		$arbeit->mid = explode('.',$request->get('mid'))[0];
+		$arbeit->mid = $request->get('mid');
 		$arbeit->description = $request->get('description');
 		$arbeit->ttid = explode('.',$request->get('ttid'))[0];
 		$arbeit->tkid = explode('.',$request->get('tkid'))[0];

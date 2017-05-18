@@ -21,12 +21,20 @@ class ProjektController extends Controller
 		return view('pUebersicht');
 	}
 
+    public function closeProjekt(Request $request){
+        $projekt = Projekte::where('pid', '=', $request->get('pid'))->first();
+        $projekt->finishedOn = date('Y-m-d');
+        $projekt->save();
+
+        return redirect('Projekte');
+    }
+
 	public function submit(Request $request){
 
 		$projekt = new Projekte;
 
         $projekt->kid = explode('.',$request->get('kid'))[0];
-        $projekt->mid = explode('.',$request->get('mid'))[0];
+        $projekt->mid = $request->get('mid');
         $projekt->label = $request->input('label');
         $projekt->description = $request->get('description');
         $projekt->projectType = $request->get('projectType');

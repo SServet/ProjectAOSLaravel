@@ -33,6 +33,9 @@
 
       <?php
         $user = Auth::user();
+        $projekte = DB::table('projekte')->get();
+        $kunden = DB::table('kunden')->get();
+        $mitarbeiter = DB::table('mitarbeiter')->get();
       ?>
 
        <div id="wrapper">
@@ -94,6 +97,64 @@
          <form action="/Projekte_Uebersicht">
            <button id="bUebersicht">ÜBERSICHT</button>
          </form>
+         <br>
+        <br>
+        <br>
+        <p id="LabelContent" style="font-size: 25px;">OFFENE PROJEKTE</p>
+        <table id="uebersicht_Table">
+          <tr>
+            <th>PNr.</th>
+            <th>BEZEICHNUNG</th>
+            <th>KUNDENNAME</th>
+            <th></th>
+          </tr>
+          <br>
+          @foreach ($projekte as $projekt)
+          @if(empty($projekt->finishedOn))
+          <tr>
+            <td>
+              {{$projekt->pid}}
+            </td>
+            <td>
+              {{$projekt->description}}
+            </td>
+            <td>
+              @foreach ($kunden as $kunde)
+              @if($kunde->kid == $projekt->kid)
+              {{$kunde->firstname}} {{$kunde->lastname}}
+              @endif
+              @endforeach
+            </td>
+            <td><a href="#" onclick="showHide({{$projekt->pid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+          </tr>
+          @endif
+          <tr>
+            <td style="background-color: #EBEBEB;" colspan="4">
+
+              <div id="details{{$projekt->pid}}" style="display:none;" value="{{$projekt->pid}}">
+
+                <form action="{{ url('/ProjektClose') }}" method="post">
+                  <p>Mitarbeiter:      @foreach($mitarbeiter as $mit)
+                    @if($mit->id == $projekt->mid)  
+                    {{$mit->firstname}} {{$mit->lastname}}
+                    @endif
+                    @endforeach
+                  </p>
+                  <p> Abgeschlossen am: {{$projekt->finishedOn}}</p>
+                  <p> Abgerechnet am: {{$projekt->settledOn}}</p>
+                  <p> Beschreibung: {{$projekt->description}}</p>
+                  <button type="submit" class="btn">Projekt schließen</button>
+
+                  <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+                <br\>
+              </div>
+            </td>
+          </tr>
+          @endforeach
+        </table>
        </div>
      </div>
    </div>
@@ -123,6 +184,15 @@
     document.getElementById("menu-toggle").innerHTML = ">";
   }       
 });
+
+  function showHide(id){
+    if($("#details"+id).css('display')=='none'){
+      $("#details"+id).css('display','inline');
+
+    }else{
+      $("#details"+id).css('display','none');
+    }
+  }
 
 </script>
 

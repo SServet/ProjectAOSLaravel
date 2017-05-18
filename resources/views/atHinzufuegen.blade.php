@@ -115,13 +115,8 @@
         <tr>
          <td><p class="inputLabels">Mitarbeiter</p></td>
          <td>
-          <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
-            <option value=""></option>
-            @foreach ($mitarbeiter as $mitarb)
-            <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
-            @endforeach
-          </select>
-        </td>
+            <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
+          </td>
       </tr>
       <tr>
        <td><p class="inputLabels">Artikel</p></td>
@@ -144,7 +139,7 @@
       <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
         <option value=""></option>
         @foreach ($termintyp as $typ)
-        <option>{{$typ->ttid}}. {{$typ->description}}</option>
+        <option>{{$typ->description}}</option>
         @endforeach
       </select>
     </td>
@@ -196,6 +191,7 @@
 
   </td>
 </tr>
+<input type="hidden" name="mid" value="{{$user->id}}"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </table>
 

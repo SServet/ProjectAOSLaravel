@@ -96,7 +96,8 @@
             <th>KUNDENNAME</th>
             <th></th>
           </tr>
-            @foreach ($tickets as $ticket)
+          @foreach ($tickets as $ticket)
+          @if($ticket->isClosed == 1)
           <tr>
             <td>
               {{$ticket->tid}}
@@ -111,9 +112,21 @@
                 @endif
               @endforeach
             </td>
-            <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>  
-            @endforeach
+             <td><a href="#" onclick="showHide({{$ticket->tid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
           </tr>
+          @endif
+          <tr>
+            <td style="background-color: #EBEBEB;" colspan="4">
+              <div id="details{{$ticket->tid}}" style="display:none;" value="{{$ticket->tid}}">
+                  <p> Abgeschlossen am: {{$ticket->finishedOn}}</p>
+                  <p> Abgerechnet am: {{$ticket->settledOn}}</p>
+                  <p> Beschreibung: {{$ticket->description}}</p>
+                </form>
+                <br\>
+              </div>
+            </td>
+          </tr>
+          @endforeach
         </table>
       </div>
     </div>
@@ -136,8 +149,20 @@
   $("#menu-toggle").click(function(e) {
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");
-   
  });
+   
+   if(document.getElementById("menu-toggle").textContent == ">"){
+    document.getElementById("menu-toggle").innerHTML = "<";
+  }else{
+    document.getElementById("menu-toggle").innerHTML = ">";
+  }       
+  function showHide(id){
+    if($("#details"+id).css('display')=='none'){
+      $("#details"+id).css('display','inline');
+    }else{
+      $("#details"+id).css('display','none');
+    }
+  }
 
 </script>
 

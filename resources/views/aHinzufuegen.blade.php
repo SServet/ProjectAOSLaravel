@@ -117,12 +117,8 @@
               <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
                <td>
-                 <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
-                  <option value=""></option>
-                  @foreach ($mitarbeiter as $mitarb)
-                  <option>{{$mitarb->id}}. {{$mitarb->lastname}} {{$mitarb->firstname}}</option>
-                  @endforeach
-                </select>
+                   
+                   <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
               </td>
             </tr>
             <tr>
@@ -131,7 +127,7 @@
                 <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
                   <option value=""></option>
                   @foreach ($termintyp as $tt)
-                  <option>{{$tt->ttid}}. {{$tt->description}}</option>
+                  <option>{{$tt->description}}</option>
                   @endforeach
                 </select>
               </td>
@@ -186,6 +182,7 @@
               <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
             </td>
           </tr>
+          <input type="hidden" name="mid" value="{{$user->id}}"/>
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </table>
       </form> 
@@ -226,7 +223,15 @@
     dateFormat: "yy-mm-dd"
   });
   $(".chosen-select").chosen();
-});
+  });
+ $('#UhrzeitVon, #UhrzeitBis').on('change',function() 
+  {
+    var start_time = $('#UhrzeitVon').val();
+    var end_time = $('#UhrzeitBis').val();
+
+    var diff = new Date("1970-1-1" + end_time) - new Date("1970-1-1" + start_time);
+    document.getElementById('VerrechneteZeit').innerHTML = diff;
+  });
 </script>
 
 
