@@ -231,22 +231,18 @@
   if (day < 10) day = "0" + day;
 
   var today = year + "-" + month + "-" + day;       
-  $("#Erstelldatum").attr("value", today);
+  $("#DatumVon").attr("value", today);
 
-  $( "#Erstelldatum" ).datepicker({
+  $( "#DatumVon" ).datepicker({
     numberOfMonths: 2,
     dateFormat: "yy-mm-dd" 
   });
 
-  $( "#AbgeschlossenAm" ).datepicker({
+  $( "#DatumBis" ).datepicker({
     numberOfMonths: 2,
     dateFormat: "yy-mm-dd" 
   });
   
-  $( "#AbgerechnetAm" ).datepicker({
-    numberOfMonths: 2,
-    dateFormat: "yy-mm-dd"
-  });
   $(".chosen-select").chosen();
 });
 </script>
@@ -266,7 +262,7 @@
  });
 
   function setToday(){
-    document.getElementById("Erstelldatum").value = new Date().toDateInputValue();
+    document.getElementById("DatumVon").value = new Date().toDateInputValue();
   }
 
 </script>

@@ -157,7 +157,7 @@
          </tr>
          <tr>
            <td><p class="inputLabels">Abgerechnet Am</p></td>
-           <td><input type="date" id="AbgerechnetAm" class="form-control input-lg" name="settledOn"></td>
+           <td><input type="date" id="AbgerechnetAm" class="form-control input-lg" name="settledOn" ></td>
          </tr>
          <tr></tr>
          <tr>

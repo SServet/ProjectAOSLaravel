@@ -22,7 +22,7 @@ class CreateArbeitsscheinTable extends Migration
             $table->integer('tkid')->references('tkid')->on('taetigkeitsart');
             $table->date('dateFrom');
             $table->date('dateTo')->nullable();
-            $table->time('timeFrom');
+            $table->time('timeFrom')->nullable();
             $table->time('timeTo')->nullable();
             $table->decimal('billedTime',6,2)->nullable();
             $table->decimal('kulanzzeit',6,2)->nullable();

@@ -43,8 +43,20 @@ class TicketController extends Controller
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');
 		$ticket->creationDate = $request->get('creationDate');
-		$ticket->finishedOn =$request->get('finishedOn');
-		$ticket->settledOn = $request->get('settledOn');
+
+		if($request->get('finishedOn') == ''){
+            $ticket->finishedOn = null;
+            
+        } else {
+            $ticket->finishedOn = $request->get('finishedOn');
+        }
+        
+        if( $request->get('settledOn') == ''){
+            $ticket->settledOn = null;
+            
+        } else {
+            $ticket->settledOn = $request->get('settledOn');
+        }
 
 
 		$ticket->save();
@@ -63,13 +75,55 @@ class TicketController extends Controller
 		$ATicket->ttid = explode('.',$request->get('ttid'))[0];
 		$ATicket->tkid = explode('.',$request->get('tkid'))[0];
 		$ATicket->dateFrom = $request->get('dateFrom');
-		$ATicket->dateTo = $request->get('dateTo');
-		$ATicket->timeFrom = $request->get('timeFrom');
-		$ATicket->timeTo = $request->get('timeTo');;
-		$ATicket->billedTime = $request->get('billedTime');
-		$ATicket->kulanzgrund = $request->get('kulanzgrund');
-		$ATicket->kulanzzeit = $request->get('kulanzzeit');
+		
 
+		
+		if($request->get('dateTo') == ''){
+            $ATicket->dateTo = null;            
+        } else {
+            $ATicket->dateTo = $request->get('dateTo');
+        }
+
+		if($request->get('timeFrom') == ''){
+           $ATicket->timeFrom  = null;
+            
+        } else {
+           $ATicket->timeFrom = $request->get('timeFrom');
+        }
+
+        if($request->get('timeTo') == ''){
+            $ATicket->timeTo  = null;
+            
+        } else {
+            $ATicket->timeTo = $request->get('timeTo');
+        }
+
+        if($request->get('billedTime') == ''){
+            $ATicket->billedTime  = null;
+            
+        } else {
+           $ATicket->billedTime = $request->get('billedTime');
+        }
+
+        if($request->get('kulanzzeit') == ''){
+           $ATicket->kulanzzeit  = null;
+            
+        } else {
+            $ATicket->kulanzzeit = $request->get('kulanzzeit');
+        }
+
+        if($request->get('kulanzgrund') == ''){
+           $ATicket->kulanzgrund  = null;
+            
+        } else {
+            $ATicket->kulanzgrund = $request->get('kulanzgrund');
+        } 
+        if($request->get('kulanzzeit') == ''){
+            $ATicket->kulanzgrund  = null;
+            
+        } else {
+            $ATicket->kulanzgrund = $request->get('kulanzzeit');
+        }
 		$ATicket->save();
 
 		return \App::call('App\Http\Controllers\AT_ItemController@pdfview');

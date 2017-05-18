@@ -32,8 +32,19 @@ class ProjektController extends Controller
         $projekt->projectType = $request->get('projectType');
         $projekt->projectVolume = $request->get('projectVolume');
         $projekt->dateOfOrder = $request->get('dateOfOrder');
-        $projekt->finishedOn = $request->get('finishedOn');
-        $projekt->settledOn = $request->get('settledOn');
+        if($request->get('finishedOn') == ''){
+             $projekt->finishedOn = null;
+            
+        } else {
+            $projekt->finishedOn = $request->get('finishedOn');
+        }
+        
+        if( $request->get('settledOn') == ''){
+            $projekt->settledOn = null;
+            
+        } else {
+            $projekt->settledOn = $request->get('settledOn');
+        }
 
         $projekt->save();
 
