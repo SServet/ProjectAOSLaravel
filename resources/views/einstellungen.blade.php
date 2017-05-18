@@ -159,10 +159,11 @@
                         </tr>
                         <tr>
                             <td id="THinzufuegen" style="display:none;">
-                                <div style="background-color: lightGray;font-size:20px;padding:15px;">
-                                        <form action="{{ url('/Einstellungen/TTAnlegen') }}" method="post">
-                                            Bezeichnung:&nbsp;<input type="text" name="TName" style="height:50px;">
-                                            <button type="submit" class="btn" style="width:355px;margin-top:15px;">OK</button>
+                                <div style="font-size:20px;padding:15px;">
+                                        <form class="form-inline" action="{{ url('/Einstellungen/TTAnlegen') }}" method="post">
+                                            Bezeichnung:&nbsp;<div class="form-group"><input type="text" class="form-control input-lg" name="TName" style="height:50px;">
+                                </div>
+                                            <button type="submit" id="submitButton" class="btn" style="width:360px;margin-top:15px;">OK</button>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         </form>
                                 </div>
@@ -170,29 +171,38 @@
                         </tr>
                         <tr>
                             <td >
-                            <div id="TAuswaehlenU">
-                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" >
+                            <div id="TAuswaehlenU" style="font-size:20px;">
+                                        <form class="form-inline" action="{{ url('/Einstellungen/TTUmbenennen') }}" method="post">
+                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" name="TUmbenennen" class="chosen-select" style="width:360px;" tabindex="2" >
                                     <option value=""></option>
                                     @foreach ($termintyp as $tt)
                                     <option>{{$tt->ttid}}. {{$tt->description}}</option>
                                     @endforeach
-                                </select>
-                            <br><br><br>
-
-
+                                </select><br><br>
+                                Bezeichnung:
+                                <div class="form-group">
+                                <input type="text"  class="form-control input-lg" name="neueBez">
+                                </div><br><br>
+                                <button type="submit" class="btn .btn-default" id="submitButton" style="width:360px;"> Umbenennen </button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
                             </div>
                             </td>
                         </tr>
                         <tr>
                             <td >
                             <div id="TAuswaehlenL">
-                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" >
+                             <form action="{{ url('/Einstellungen/TTLoeschen') }}" method="post">
+                                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" name="TLoeschen" class="chosen-select" style="width:350px;" tabindex="2" >
                                     <option value=""></option>
                                     @foreach ($termintyp as $tt)
                                     <option>{{$tt->ttid}}. {{$tt->description}}</option>
                                     @endforeach
                                 </select>
-                            <br><br><br>
+                                    <button type="submit" class="btn .btn-default" id="submitButton" style="margin-left:10px;"> Löschen </button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                            <br><br>
 
 
                             </div>

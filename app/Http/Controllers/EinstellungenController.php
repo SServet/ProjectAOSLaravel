@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Artikel;
 use App\Kunden;
+use App\Termintyp;
 use DB;
 use Excel;
 
@@ -14,6 +15,27 @@ class EinstellungenController extends Controller
     //
     public function showEinstellungen(){
         return view('einstellungen');
+    }
+
+    public function ttAnlegen(Request $request){
+    	$tt = new Termintyp;
+
+    	$tt->description = $request->TName;
+    	$tt->save();
+
+    	return redirect("Einstellungen");
+    }
+
+    public function ttUmbenennen(Request $request){
+    	Termintyp::where('ttid', explode('.', $request->get('TUmbenennen'))[0])->update(array('description' => $request->get('neueBez')));
+
+    	return redirect("Einstellungen");
+    }
+
+    public function ttLoeschen(Request $request){
+    	Termintyp::where('ttid',explode('.',$request->get('TLoeschen'))[0])->delete();
+
+    	return redirect("Einstellungen");
     }
 
 	public function exportArtikeltoCSV($type)

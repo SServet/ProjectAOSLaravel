@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/Projekte', ['uses' => 'ProjektController@showProjekt']);
 	Route::get('/Projekt_Hinzufuegen', ['uses' => 'ProjektController@showProjektHinzufuegen']);
 	Route::get('/Projekte_Uebersicht', ['uses' => 'ProjektController@showProjektUebersicht']);
+	Route::post('/ProjektClose', ['uses' => 'ProjektController@closeProjekt']);
 	Route::get('/Tickets', ['uses' => 'TicketController@showTicket']);
 	Route::post('/TicketClose', ['uses' => 'TicketController@closeTicket']);
 	Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufuegen']);
@@ -29,9 +30,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::post('/ATicket_Hinzufuegen', ['uses' => 'TicketController@showATicketHinzufuegen']); 
 
-
 	Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
 	Route::post('/Einstellungen/TTAnlegen', ['uses' => 'EinstellungenController@ttAnlegen']);
+	Route::post('/Einstellungen/TTLoeschen', ['uses' => 'EinstellungenController@ttLoeschen']);
+	Route::post('/Einstellungen/TTUmbenennen', ['uses' => 'EinstellungenController@ttUmbenennen']);
 
 	Route::get('/Mitarbeiter_Hinzufuegen', ['uses' => 'MitarbeiterController@showMitarbeiterAnlegen']);
 	Route::get('/Kunden_Hinzufuegen', ['uses' => 'KundenController@showKundeAnlegen']);

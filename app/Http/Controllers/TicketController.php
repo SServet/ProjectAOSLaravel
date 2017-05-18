@@ -39,7 +39,7 @@ class TicketController extends Controller
 
 
 		$ticket->kid = explode('.',$request->get('kid'))[0];
-		$ticket->mid = explode('.',$request->get('mid'))[0];
+		$ticket->mid = $request->get('mid');
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');
 		$ticket->creationDate = $request->get('creationDate');
@@ -57,7 +57,7 @@ class TicketController extends Controller
 		$ATicket = new Arbeitsscheinticket;
 
 		$ATicket->tid = $request->get('tid');
-		$ATicket->mid = explode('.',$request->get('mid'))[0];
+		$ATicket->mid = $request->get('mid');
 		$ATicket->aNr = $request->get('aid');
 		$ATicket->description = $request->get('description');
 		$ATicket->ttid = explode('.',$request->get('ttid'))[0];

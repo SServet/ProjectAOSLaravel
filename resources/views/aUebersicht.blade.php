@@ -3,13 +3,13 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-  <title>Arbeitsschein Online Service</title>
+	<title>Arbeitsschein Online Service</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -17,11 +17,11 @@
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
-  <!-- Font-Links -->
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+	<!-- Font-Links -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -36,7 +36,7 @@
         $arbeitsscheine = DB::table('arbeitsschein')->get();
         $kunden = DB::table('kunden')->get();
       ?>
-
+        
        <div id="wrapper">
 
         <!-- Sidebar -->
@@ -88,7 +88,8 @@
          </div>
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
-         <p id="LabelContent">ARBEITSSCHEIN > ÜBERSICHT</p>
+         <p id="LabelContent">ARBEITSSCHEINE > ÜBERSICHT</p>
+         <hr>
          <table id="uebersicht_Table">
           <tr>
             <th>ANr.</th>
@@ -96,7 +97,7 @@
             <th>KUNDENNAME</th>
             <th></th>
           </tr>
-            @foreach ($arbeitsscheine as $arbeitsschein)
+          @foreach ($arbeitsscheine as $arbeitsschein)
           <tr>
             <td>
               {{$arbeitsschein->asid}}
@@ -111,9 +112,18 @@
                 @endif
               @endforeach
             </td>
-            <td><a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 30px"/></a></td>  
-            @endforeach
+            <td><a href="#" onclick="showHide({{$arbeitsschein->asid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
           </tr>
+          <tr>
+            <td style="background-color: #EBEBEB;" colspan="4">
+              <div id="details{{$arbeitsschein->asid}}" style="display:none;" value="{{$arbeitsschein->asid}}">
+                  <p> Beschreibung: {{$arbeitsschein->description}}</p>
+                </form>
+                <br\>
+              </div>
+            </td>
+          </tr>
+          @endforeach
         </table>
       </div>
     </div>
@@ -136,8 +146,21 @@
   $("#menu-toggle").click(function(e) {
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");
-   
  });
+   
+if(document.getElementById("menu-toggle").textContent == ">"){
+    document.getElementById("menu-toggle").innerHTML = "<";
+  }else{
+    document.getElementById("menu-toggle").innerHTML = ">";
+  }       
+  function showHide(id){
+    if($("#details"+id).css('display')=='none'){
+      $("#details"+id).css('display','inline');
+    }else{
+      $("#details"+id).css('display','none');
+    }
+  }
+
 
 </script>
 

@@ -91,6 +91,11 @@
           <hr>
           <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logo">
         </div>
+        <div id="testemail">
+          <form action="" method="post">
+            
+          </form>
+        </div>
       </div>
     </div>
   </div>
