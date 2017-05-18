@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/Arbeitsschein', ['uses' => 'ArbeitsscheinController@showArbeitsschein']);
 	Route::get('/Arbeitsschein_Hinzufuegen', ['uses' => 'ArbeitsscheinController@showArbeitsscheinHinzufuegen']);
 	Route::get('/Arbeitsschein_Uebersicht', ['uses' => 'ArbeitsscheinController@showArbeitsscheinUebersicht', 'middleware' => 'auth']);
+	Route::post('/ArbeitsscheinClose', ['uses' => 'ArbeitsscheinController@closeArbeitsschein']);
 	Route::get('/Projekte', ['uses' => 'ProjektController@showProjekt']);
 	Route::get('/Projekt_Hinzufuegen', ['uses' => 'ProjektController@showProjektHinzufuegen']);
 	Route::get('/Projekte_Uebersicht', ['uses' => 'ProjektController@showProjektUebersicht']);
