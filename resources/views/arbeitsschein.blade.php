@@ -142,9 +142,9 @@
                   </p>
                   <p> Abgeschlossen am: {{$arbeitsschein->dateTo}}</p>
                   <p> Beschreibung: {{$arbeitsschein->description}}</p>
-                  <button type="submit" class="btn">Arbeitsschein schließen</button>
+                  <button type="submit" class="btn">Senden und abschließen</button>
 
-                  <input type="hidden" name="pid" value="{{$arbeitsschein->asid}}"/>
+                  <input type="hidden" name="asid" value="{{$arbeitsschein->asid}}"/>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>
@@ -182,6 +182,15 @@
     document.getElementById("menu-toggle").innerHTML = ">";
   }       
 });
+
+  function showHide(id){
+    if($("#details"+id).css('display')=='none'){
+      $("#details"+id).css('display','inline');
+
+    }else{
+      $("#details"+id).css('display','none');
+    }
+  }
 
 </script>
 

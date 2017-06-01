@@ -110,7 +110,7 @@
           </tr>
           <br>
           @foreach ($projekte as $projekt)
-          @if(empty($projekt->finishedOn))
+          @if(empty($projekt->finishedOn) or (empty($projekt->settledOn)))
           <tr>
             <td>
               {{$projekt->pid}}
@@ -133,8 +133,7 @@
 
               <div id="details{{$projekt->pid}}" style="display:none;" value="{{$projekt->pid}}">
 
-                <form action="{{ url('/ProjektClose') }}" method="post">
-                  <p>Mitarbeiter:      @foreach($mitarbeiter as $mit)
+                <p>Mitarbeiter:      @foreach($mitarbeiter as $mit)
                     @if($mit->id == $projekt->mid)  
                     {{$mit->firstname}} {{$mit->lastname}}
                     @endif
@@ -143,8 +142,19 @@
                   <p> Abgeschlossen am: {{$projekt->finishedOn}}</p>
                   <p> Abgerechnet am: {{$projekt->settledOn}}</p>
                   <p> Beschreibung: {{$projekt->description}}</p>
-                  <button type="submit" class="btn">Projekt schließen</button>
+                <form action="{{ url('/ProjektClose') }}" method="post">
+                  @if(empty($projekt->finishedOn))
+                  <button type="submit" class="btn">Projekt abschließen</button>
+                  @endif
+                  <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
 
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+
+                <form action="{{ url('/ProjektSettle') }}" method="post">
+                  @if(empty($projekt->settledOn))
+                  <button type="submit" class="btn">Projekt abrechnen</button>
+                  @endif
                   <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">

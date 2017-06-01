@@ -28,7 +28,21 @@ class TicketController extends Controller
 
 	public function closeTicket(Request $request){
 		$ticket = Ticket::where('tid', '=', $request->get('tid'))->first();
-		$ticket->isClosed = 1;
+		$ticket->finishedOn = date('Y-m-d');
+		if(!empty($ticket->settledOn)){
+			$ticket->isClosed = 1;
+		}
+		$ticket->save();
+
+		return redirect('Tickets');
+	}
+
+	public function settleTicket(Request $request){
+		$ticket = Ticket::where('tid', '=', $request->get('tid'))->first();
+		$ticket->settledOn = date('Y-m-d');
+		if(!empty($ticket->finishedOn)){
+			$ticket->isClosed = 1;
+		}
 		$ticket->save();
 
 		return redirect('Tickets');
