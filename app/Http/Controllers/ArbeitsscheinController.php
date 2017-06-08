@@ -19,6 +19,15 @@ class ArbeitsscheinController extends Controller
 		return view('aUebersicht');
 	}
 
+    public function closeArbeitsschein(Request $request){
+        $arbeitsschein = Arbeitsschein::where('asid', '=', $request->get('asid'))->first();
+        $arbeitsschein->dateTo = date('Y-m-d');
+        $arbeitsschein->timeTo = date('H:i:s');
+        $arbeitsschein->save();
+
+        return redirect('Arbeitsschein');
+    }
+
 	public function submit(Request $request){
 		$arbeit = new Arbeitsschein;
 

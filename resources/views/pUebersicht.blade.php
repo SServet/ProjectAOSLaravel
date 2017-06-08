@@ -97,7 +97,7 @@
             <th></th>
           </tr>
           @foreach ($projekte as $projekt)
-          @if(!empty($projekt->finishedOn))
+          @if(!empty($projekt->finishedOn) and (!empty($projekt->settledOn)))
           <tr>
             <td>
               {{$projekt->pid}}
@@ -119,7 +119,9 @@
             <td style="background-color: #EBEBEB;" colspan="4">
               <div id="details{{$projekt->pid}}" style="display:none;" value="{{$projekt->pid}}">
                   <p> Beschreibung: {{$projekt->description}}</p>
-                </form>
+                  <p> Abgeschlossen am: {{$projekt->finishedOn}}</p>
+                  <p> Abgerechnet am: {{$projekt->settledOn}}</p>
+                  <p> Beschreibung: {{$projekt->description}}</p>
                 <br\>
               </div>
             </td>

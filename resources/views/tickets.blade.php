@@ -110,7 +110,7 @@
           </tr>
           <br>
           @foreach ($tickets as $ticket)
-          @if($ticket->isClosed == 0)
+          @if($ticket->isClosed == 0 or empty($ticket->finishedOn) or empty($ticket->settledOn))
 
           <tr>
             <td>
@@ -141,7 +141,6 @@
 
               <div id="details{{$ticket->tid}}" style="display:none;" value="{{$ticket->tid}}">
 
-                <form action="{{ url('/TicketClose') }}" method="post">
                   <p>Erstelldatum: {{$ticket->creationDate}}</p>
                   <p>Mitarbeiter:      @foreach($mitarbeiter as $mit)
                     @if($mit->id == $ticket->mid)  
@@ -152,8 +151,20 @@
                   <p> Abgeschlossen am: {{$ticket->finishedOn}}</p>
                   <p> Abgerechnet am: {{$ticket->settledOn}}</p>
                   <p> Beschreibung: {{$ticket->description}}</p>
-                  <button type="submit" class="btn">Ticket schließen</button>
 
+                <form action="{{ url('/TicketClose') }}" method="post">
+                  @if(empty($ticket->finishedOn))
+                  <button type="submit" class="btn">Ticket abschließen</button>
+                  @endif
+                  <input type="hidden" name="tid" value="{{$ticket->tid}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+
+                <form action="{{ url('/TicketSettle') }}" method="post">
+                  @if(empty($ticket->settledOn))
+                  <button type="submit" class="btn">Ticket abrechnen</button>
+                  @endif
                   <input type="hidden" name="tid" value="{{$ticket->tid}}"/>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">

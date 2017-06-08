@@ -97,7 +97,7 @@
             <th></th>
           </tr>
           @foreach ($tickets as $ticket)
-          @if($ticket->isClosed == 1)
+          @if($ticket->isClosed == 1 and (!empty($ticket->settledOn)) and (!empty($ticket->finishedOn)))
           <tr>
             <td>
               {{$ticket->tid}}

@@ -29,6 +29,15 @@ class ProjektController extends Controller
         return redirect('Projekte');
     }
 
+    public function settleProjekt(Request $request){
+        $projekt = Projekte::where('pid', '=', $request->get('pid'))->first();
+        $projekt->settledOn = date('Y-m-d');
+        $projekt->finishedOn = date('Y-m-d');
+        $projekt->save();
+
+        return redirect('Projekte');
+    }
+
 	public function submit(Request $request){
 
 		$projekt = new Projekte;

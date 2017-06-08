@@ -118,6 +118,7 @@
             <td style="background-color: #EBEBEB;" colspan="4">
               <div id="details{{$arbeitsschein->asid}}" style="display:none;" value="{{$arbeitsschein->asid}}">
                   <p> Beschreibung: {{$arbeitsschein->description}}</p>
+                  <p> Abgeschlossen am: {{$arbeitsschein->dateTo}}</p>
                 </form>
                 <br\>
               </div>

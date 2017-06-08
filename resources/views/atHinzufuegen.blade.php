@@ -139,7 +139,7 @@
       <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
         <option value=""></option>
         @foreach ($termintyp as $typ)
-        <option>{{$typ->description}}</option>
+        <option>{{$typ->ttid}}. {{$typ->description}}</option>
         @endforeach
       </select>
     </td>

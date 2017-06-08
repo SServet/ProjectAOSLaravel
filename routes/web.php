@@ -19,12 +19,15 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/Arbeitsschein', ['uses' => 'ArbeitsscheinController@showArbeitsschein']);
 	Route::get('/Arbeitsschein_Hinzufuegen', ['uses' => 'ArbeitsscheinController@showArbeitsscheinHinzufuegen']);
 	Route::get('/Arbeitsschein_Uebersicht', ['uses' => 'ArbeitsscheinController@showArbeitsscheinUebersicht', 'middleware' => 'auth']);
+	Route::post('/ArbeitsscheinClose', ['uses' => 'ArbeitsscheinController@closeArbeitsschein']);
 	Route::get('/Projekte', ['uses' => 'ProjektController@showProjekt']);
 	Route::get('/Projekt_Hinzufuegen', ['uses' => 'ProjektController@showProjektHinzufuegen']);
 	Route::get('/Projekte_Uebersicht', ['uses' => 'ProjektController@showProjektUebersicht']);
 	Route::post('/ProjektClose', ['uses' => 'ProjektController@closeProjekt']);
+	Route::post('/ProjektSettle', ['uses' => 'ProjektController@settleProjekt']);
 	Route::get('/Tickets', ['uses' => 'TicketController@showTicket']);
 	Route::post('/TicketClose', ['uses' => 'TicketController@closeTicket']);
+	Route::post('/TicketSettle', ['uses' => 'TicketController@settleTicket']);
 	Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufuegen']);
 	Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 
