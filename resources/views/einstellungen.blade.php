@@ -49,6 +49,7 @@
 
         <?php
         $termintyp = DB::table('termintyp')->get();
+        $artikel = DB::table('artikel')->get();
         ?>
 
     	<div id="wrapper">
@@ -141,6 +142,7 @@
                                 <br><br><br>
                             </td>
                         </tr>
+
                         <tr>
                             <th id="labelImport" style="bottom:-100px;">Termintypen</th>
                         </tr>
@@ -208,6 +210,67 @@
                             </div>
                             </td>
                         </tr>
+
+
+
+
+
+
+
+
+
+
+                        <tr>
+                            <th id="labelImport" style="bottom:-100px;">Artikel</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="{{url('/Artikel_Hinzufuegen')}}" method="get">
+                                    <button  id="bUebersicht" type="submit" >Anlegen</button>
+                                </form>
+                                
+                                <form action="{{url('/Artikel_Bearbeiten')}}" method="get">
+                                    <button  id="bUebersicht" type="submit" >Bearbeiten</button>
+                                </form>
+
+                                <button type="button" onclick="showHideAAL()" id="ALoeschen" class="TButton" >Löschen</button>
+
+                            </td>
+                        </tr>
+                  
+                        <tr>
+                            <td >
+                            <div id="AAuswaehlenL">
+                             <form action="{{ url('/Einstellungen/ALoeschen') }}" method="post">
+                                <select data-placeholder="Artikel auswählen..." id="artikel_select" name="ALoeschen" class="chosen-select" style="width:350px;" tabindex="2" >
+                                    <option value=""></option>
+                                    @foreach ($artikel as $a)
+                                    <option>{{$a->aNr}}. {{$a->articlename}}</option>
+                                    @endforeach
+                                </select>
+                                    <button type="submit" class="btn .btn-default" id="submitButton" style="margin-left:10px;"> Löschen </button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </form>
+                            <br><br>
+
+
+                            </div>
+                            </td>
+                        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <tr>
                             <th id="labelImport">Mitarbeiter/Kunde Anlegen</th>
                         </tr>
@@ -223,6 +286,7 @@
                                     <button  id="bUebersicht" type="submit" >Kunden anlegen</button>
                                 </form>
                              </td>
+                            
                         </tr>
                     </table>
                     <br>
@@ -266,8 +330,11 @@ $("#inputfile").bind("change", function() {
      $(".chosen-select").chosen();
      $("#TUmbenennen").click();
      $("#TLoeschen").click();
+     $("#AUmbenennen").click();
+     $("#ALoeschen").click();
  });
 
+   //Termintyp
    function showHideTH(){
         if($("#THinzufuegen").css('display')=='none'){
           $("#THinzufuegen").css('display','inline');
@@ -295,6 +362,37 @@ $("#inputfile").bind("change", function() {
           $("#THinzufuegen").css('display','none');
         }else{
           $("#TAuswaehlenL").css('display','none');
+        }
+   }
+
+   //Artkel
+   function showHideAH(){
+        if($("#AHinzufuegen").css('display')=='none'){
+          $("#AHinzufuegen").css('display','inline');
+          $("#AAuswaehlenU").css('display','none');
+          $("#AAuswaehlenL").css('display','none');
+        }else{
+          $("#AHinzufuegen").css('display','none');
+        }
+   }
+
+   function showHideAAU(){
+        if($("#AAuswaehlenU").css('display')=='none'){
+          $("#AAuswaehlenU").css('display','inline');
+          $("#AAuswaehlenL").css('display','none');
+          $("#AHinzufuegen").css('display','none');
+        }else{
+          $("#AAuswaehlenU").css('display','none');
+        }
+   }
+
+   function showHideAAL(){
+        if($("#AAuswaehlenL").css('display')=='none'){
+          $("#AAuswaehlenU").css('display','none');
+          $("#AAuswaehlenL").css('display','inline');
+          $("#AHinzufuegen").css('display','none');
+        }else{
+          $("#AAuswaehlenL").css('display','none');
         }
    }
 

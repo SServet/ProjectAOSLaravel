@@ -11,11 +11,12 @@ class Artikel extends Model
 {
     protected $table = 'artikel';
 
-    protected $primaryKey = 'aNr';
+    //protected $primaryKey = 'aNr';
 
 	public $timestamps = false;
 
     protected $fillable = [
+        'aNr',
         'description',
         'unit',
         'agid',

@@ -34,6 +34,11 @@ class TermintypTableSeeder extends Seeder
             'description' => 'Vorbereitung'
         
         ]);
+        termintyp::create([
+            'ttid' => '5',
+            'description' => 'Problembehebung'
+        
+        ]);
        
 }
 }
