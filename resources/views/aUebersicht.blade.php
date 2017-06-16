@@ -98,6 +98,7 @@
             <th></th>
           </tr>
           @foreach ($arbeitsscheine as $arbeitsschein)
+          @if(!empty($arbeitsschein->dateTo) and (!empty($arbeitsschein->timeTo)))
           <tr>
             <td>
               {{$arbeitsschein->asid}}
@@ -114,6 +115,7 @@
             </td>
             <td><a href="#" onclick="showHide({{$arbeitsschein->asid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
           </tr>
+          @endif
           <tr>
             <td style="background-color: #EBEBEB;" colspan="4">
               <div id="details{{$arbeitsschein->asid}}" style="display:none;" value="{{$arbeitsschein->asid}}">
