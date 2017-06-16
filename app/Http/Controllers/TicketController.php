@@ -26,6 +26,10 @@ class TicketController extends Controller
 		return view('tUebersicht');
 	}
 
+	public function showTicketEdit(){
+		return view('tEdit');
+	}
+
 	public function closeTicket(Request $request){
 		$ticket = Ticket::where('tid', '=', $request->get('tid'))->first();
 		$ticket->finishedOn = date('Y-m-d');
@@ -53,6 +57,38 @@ class TicketController extends Controller
 
 
 		$ticket->kid = explode('.',$request->get('kid'))[0];
+		$ticket->mid = $request->get('mid');
+        $ticket->label = $request->input('label');
+		$ticket->description = $request->get('description');
+		$ticket->creationDate = $request->get('creationDate');
+
+		if($request->get('finishedOn') == ''){
+            $ticket->finishedOn = null;
+            
+        } else {
+            $ticket->finishedOn = $request->get('finishedOn');
+        }
+        
+        if( $request->get('settledOn') == ''){
+            $ticket->settledOn = null;
+            
+        } else {
+            $ticket->settledOn = $request->get('settledOn');
+        }
+
+
+		$ticket->save();
+
+		return redirect('Tickets');
+	}
+
+		public function submitEditTicket(Request $request){
+		$ticket = Ticket::find($request->get('tid'));
+		$ticket->delete();
+		$ticket = new Ticket;
+
+		$ticket->tid = $request->get('tid');
+		$ticket->kid = $request->get('kid');
 		$ticket->mid = $request->get('mid');
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');

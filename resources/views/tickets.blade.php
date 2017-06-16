@@ -169,6 +169,13 @@
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>
+
+                <form action="{{ url('/TicketEdit') }}" method="post">
+                  <button type="submit" class="btn">Ticket bearbeiten</button>
+                  <input type="hidden" name="tid" value="{{$ticket->tid}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
                 <br\>
               </div>
             </td>
