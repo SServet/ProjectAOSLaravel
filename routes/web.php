@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/TicketSettle', ['uses' => 'TicketController@settleTicket']);
 	Route::get('/Ticket_Hinzufuegen', ['uses' => 'TicketController@showTicketHinzufuegen']);
 	Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
-
+	Route::post('/TicketEdit', ['uses' => 'TicketController@showTicketEdit']);
 	Route::post('/ATicket_Hinzufuegen', ['uses' => 'TicketController@showATicketHinzufuegen']); 
 
 	Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/SubmitProject', ['as' => 'SubmitProject', 'uses' => 'ProjektController@submit']);
 	Route::post('/SubmitArbeitS', ['as' => 'SubmitArbeitS', 'uses' => 'ArbeitsscheinController@submit']);
 	Route::post('/SubmitTicket', ['as' => 'SubmitTicket', 'uses' => 'TicketController@submit']);
+	Route::post('/SubmitEditTicket', ['as' => 'SubmitEditTicket', 'uses' => 'TicketController@submitEditTicket']);
 	Route::post('/SubmitATicket', ['as' => 'SubmitATicket', 'uses' => 'TicketController@submitATicket']);
 	Route::post('/SubmitMitarbeiter', ['as' => 'SubmitMitarbeiter', 'uses' => 'MitarbeiterController@submit']);
 	Route::post('/SubmitKunde', ['as' => 'SubmitKunde', 'uses' => 'KundenController@submit']);
