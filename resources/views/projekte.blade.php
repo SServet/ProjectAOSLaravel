@@ -126,6 +126,13 @@
               @endforeach
             </td>
             <td><a href="#" onclick="showHide({{$projekt->pid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+            <td>
+              <form action="{{ url('/AProjekt_Hinzufuegen') }}" method="post">
+                <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
+                <button type="submit" class="btn .btn-default" id="addA"> + ArbeitsscheinProjekt </button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              </form>
+            </td>
           </tr>
           @endif
           <tr>
