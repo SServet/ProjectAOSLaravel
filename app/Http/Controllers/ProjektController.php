@@ -25,6 +25,10 @@ class ProjektController extends Controller
 		return view('pUebersicht');
 	}
 
+    public function showProjektEdit(){
+        return view('pEdit');
+    }
+
     public function closeProjekt(Request $request){
         $projekt = Projekte::where('pid', '=', $request->get('pid'))->first();
         $projekt->finishedOn = date('Y-m-d');
@@ -131,6 +135,38 @@ class ProjektController extends Controller
         } else {
             $projekt->settledOn = $request->get('settledOn');
         }
+
+        $projekt->save();
+
+        return redirect('Projekte');
+    }
+
+    public function submitEditProjekt(Request $request){
+        $projekt = Projekte::find($request->get('pid'));
+        $projekt->delete();
+        $projekt = new Projekte;
+
+        $projekt->pid = $request->get('pid');
+        $projekt->kid = $request->get('kid');
+        $projekt->mid = $request->get('mid');
+        $projekt->label = $request->input('label');
+        $projekt->description = $request->get('description');
+        $projekt->dateOfOrder = $request->get('dateOfOrder');
+
+        if($request->get('finishedOn') == ''){
+            $projekt->finishedOn = null;
+            
+        } else {
+            $projekt->finishedOn = $request->get('finishedOn');
+        }
+        
+        if( $request->get('settledOn') == ''){
+            $projekt->settledOn = null;
+            
+        } else {
+            $projekt->settledOn = $request->get('settledOn');
+        }
+
 
         $projekt->save();
 

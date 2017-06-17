@@ -122,6 +122,10 @@
               </td>
             </tr>
             <tr>
+             <td><p class="inputLabels">Beschreibung</p></td>
+             <td><textarea id="Beschreibung" class="form-control input-lg" name="description"></textarea></td>
+            </tr>
+            <tr>
               <td><p class="inputLabels">Termintyp</p></td>
               <td>
                 <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
@@ -158,10 +162,6 @@
            <tr>
              <td><p class="inputLabels">Uhrzeit bis</p></td>
              <td><input type="time" id="UhrzeitBis" class="form-control input-lg" name="timeTo"></td>
-           </tr>
-           <tr>
-             <td><p class="inputLabels">Beschreibung</p></td>
-             <td><textarea id="Beschreibung" class="form-control input-lg" name="description"></textarea></td>
            </tr>
            <tr>
             <td><p class="inputLabels">Kulanzgrund</p></td>

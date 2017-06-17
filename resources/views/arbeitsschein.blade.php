@@ -148,6 +148,12 @@
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>
+                <form action="{{ url('/ArbeitsscheinEdit') }}" method="post">
+                  <button type="submit" class="btn">Arbeitsschein bearbeiten</button>
+                  <input type="hidden" name="asid" value="{{$arbeitsschein->asid}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
                 <br\>
               </div>
             </td>

@@ -116,7 +116,7 @@
               {{$projekt->pid}}
             </td>
             <td>
-              {{$projekt->description}}
+              {{$projekt->label}}
             </td>
             <td>
               @foreach ($kunden as $kunde)
@@ -162,6 +162,13 @@
                   @if(empty($projekt->settledOn))
                   <button type="submit" class="btn">Projekt abrechnen</button>
                   @endif
+                  <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+
+                <form action="{{ url('/ProjektEdit') }}" method="post">
+                  <button type="submit" class="btn">Projekt bearbeiten</button>
                   <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">

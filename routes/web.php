@@ -20,11 +20,13 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/Arbeitsschein_Hinzufuegen', ['uses' => 'ArbeitsscheinController@showArbeitsscheinHinzufuegen']);
 	Route::get('/Arbeitsschein_Uebersicht', ['uses' => 'ArbeitsscheinController@showArbeitsscheinUebersicht', 'middleware' => 'auth']);
 	Route::post('/ArbeitsscheinClose', ['uses' => 'ArbeitsscheinController@closeArbeitsschein']);
+	Route::post('/ArbeitsscheinEdit', ['uses' => 'ArbeitsscheinController@showArbeitsscheinEdit']);
 	Route::get('/Projekte', ['uses' => 'ProjektController@showProjekt']);
 	Route::get('/Projekt_Hinzufuegen', ['uses' => 'ProjektController@showProjektHinzufuegen']);
 	Route::get('/Projekte_Uebersicht', ['uses' => 'ProjektController@showProjektUebersicht']);
 	Route::post('/ProjektClose', ['uses' => 'ProjektController@closeProjekt']);
 	Route::post('/ProjektSettle', ['uses' => 'ProjektController@settleProjekt']);
+	Route::post('/ProjektEdit', ['uses' => 'ProjektController@showProjektEdit']);
 	Route::get('/Tickets', ['uses' => 'TicketController@showTicket']);
 	Route::post('/TicketClose', ['uses' => 'TicketController@closeTicket']);
 	Route::post('/TicketSettle', ['uses' => 'TicketController@settleTicket']);
@@ -52,6 +54,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/SubmitArbeitS', ['as' => 'SubmitArbeitS', 'uses' => 'ArbeitsscheinController@submit']);
 	Route::post('/SubmitTicket', ['as' => 'SubmitTicket', 'uses' => 'TicketController@submit']);
 	Route::post('/SubmitEditTicket', ['as' => 'SubmitEditTicket', 'uses' => 'TicketController@submitEditTicket']);
+	Route::post('/SubmitEditProjekt', ['as' => 'SubmitEditProjekt', 'uses' => 'ProjektController@submitEditProjekt']);
+	Route::post('/SubmitEditArbeitsschein', ['as' => 'SubmitEditArbeitsschein', 'uses' => 'ArbeitsscheinController@submitEditArbeitsschein']);
 	Route::post('/SubmitATicket', ['as' => 'SubmitATicket', 'uses' => 'TicketController@submitATicket']);
 	Route::post('/SubmitAProjekt', ['as' => 'SubmitAProjekt', 'uses' => 'ProjektController@submitAProjekt']);
 	Route::post('/SubmitMitarbeiter', ['as' => 'SubmitMitarbeiter', 'uses' => 'MitarbeiterController@submit']);
