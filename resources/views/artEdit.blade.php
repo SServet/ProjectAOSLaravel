@@ -3,11 +3,11 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
@@ -34,15 +34,12 @@
       <body>
 
        <?php
-       use Illuminate\Support\Facades\Input;
-       $kunden = DB::table('kunden')->get();
-       $mitarbeiter = DB::table('mitarbeiter')->get();
-       $arbeitsscheinticket = DB::table('arbeitsscheinTicket')->get();
-       $user = Auth::user();
-       $tid = Input::get('tid');
-       $ticket = DB::table('ticket')->where('tid', $tid)->get();
-       $ticket = $ticket[0];
-       $artikel = DB::table('Artikel')->get();
+        use Illuminate\Support\Facades\Input;
+        $user = Auth::user();
+        $aNr = Input::get('aNr');
+        $artikel = DB::table('Artikel')->where('aNr', $aNr)->get();
+        $artikel = $artikel[0];
+        $artikelgruppe = DB::table('artikelgruppe')->get();
        ?>
 
        <div id="wrapper">
@@ -97,70 +94,66 @@
        <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
        <br>
        <br>
-       <p id="LabelContent">TICKET BEARBEITEN</p>
+       <p id="LabelContent">Artikel > Bearbeiten</p>
        <hr>
        <!-- Chosen -->
        <!-- CSS -->
        <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
 
-       <form action="{{ route('SubmitEditTicket') }}" method="post">
+       <form action="{{ route('SubmitEditArtikel') }}" method="post">
          <table  id="inputTable">
            <table  id="inputTable">
             <tr>
-             <td><p class="inputLabels">Ticket-Referenz</p></td>
+             <td><p class="inputLabels">Artikelnummer</p></td>
              <td>
-              <input type="text" id="Ticket-Referenz" class="form-control input-lg" name="tid" value="{{$ticket->tid}}" readonly>
+              <input type="text" id="aNr" class="form-control input-lg" name="aNr" value="{{$artikel->aNr}}">
             </td>
           </tr>
            <tr>
-            <td><p class="inputLabels">Kunde</p></td>
+            <td><p class="inputLabels">Artikelname</p></td>
             <td>
-              <input type="text" id="kunde" class="form-control input-lg" name="kid" value="{{$ticket->kid}}" readonly>
+              <input type="text" id="articlename" class="form-control input-lg" name="articlename" value="{{$artikel->articlename}}" >
             </td>
           </tr>
           <tr>
-           <td><p class="inputLabels">Mitarbeiter</p></td>
+           <td><p class="inputLabels">Beschreibung</p></td>
            <td>
-            <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
+            <textarea type="text" id="description" class="form-control input-lg" name="description" >{{$artikel->description}}
+            </textarea>
+          </td>
+        </tr>
+            <tr>
+              <td><p class="inputLabels">Einheit</p></td>
+              <td><input type="text" class="form-control input-lg" name="unit" value="{{$artikel->unit}}" ></td>
+            </tr>
+        <tr>
+          <td><p class="inputLabels">Artikelgruppe</p></td>
+          <!--<td> <input type="text" id="agid" class="form-control input-lg" name="label" value="{{$artikel->agid}}"></td>
+          -->
+          <td>
+
+            <select id="artikelgruppe_select" class="chosen-select" style="width:350px;" tabindex="2" name="agid">
+              <option value="{{$artikel->agid}}"></option>
+              <!--<option selected="selected">{{$artikel->agid}}</option> -->
+                 @foreach ($artikelgruppe as $artikelgruppe):
+                  @if ($artikel->agid==$artikelgruppe->agid)
+              <option selected>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
+                @else
+                 <option>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
+                  @endif
+                @endforeach
+            </select>
           </td>
         </tr>
         <tr>
-          <td><p class="inputLabels">Artikel</p></td>
-            <td>
-              <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-                <option value="" id="inputArtikel" onchange="newArtikel()"></option>
-                @foreach ($artikel as $art)
-                  <option>{{$art->aNr}}. {{$art->articlename}}</option>
-                @endforeach
-              </select>
-            </td>
-          </tr>
-            <tr>
-              <td><p class="inputLabels">Artikelanzahl</p></td>
-              <td><input type="number" class="form-control input-lg" min="1" name="artAnz"></td>
-            </tr>
-        <tr>
-          <td><p class="inputLabels">Bezeichnung</p></td>
-          <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label" value="{{$ticket->label}}"></td>
-        </tr>
-        <tr>
-          <td><p class="inputLabels">Beschreibung</p></td>
-          <td><textarea id="Beschreibung" class="form-control input-lg" name="description">{{$ticket->description}}</textarea></td>
+          <td><p class="inputLabels">Mwst</p></td>
+          <td><input type="text" id="mwst" class="form-control input-lg" name="label" value="{{$artikel->mwst}}"></td>
         </tr>
 
         <tr>
-         <td><p class="inputLabels">Erstelldatum</p></td>
-         <td><input type="date" id="Erstelldatum" class="form-control input-lg" name="creationDate" value="{{$ticket->creationDate}}"></td>
+         <td><p class="inputLabels">Verkaufspreis</p></td>
+         <td><input type="text" id="saleprice" class="form-control input-lg" name="saleprice" value="{{$artikel->salePrice}}"></td>
        </tr>
-       <tr>
-         <td><p class="inputLabels">Abgeschlossen Am</p></td>
-         <td><input type="date" id="AbgeschlossenAm" class="form-control input-lg" name="finishedOn" value="{{$ticket->finishedOn}}"></td>
-       </tr>
-       <tr>
-         <td><p class="inputLabels">Abgerechnet Am</p></td>
-         <td><input type="date" id="AbgerechnetAm" class="form-control input-lg" name="settledOn" value="{{$ticket->settledOn}}"></td>
-       </tr>
-      <tr></tr>
       <tr>
         <td></td>
         <td>
@@ -192,35 +185,6 @@
 
 <script>
 
- $(document).ready(function() {
-  var date = new Date();
-
-  var day = date.getDate();
-  var month = date.getMonth() + 1;
-  var year = date.getFullYear();
-
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-
-  var today = year + "-" + month + "-" + day;       
-  $("#Erstelldatum").attr("value", today);
-
-  $( "#Erstelldatum" ).datepicker({
-    numberOfMonths: 2,
-    dateFormat: "yy-mm-dd" 
-  });
-
-  $( "#AbgeschlossenAm" ).datepicker({
-    numberOfMonths: 2,
-    dateFormat: "yy-mm-dd" 
-  });
-  
-  $( "#AbgerechnetAm" ).datepicker({
-    numberOfMonths: 2,
-    dateFormat: "yy-mm-dd"
-  });
-  $(".chosen-select").chosen();
-});
 </script>
 
 
@@ -237,9 +201,6 @@
    
  });
 
-  function setToday(){
-    document.getElementById("Erstelldatum").value = new Date().toDateInputValue();
-  }
 
 </script>
 

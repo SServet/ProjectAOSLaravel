@@ -42,6 +42,7 @@
        $pid = Input::get('pid');
        $projekt = DB::table('projekte')->where('pid', $pid)->get();
        $projekt = $projekt[0];
+       $artikel = DB::table('Artikel')->get();
        ?>
 
        <div id="wrapper">
@@ -123,6 +124,21 @@
             <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
           </td>
         </tr>
+         <tr>
+          <td><p class="inputLabels">Artikel</p></td>
+            <td>
+              <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
+                <option value="" id="inputArtikel" onchange="newArtikel()"></option>
+                @foreach ($artikel as $art)
+                  <option>{{$art->aNr}}. {{$art->articlename}}</option>
+                @endforeach
+              </select>
+            </td>
+          </tr>
+            <tr>
+              <td><p class="inputLabels">Artikelanzahl</p></td>
+              <td><input type="number" class="form-control input-lg" min="1" name="artAnz"></td>
+            </tr>
         <tr>
           <td><p class="inputLabels">Bezeichnung</p></td>
           <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label" value="{{$projekt->label}}"></td>

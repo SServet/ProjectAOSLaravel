@@ -39,30 +39,29 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/Einstellungen/TTAnlegen', ['uses' => 'EinstellungenController@ttAnlegen']);
 	Route::post('/Einstellungen/TTLoeschen', ['uses' => 'EinstellungenController@ttLoeschen']);
 	Route::post('/Einstellungen/TTUmbenennen', ['uses' => 'EinstellungenController@ttUmbenennen']);
-//Artikel
 	Route::post('/Einstellungen/AAnlegen', ['uses' => 'ArtikelController@submit']);
 	Route::post('/Einstellungen/ALoeschen', ['uses' => 'EinstellungenController@ALoeschen']);
-	Route::post('/Einstellungen/ABearbeiten', ['uses' => 'ArtikelController@bearbeiten']);
 
 
 	Route::get('/Mitarbeiter_Hinzufuegen', ['uses' => 'MitarbeiterController@showMitarbeiterAnlegen']);
 	Route::get('/Kunden_Hinzufuegen', ['uses' => 'KundenController@showKundeAnlegen']);
 	Route::get('/Artikel_Hinzufuegen', ['uses' => 'ArtikelController@showArtikelAnlegen']);
-	Route::get('/Artikel_Bearbeiten', ['uses' => 'ArtikelController@showArtikelBearbeiten']);
+	Route::get('/Artikel_Bearbeiten', ['uses' => 'ArtikelController@showArtikel']);
+
+	Route::post('/artEdit', ['uses' => 'ArtikelController@showArtikelEdit']);
 
 	Route::post('/SubmitProject', ['as' => 'SubmitProject', 'uses' => 'ProjektController@submit']);
 	Route::post('/SubmitArbeitS', ['as' => 'SubmitArbeitS', 'uses' => 'ArbeitsscheinController@submit']);
 	Route::post('/SubmitTicket', ['as' => 'SubmitTicket', 'uses' => 'TicketController@submit']);
 	Route::post('/SubmitEditTicket', ['as' => 'SubmitEditTicket', 'uses' => 'TicketController@submitEditTicket']);
+	Route::post('/SubmitEditArtikel', ['as' => 'SubmitEditArtikel', 'uses' => 'ArtikelController@SubmitEditArtikel']);
 	Route::post('/SubmitEditProjekt', ['as' => 'SubmitEditProjekt', 'uses' => 'ProjektController@submitEditProjekt']);
 	Route::post('/SubmitEditArbeitsschein', ['as' => 'SubmitEditArbeitsschein', 'uses' => 'ArbeitsscheinController@submitEditArbeitsschein']);
 	Route::post('/SubmitATicket', ['as' => 'SubmitATicket', 'uses' => 'TicketController@submitATicket']);
 	Route::post('/SubmitAProjekt', ['as' => 'SubmitAProjekt', 'uses' => 'ProjektController@submitAProjekt']);
 	Route::post('/SubmitMitarbeiter', ['as' => 'SubmitMitarbeiter', 'uses' => 'MitarbeiterController@submit']);
 	Route::post('/SubmitKunde', ['as' => 'SubmitKunde', 'uses' => 'KundenController@submit']);
-	//Artikel
 	Route::post('/SubmitArtikel', ['as' => 'SubmitArtikel', 'uses' => 'ArtikelController@submit']);
-	//Eventuell löschen
 	Route::get('/Arbeitsschein', ['uses' => 'ArbeitsscheinController@showArbeitsschein']);
 	Route::get('/Arbeitsschein_Hinzufuegen', ['uses' => 'ArbeitsscheinController@showArbeitsscheinHinzufuegen']);
 	Route::get('/Arbeitsschein_Uebersicht', ['uses' => 'ArbeitsscheinController@showArbeitsscheinUebersicht']);

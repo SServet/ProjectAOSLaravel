@@ -142,9 +142,7 @@
                             
                             <tr>
                               <td><p class="inputLabels">Verkaufspreis</p></td>
-                              <td><input type="number" id="salePrice" value="0"   class="form-control input-lg" placeholder="in Euro" step="10" name="salePrice"></td>
-
-                           
+                              <td><input type="number" id="salePrice" value="0" class="form-control input-lg" placeholder="in Euro" step="10" name="salePrice"></td>                           
                             </tr>
                            
                             <tr></tr>

@@ -114,8 +114,6 @@ class ArbeitsscheinController extends Controller
 
     public function submitEditArbeitsschein(Request $request){
         $as = Arbeitsschein::find($request->get('asid'));
-        $as->delete();
-        $as = new Arbeitsschein;
 
         $as->asid = $request->get('asid');
         $as->kid = $request->get('kid');
@@ -124,6 +122,8 @@ class ArbeitsscheinController extends Controller
         $as->ttid = explode('.', $request->get('ttid'))[0];
         $as->tkid = explode('.', $request->get('tkid'))[0];
         $as->dateFrom = $request->get('dateFrom');
+        $as->aNr = explode('.',$request->get('artid'))[0];
+        $as->artAnz = $request->get('artAnz');
 
         if($request->get('dateTo') == ''){
             $as->dateTo = null;

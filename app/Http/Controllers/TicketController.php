@@ -103,12 +103,13 @@ class TicketController extends Controller
 
 		public function submitEditTicket(Request $request){
 		$ticket = Ticket::find($request->get('tid'));
-		$ticket->delete();
-		$ticket = new Ticket;
+
 
 		$ticket->tid = $request->get('tid');
 		$ticket->kid = $request->get('kid');
 		$ticket->mid = $request->get('mid');
+        $ticket->aNr = explode('.',$request->get('artid'))[0];
+        $ticket->artAnz = $request->get('artAnz');
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');
 		$ticket->creationDate = $request->get('creationDate');

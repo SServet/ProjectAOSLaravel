@@ -164,12 +164,15 @@ class ProjektController extends Controller
 
     public function submitEditProjekt(Request $request){
         $projekt = Projekte::find($request->get('pid'));
-        $projekt->delete();
-        $projekt = new Projekte;
 
         $projekt->pid = $request->get('pid');
         $projekt->kid = $request->get('kid');
-        $projekt->mid = $request->get('mid');
+        $projekt->mid = $request->get('mid');   
+        $projekt->aNr = explode('.',$request->get('artid'))[0];
+        $projekt->artAnz = $request->get('artAnz');
+       
+
+
         $projekt->label = $request->input('label');
         $projekt->description = $request->get('description');
         $projekt->dateOfOrder = $request->get('dateOfOrder');

@@ -81,6 +81,7 @@ textarea[id="Beschreibung"]{
 
 #uebersicht_Table{
     font-size: 20px;
+
 }
 
 #uebersicht_Table th{
@@ -89,6 +90,7 @@ textarea[id="Beschreibung"]{
     width: 250px;
     color: white;
     font-weight: normal;
+
 }
 
 #uebersicht_Table td{
@@ -102,6 +104,35 @@ textarea[id="Beschreibung"]{
 #uebersicht_Table th:last-child{
     width: 50px;
 }
+
+#uebersicht_ArtikelTable{
+    font-size: 20px;
+
+}
+
+#uebersicht_ArtikelTable th{
+    text-align: center;
+    background-color: #3c3c3c;
+    width: 250px;
+    color: white;
+    font-weight: normal;
+
+}
+
+#uebersicht_ArtikelTable td{
+    background-color: #dfdfdf;
+    border-top:1px solid black;
+}
+
+#uebersicht_ArtikelTable th:first-child{
+    width: 100px;
+}
+
+#uebersicht_ArtikelTable th:last-child{
+    width: 1px;
+}
+
+
 
 .importExportButton{
     color: white;
