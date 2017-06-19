@@ -15,6 +15,7 @@ class CreateArbeitsscheinProjektTable extends Migration
     {
         Schema::create('arbeitsscheinProjekt', function (Blueprint $table) {
             $table->increments('apid');
+            $table->integer('pid')->references('pid')->on('projekte');
             $table->integer('mid')->references('mid')->on('mitarbeiter');
             $table->string('description');
             $table->string('aNr')->references('aNr')->on('artikel');

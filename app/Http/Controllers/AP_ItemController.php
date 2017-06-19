@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\User;
 use App\Arbeitsscheinprojekt;
 use App\Kunden;
-use App\Ticket;
+use App\Projekt;
 use App\Termintyp;
 use App\Taetigkeitsart;
 use Illuminate\Http\Request;
@@ -26,24 +26,24 @@ class AP_ItemController extends Controller
         view()->share('arbeitsscheinTicket',$ap);        
         
         
-        $tid;
+        $pid;
 
-        foreach ($at as $i) {
-            $tid = $i->tid;
+        foreach ($ap as $i) {
+            $pid = $i->pid;
         }
 
-        $ticket = Ticket::where('tid', $tid)->take(1)->get();
-        view()->share('ticket', $ticket);
+        $projekt = Projekt::where('pid', $pid)->take(1)->get();
+        view()->share('projekt', $projekt);
 
         $mid;
 
-        foreach ($at as $i) {
+        foreach ($ap as $i) {
             $mid = $i->mid;
         }
 
         $kid;
 
-        foreach ($ticket as $i) {
+        foreach ($projekt as $i) {
             $kid = $i->kid;
         }
 
@@ -58,7 +58,7 @@ class AP_ItemController extends Controller
 
         $ttid;
 
-        foreach ($at as $i) {
+        foreach ($ap as $i) {
             $ttid = $i->ttid;
         }
 
@@ -67,7 +67,7 @@ class AP_ItemController extends Controller
 
         $tkid;
 
-        foreach ($at as $i) {
+        foreach ($ap as $i) {
             $tkid = $i->tkid;
         }
 
@@ -80,13 +80,14 @@ class AP_ItemController extends Controller
             $lastname = $i->lastname;
         }
 
-        $filename = 'Arbeitsschein_Ticket_'.$tid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
+        $filename = 'Arbeitsschein_Projekt_'.$pid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
 
+       /* PDFVIEWAP MUSS NOCH ERSTELLT WERDEN
        if($request->has('download')){
             $pdf = \PDF::loadView('pdfviewAT');
             return $pdf->download($filename);
         }
 
-        return view('pdfviewAT');
+        return view('pdfviewAT');*/
     }
 }

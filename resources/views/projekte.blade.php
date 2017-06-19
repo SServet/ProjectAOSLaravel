@@ -116,7 +116,7 @@
               {{$projekt->pid}}
             </td>
             <td>
-              {{$projekt->description}}
+              {{$projekt->label}}
             </td>
             <td>
               @foreach ($kunden as $kunde)
@@ -126,6 +126,13 @@
               @endforeach
             </td>
             <td><a href="#" onclick="showHide({{$projekt->pid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+            <td>
+              <form action="{{ url('/AProjekt_Hinzufuegen') }}" method="post">
+                <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
+                <button type="submit" class="btn .btn-default" id="addA"> + ArbeitsscheinProjekt </button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              </form>
+            </td>
           </tr>
           @endif
           <tr>
@@ -155,6 +162,13 @@
                   @if(empty($projekt->settledOn))
                   <button type="submit" class="btn">Projekt abrechnen</button>
                   @endif
+                  <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+
+                <form action="{{ url('/ProjektEdit') }}" method="post">
+                  <button type="submit" class="btn">Projekt bearbeiten</button>
                   <input type="hidden" name="pid" value="{{$projekt->pid}}"/>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">

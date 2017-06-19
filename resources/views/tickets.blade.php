@@ -130,7 +130,7 @@
             <td>
               <form action="{{ url('/ATicket_Hinzufuegen') }}" method="post">
                 <input type="hidden" name="tid" value="{{$ticket->tid}}"/>
-                <button type="submit" class="btn .btn-default" id="addAT"> + ArbeitsscheinTicket </button>
+                <button type="submit" class="btn .btn-default" id="addA"> + ArbeitsscheinTicket </button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
               </form>
             </td>

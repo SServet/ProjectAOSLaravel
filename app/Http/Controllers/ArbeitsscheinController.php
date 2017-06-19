@@ -20,6 +20,10 @@ class ArbeitsscheinController extends Controller
 		return view('aUebersicht');
 	}
 
+    public function showArbeitsscheinEdit(){
+        return view('asEdit');
+    }
+
     public function closeArbeitsschein(Request $request){
         $arbeitsschein = Arbeitsschein::where('asid', '=', $request->get('asid'))->first();
         $arbeitsschein->dateTo = date('Y-m-d');
@@ -107,4 +111,65 @@ class ArbeitsscheinController extends Controller
 
 		return redirect('Arbeitsschein');
 	}
+
+    public function submitEditArbeitsschein(Request $request){
+        $as = Arbeitsschein::find($request->get('asid'));
+        $as->delete();
+        $as = new Arbeitsschein;
+
+        $as->asid = $request->get('asid');
+        $as->kid = $request->get('kid');
+        $as->mid = $request->get('mid');        
+        $as->description = $request->get('description');
+        $as->ttid = explode('.', $request->get('ttid'))[0];
+        $as->tkid = explode('.', $request->get('tkid'))[0];
+        $as->dateFrom = $request->get('dateFrom');
+
+        if($request->get('dateTo') == ''){
+            $as->dateTo = null;
+            
+        } else {
+            $as->dateTo = $request->get('dateTo');
+        }
+
+        if($request->get('timeFrom') == ''){
+            $as->timeFrom = null;
+            
+        } else {
+            $as->timeFrom = $request->get('timeFrom');
+        }
+
+        if($request->get('timeTo') == ''){
+            $as->timeTo = null;
+            
+        } else {
+            $as->timeTo = $request->get('timeTo');
+        }
+
+        if( $request->get('billedTime') == ''){
+            $as->billedTime = null;
+            
+        } else {
+            $as->billedTime = $request->get('billedTime');
+        }
+
+        if( $request->get('kulanzzeit') == ''){
+            $as->kulanzzeit = null;
+            
+        } else {
+            $as->kulanzzeit = $request->get('kulanzzeit');
+        }
+
+        if( $request->get('kulanzgrund') == ''){
+            $as->kulanzgrund = null;
+            
+        } else {
+            $as->kulanzgrund = $request->get('kulanzgrund');
+        }
+
+
+        $as->save();
+
+        return redirect('Arbeitsschein');
+    }
 }
