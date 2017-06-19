@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\Arbeitsscheinticket;
+use App\Models\Artikel;
+
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -54,14 +56,31 @@ class TicketController extends Controller
 
 	public function submit(Request $request){
 		$ticket = new Ticket;
+		$artikel = new Artikel;
+        $cache;
 
+        if(count(explode('.',$request->get('artid'))) != 1){
+            $artikel->articlename = explode('.',$request->get('artid'))[1];
+            $artikel->aNr = explode('.',$request->get('artid'))[0];
+            $artikel->agid=14;
+            $cache = explode('.',$request->get('artid'))[0];
+
+        }
+        else{
+            $artikel->aNr = $request->get('aNr');
+            $artikel->articlename = $request->get('artid');
+            $artikel->agid=14;
+            $artikel->save();
+            $cache = $request->get('aNr');
+            }
 
 		$ticket->kid = explode('.',$request->get('kid'))[0];
 		$ticket->mid = $request->get('mid');
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');
 		$ticket->creationDate = $request->get('creationDate');
-
+		$ticket->aNr = $cache;
+        $ticket->artAnz = $request->get('artAnz');
 		if($request->get('finishedOn') == ''){
             $ticket->finishedOn = null;
             
@@ -117,6 +136,23 @@ class TicketController extends Controller
 
 	public function submitATicket(Request $request){
 		$ATicket = new Arbeitsscheinticket;
+		$artikel = new Artikel;
+        $cache;
+
+        if(count(explode('.',$request->get('artid'))) != 1){
+            $artikel->articlename = explode('.',$request->get('artid'))[1];
+            $artikel->aNr = explode('.',$request->get('artid'))[0];
+            $artikel->agid=14;
+            $cache = explode('.',$request->get('artid'))[0];
+
+        }
+        else{
+            $artikel->aNr = $request->get('aNr');
+            $artikel->articlename = $request->get('artid');
+            $artikel->agid=14;
+            $artikel->save();
+            $cache = $request->get('aNr');
+            }
 
 		$ATicket->tid = $request->get('tid');
 		$ATicket->mid = $request->get('mid');
@@ -125,7 +161,8 @@ class TicketController extends Controller
 		$ATicket->ttid = explode('.',$request->get('ttid'))[0];
 		$ATicket->tkid = explode('.',$request->get('tkid'))[0];
 		$ATicket->dateFrom = $request->get('dateFrom');
-		
+		$ATicket->aNr = $cache;
+        $ATicket->artAnz = $request->get('artAnz');
 
 		
 		if($request->get('dateTo') == ''){
