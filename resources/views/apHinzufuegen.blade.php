@@ -115,8 +115,8 @@
         <tr>
          <td><p class="inputLabels">Mitarbeiter</p></td>
          <td>
-            <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
-          </td>
+          <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
+        </td>
       </tr>
       <tr>
        <td><p class="inputLabels">Artikel</p></td>
@@ -124,10 +124,14 @@
         <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select" style="width:350px;" tabindex="2" name="aid">
           <option value=""></option>
           @foreach ($artikel as $art)
-          <option>{{$art->aNr}}. {{$art->description}}</option>
+          <option>{{$art->aNr}}. {{$art->articlename}}</option>
           @endforeach
         </select>
       </td>
+    </tr>
+    <tr>
+      <td><p class="inputLabels">Artikelanzahl</p></td>
+      <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz"></td>
     </tr>
     <tr>
       <td><p class="inputLabels">Beschreibung</p></td>

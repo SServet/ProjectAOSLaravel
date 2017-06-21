@@ -112,7 +112,7 @@
               <input type="text" id="Ticket-Referenz" class="form-control input-lg" name="tid" value="{{$ticket->tid}}" readonly>
             </td>
           </tr>
-           <tr>
+          <tr>
             <td><p class="inputLabels">Kunde</p></td>
             <td>
               <input type="text" id="kunde" class="form-control input-lg" name="kid" value="{{$ticket->kid}}" readonly>
@@ -126,19 +126,23 @@
         </tr>
         <tr>
           <td><p class="inputLabels">Artikel</p></td>
-            <td>
-              <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-                <option value="" id="inputArtikel" onchange="newArtikel()"></option>
-                @foreach ($artikel as $art)
-                  <option>{{$art->aNr}}. {{$art->articlename}}</option>
-                @endforeach
-              </select>
-            </td>
-          </tr>
-            <tr>
-              <td><p class="inputLabels">Artikelanzahl</p></td>
-              <td><input type="number" class="form-control input-lg" min="1" name="artAnz"></td>
-            </tr>
+          <td>
+            <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
+              <option value="" id="inputArtikel" onchange="newArtikel()"></option>
+              @foreach ($artikel as $artkl):
+              @if ($artkl->aNr==$ticket->aNr)
+              <option selected>{{$artkl->aNr}}. {{$artkl->articlename}}</option>
+              @else
+              <option>{{$artkl->aNr}}. {{$artkl->articlename}}</option>
+              @endif
+              @endforeach
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><p class="inputLabels">Artikelanzahl</p></td>
+          <td><input type="number" class="form-control input-lg" min="1" name="artAnz" value="{{$ticket->artAnz}}"></td>
+        </tr>
         <tr>
           <td><p class="inputLabels">Bezeichnung</p></td>
           <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label" value="{{$ticket->label}}"></td>
@@ -160,8 +164,8 @@
          <td><p class="inputLabels">Abgerechnet Am</p></td>
          <td><input type="date" id="AbgerechnetAm" class="form-control input-lg" name="settledOn" value="{{$ticket->settledOn}}"></td>
        </tr>
-      <tr></tr>
-      <tr>
+       <tr></tr>
+       <tr>
         <td></td>
         <td>
           <button type="submit" class="btn .btn-default" id="submitButton"> Bearbeiten </button>
@@ -171,8 +175,8 @@
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </table>
 
-    </form> 
-  </div>
+  </form> 
+</div>
 </div>
 </div>
 </div>

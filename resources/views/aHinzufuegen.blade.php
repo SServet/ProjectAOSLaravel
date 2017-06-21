@@ -137,7 +137,7 @@
             </tr>
             <tr>
               <td><p class="inputLabels">Artikelanzahl</p></td>
-              <td><input type="number" class="form-control input-lg" min="1" name="artAnz"></td>
+              <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz"></td>
             </tr>
             <tr>
              <td><p class="inputLabels">Beschreibung</p></td>

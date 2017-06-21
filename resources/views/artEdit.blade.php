@@ -128,13 +128,12 @@
             </tr>
         <tr>
           <td><p class="inputLabels">Artikelgruppe</p></td>
-          <!--<td> <input type="text" id="agid" class="form-control input-lg" name="label" value="{{$artikel->agid}}"></td>
-          -->
+          
           <td>
 
             <select id="artikelgruppe_select" class="chosen-select" style="width:350px;" tabindex="2" name="agid">
               <option value="{{$artikel->agid}}"></option>
-              <!--<option selected="selected">{{$artikel->agid}}</option> -->
+              
                  @foreach ($artikelgruppe as $artikelgruppe):
                   @if ($artikel->agid==$artikelgruppe->agid)
               <option selected>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>

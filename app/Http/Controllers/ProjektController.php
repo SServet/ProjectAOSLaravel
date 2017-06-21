@@ -124,7 +124,6 @@ class ProjektController extends Controller
             $artikel->aNr = explode('.',$request->get('artid'))[0];
             $artikel->agid=14;
             $cache = explode('.',$request->get('artid'))[0];
-
         }
         else{
             $artikel->aNr = $request->get('aNr');
@@ -141,6 +140,7 @@ class ProjektController extends Controller
         $projekt->projectType = $request->get('projectType');
         $projekt->projectVolume = $request->get('projectVolume');
         $projekt->dateOfOrder = $request->get('dateOfOrder');
+
         $projekt->aNr = $cache;
         $projekt->artAnz = $request->get('artAnz');
         if($request->get('finishedOn') == ''){
@@ -149,12 +149,40 @@ class ProjektController extends Controller
         } else {
             $projekt->finishedOn = $request->get('finishedOn');
         }
+
+        if($request->get('projectVolume') == ''){
+             $projekt->projectVolume = null;
+            
+        } else {
+            $projekt->projectVolume = $request->get('projectVolume');
+        }
+
+        if($request->get('projectType') == ''){
+             $projekt->projectType = null;
+            
+        } else {
+            $projekt->projectType = $request->get('projectType');
+        }
         
         if( $request->get('settledOn') == ''){
             $projekt->settledOn = null;
             
         } else {
             $projekt->settledOn = $request->get('settledOn');
+        }
+
+        if( $request->get('description') == ''){
+            $projekt->description = null;
+            
+        } else {
+            $projekt->description = $request->get('description');
+        }
+
+        if( $request->get('artid') == ''){
+            $projekt->aNr= null;
+            
+        } else {
+            $projekt->aNr = $cache;
         }
 
         $projekt->save();
