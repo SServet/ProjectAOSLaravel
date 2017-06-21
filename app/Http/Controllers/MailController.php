@@ -12,40 +12,40 @@ class MailController extends Controller{
 public function sendMailArbeitsschein(){
 	Mail::send('pdfview', [], function ($message)
 		{
-			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Welcome!');
+			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Arbeitsschein');
 			$user = Auth::user();
 			$mail = $user->email;
-			$message->to($mail, $user->lastname)->subject('Ticket geschlossen!');
+			$message->to($mail, $user->lastname)->subject('Arbeitsschein');
 		});
 }
 
 public function sendMailArbeitsscheinTicket(){
 	Mail::send('pdfviewAT', [], function ($message)
 		{
-			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Welcome!');
+			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Arbeitsschein Ticket!');
 			$user = Auth::user();
 			$mail = $user->email;
-			$message->to($mail, $user->lastname)->subject('Ticket geschlossen!');
+			$message->to($mail, $user->lastname)->subject('Arbeitsschein Ticket');
 		});
 }
 
 public function sendMailArbeitsscheinProjekt(){
 	Mail::send('pdfviewAT', [], function ($message)
 		{
-			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Welcome!');
+			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Arbeitsschein Projekt!');
 			$user = Auth::user();
 			$mail = $user->email;
-			$message->to($mail, $user->lastname)->subject('Ticket geschlossen!');
+			$message->to($mail, $user->lastname)->subject('Arbeitsschein Projekt');
 		});
 }
 
 public function sendMailProjektClosed(){
 	Mail::send('mail_projekt_closed', [], function ($message)
 		{
-			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Welcome!');
+			$message->to('servet.simsek@outlook.com', 'Servet')->subject('Projekt geschlossen!');
 			$user = Auth::user();
 			$mail = $user->email;
-			$message->to($mail, $user->lastname)->subject('Ticket geschlossen!');
+			$message->to($mail, $user->lastname)->subject('Projekt geschlossen!');
 		});
 }
 
