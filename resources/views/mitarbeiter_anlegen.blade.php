@@ -95,9 +95,9 @@
                         <form action="{{ route('SubmitMitarbeiter') }}" method="post">
                           <table id="inputTable">
                             <tr>
-                              <td><p class="inputLabels">artidede</p></td>
+                              <td><p class="inputLabels">Anrede</p></td>
                               <td>
-                                <select data-placeholder="artidede auswählen..." id="artidede_select" class="chosen-select" style="width:350px;" tabindex="2" name="artidede">
+                                <select data-placeholder="Anrede auswählen..." id="anrede_select" class="chosen-select" style="width:350px;" tabindex="2" name="anrede">
                                   <option value=""></option>
                                   <option>Herr</option>
                                   <option>Frau</option>

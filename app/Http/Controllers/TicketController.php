@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use App\Models\Arbeitsscheinticket;
 use App\Models\Artikel;
 
+
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -38,7 +39,16 @@ class TicketController extends Controller
 		if(!empty($ticket->settledOn)){
 			$ticket->isClosed = 1;
 		}
+
+        $ticket->lastUpdatedAt = date('Y-m-d H:i:s');
 		$ticket->save();
+
+        if($ticket->isClosed === 1){
+            $t = Ticket::orderBy('lastUpdatedAt', 'DESC')->take(1)->get();
+            view()->share('t', $t);
+            \App::call('App\Http\Controllers\MailController@sendMailTicketClosed');
+
+        }
 
 		return redirect('Tickets');
 	}
@@ -49,7 +59,15 @@ class TicketController extends Controller
 		if(!empty($ticket->finishedOn)){
 			$ticket->isClosed = 1;
 		}
+        $ticket->lastUpdatedAt = date('Y-m-d H:i:s');
 		$ticket->save();
+
+        if($ticket->isClosed === 1){
+            $t = Ticket::orderBy('lastUpdatedAt', 'DESC')->take(1)->get();
+            view()->share('t', $t);
+            \App::call('App\Http\Controllers\MailController@sendMailTicketClosed');
+
+        }
 
 		return redirect('Tickets');
 	}
@@ -95,8 +113,20 @@ class TicketController extends Controller
             $ticket->settledOn = $request->get('settledOn');
         }
 
+        if($ticket->finishedOn != null and $ticket->settledOn != null){
+            $ticket->isClosed = 1;
+        }
 
+        
+        
 		$ticket->save();
+
+        if($ticket->isClosed === 1){
+            $t = Ticket::orderBy('tid', 'DESC')->take(1)->get();
+            view()->share('t', $t);
+            \App::call('App\Http\Controllers\MailController@sendMailTicketClosed');
+
+        }
 
 		return redirect('Tickets');
 	}
@@ -128,8 +158,20 @@ class TicketController extends Controller
             $ticket->settledOn = $request->get('settledOn');
         }
 
+        if($ticket->finishedOn != null and $ticket->settledOn != null){
+            $ticket->isClosed = 1;
+        }
 
-		$ticket->save();
+        $ticket->lastUpdatedAt = date('Y-m-d H:i:s');
+
+        $ticket->save();
+
+        if($ticket->isClosed === 1){
+            $t = Ticket::orderBy('lastUpdatedAt', 'DESC')->take(1)->get();
+            view()->share('t', $t);
+            \App::call('App\Http\Controllers\MailController@sendMailTicketClosed');
+
+        }
 
 		return redirect('Tickets');
 	}

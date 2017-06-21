@@ -20,16 +20,15 @@ class CreateProjekteTable extends Migration
             $table->integer('mid')->references('mid')->on('mitarbeter');
             $table->string('label');
             $table->string('description')->nullable();
-            $table->string('artid')->references('artid')->on('artikel');
+            $table->string('artid')->references('artid')->on('artikel')->nullable();
             $table->integer('artAnz');
             $table->decimal('projectVolume',10,2)->nullable();
             $table->date('dateOfOrder');
             $table->date('finishedOn')->nullable();
             $table->date('settledOn')->nullable();
             $table->string('projectType')->nullable();
-         
-          
-          
+            $table->integer('isClosed')->default(0);     
+            $table->date('lastUpdatedAt')->nullable();            
         });
     }
 

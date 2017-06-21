@@ -80,11 +80,11 @@ class AP_ItemController extends Controller
             $lastname = $i->lastname;
         }
 
-        $filename = 'Arbeitsschein_Projekt_'.$pid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
+        $filename = 'Arbeitsschein_Ticket_'.$tid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
 
-       /* PDFVIEWAP MUSS NOCH ERSTELLT WERDEN
        if($request->has('download')){
             $pdf = \PDF::loadView('pdfviewAT');
+            \App::call('App\Http\Controllers\MailController@sendMailArbeitsscheinProjekt');
             return $pdf->download($filename);
         }
 

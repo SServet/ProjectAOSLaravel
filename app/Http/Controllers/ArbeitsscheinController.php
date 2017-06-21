@@ -29,7 +29,7 @@ class ArbeitsscheinController extends Controller
         $arbeitsschein->dateTo = date('Y-m-d');
         $arbeitsschein->timeTo = date('H:i:s');
         $arbeitsschein->save();
-
+        return \App::call('App\Http\Controllers\ItemController@pdfview');
         return redirect('Arbeitsschein');
     }
 
@@ -107,7 +107,9 @@ class ArbeitsscheinController extends Controller
 
 		$arbeit->save();
 
-		return \App::call('App\Http\Controllers\ItemController@pdfview');
+		if($arbeit->dateTo != null){
+            return \App::call('App\Http\Controllers\ItemController@pdfview');
+        }
 
 		return redirect('Arbeitsschein');
 	}

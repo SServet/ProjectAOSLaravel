@@ -84,6 +84,7 @@ class AT_ItemController extends Controller
 
        if($request->has('download')){
             $pdf = \PDF::loadView('pdfviewAT');
+            \App::call('App\Http\Controllers\MailController@sendMailArbeitsscheinTicket');
             return $pdf->download($filename);
         }
 

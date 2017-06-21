@@ -18,7 +18,7 @@ class CreateArbeitsscheinTicketTable extends Migration
             $table->integer('tid')->references('tid')->on('ticket');
             $table->integer('mid')->references('mid')->on('mitarbeiter');
             $table->string('description');
-            $table->string('artid')->references('artid')->on('artikel');
+            $table->string('artid')->references('artid')->on('artikel')->nullable();
             $table->integer('artAnz');
             $table->integer('ttid')->references('ttid')->on('termintyp');
             $table->integer('tkid')->references('tkid')->on('taetigkeitsart');
