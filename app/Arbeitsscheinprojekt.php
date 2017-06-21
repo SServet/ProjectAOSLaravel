@@ -14,7 +14,7 @@ class Arbeitsscheinprojekt extends Authenticatable
     protected $fillable = [
         'mid',
         'description',
-        'aNr',
+        'artid',
         'ttid',
         'tkid',
         'dateFrom',

@@ -18,7 +18,7 @@ class CreateArbeitsscheinProjektTable extends Migration
             $table->integer('pid')->references('pid')->on('projekte');
             $table->integer('mid')->references('mid')->on('mitarbeiter');
             $table->string('description');
-            $table->string('aNr')->references('aNr')->on('artikel');
+            $table->string('artid')->references('artid')->on('artikel');
             $table->integer('artAnz');
             $table->integer('ttid')->references('ttid')->on('termintyp');
             $table->char('tkid',5)->references('tkid')->on('taetigkeitsart');

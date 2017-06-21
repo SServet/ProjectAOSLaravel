@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/Tickets_Uebersicht', ['uses' => 'TicketController@showTicketUebersicht']);
 
 	Route::get('/Einstellungen', ['uses' => 'EinstellungenController@showEinstellungen']);
+	Route::get('/Artikel', ['uses' => 'ArtikelController@showArtikel']);
 
 	Route::get('exportKundentoCSV(/{type}', 'EinstellungenController@exportKundentoCSV');
 	Route::get('exportArtikeltoCSV(/{type}', 'EinstellungenController@exportArtikeltoCSV');

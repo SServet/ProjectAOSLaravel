@@ -14,7 +14,7 @@ class ArtikelTableSeeder extends Seeder
     {
         \DB::table("artikel")->delete();
         artikel::create([
-        	'aNr' => '1',
+        	'artid' => '1',
         	'agid' => '6',
         	'articlename' => 'Logitech',
         	'salePrice' => 12.00,
@@ -25,7 +25,7 @@ class ArtikelTableSeeder extends Seeder
         ]);
 
         artikel::create([
-            'aNr' => '3',
+            'artid' => '3',
             'agid' => '6',
             'articlename' => 'Logitech',
             'salePrice' => 12.00,
@@ -37,7 +37,7 @@ class ArtikelTableSeeder extends Seeder
 
 
         artikel::create([
-        	'aNr' => '2',
+        	'artid' => '2',
         	'agid' => '4',
         	'articlename' => 'Samsung',
         	'salePrice' => 18.00,

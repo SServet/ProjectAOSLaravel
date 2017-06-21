@@ -53,7 +53,9 @@ class ProjektController extends Controller
 
         $AProjekt->pid = $request->get('pid');
         $AProjekt->mid = $request->get('mid');
-        $AProjekt->aNr = $request->get('aid');
+        $AProjekt->artid = $request->get('aid');
+        $AProjekt->artAnz = $request->get('artAnz');
+
         $AProjekt->description = $request->get('description');
         $AProjekt->ttid = explode('.',$request->get('ttid'))[0];
         $AProjekt->tkid = explode('.',$request->get('tkid'))[0];
@@ -121,16 +123,17 @@ class ProjektController extends Controller
 
         if(count(explode('.',$request->get('artid'))) != 1){
             $artikel->articlename = explode('.',$request->get('artid'))[1];
-            $artikel->aNr = explode('.',$request->get('artid'))[0];
+            $artikel->artid = explode('.',$request->get('artid'))[0];
             $artikel->agid=14;
             $cache = explode('.',$request->get('artid'))[0];
+
         }
         else{
-            $artikel->aNr = $request->get('aNr');
+            $artikel->artid = $request->get('artid');
             $artikel->articlename = $request->get('artid');
             $artikel->agid=14;
             $artikel->save();
-            $cache = $request->get('aNr');
+            $cache = $request->get('artid');
             }
 
         $projekt->kid = explode('.',$request->get('kid'))[0];
@@ -138,30 +141,24 @@ class ProjektController extends Controller
         $projekt->label = $request->input('label');
         $projekt->description = $request->get('description');
         $projekt->projectType = $request->get('projectType');
-        $projekt->projectVolume = $request->get('projectVolume');
+       
         $projekt->dateOfOrder = $request->get('dateOfOrder');
-
-        $projekt->aNr = $cache;
+        $projekt->artid = $cache;
         $projekt->artAnz = $request->get('artAnz');
+        
+        if($request->get('projectVolume') == ''){
+              $projekt->projectVolume = null;
+            
+        } else {
+             $projekt->projectVolume = $request->get('projectVolume');
+        }
+
+
         if($request->get('finishedOn') == ''){
              $projekt->finishedOn = null;
             
         } else {
             $projekt->finishedOn = $request->get('finishedOn');
-        }
-
-        if($request->get('projectVolume') == ''){
-             $projekt->projectVolume = null;
-            
-        } else {
-            $projekt->projectVolume = $request->get('projectVolume');
-        }
-
-        if($request->get('projectType') == ''){
-             $projekt->projectType = null;
-            
-        } else {
-            $projekt->projectType = $request->get('projectType');
         }
         
         if( $request->get('settledOn') == ''){
@@ -171,20 +168,6 @@ class ProjektController extends Controller
             $projekt->settledOn = $request->get('settledOn');
         }
 
-        if( $request->get('description') == ''){
-            $projekt->description = null;
-            
-        } else {
-            $projekt->description = $request->get('description');
-        }
-
-        if( $request->get('artid') == ''){
-            $projekt->aNr= null;
-            
-        } else {
-            $projekt->aNr = $cache;
-        }
-
         $projekt->save();
 
         return redirect('Projekte');
@@ -192,11 +175,10 @@ class ProjektController extends Controller
 
     public function submitEditProjekt(Request $request){
         $projekt = Projekte::find($request->get('pid'));
-
         $projekt->pid = $request->get('pid');
         $projekt->kid = $request->get('kid');
         $projekt->mid = $request->get('mid');   
-        $projekt->aNr = explode('.',$request->get('artid'))[0];
+        $projekt->artid = explode('.',$request->get('artid'))[0];
         $projekt->artAnz = $request->get('artAnz');
        
 

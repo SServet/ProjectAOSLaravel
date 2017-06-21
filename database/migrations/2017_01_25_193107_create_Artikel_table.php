@@ -13,14 +13,14 @@ class CreateArtikelTable extends Migration
     public function up()
     {
         Schema::create('artikel', function (Blueprint $table) {
-            $table->string('aNr');
+            $table->string('artid');
             $table->string('articlename')->nullable();
             $table->string('description')->nullable();
             $table->string('unit')->nullable();
             $table->integer('agid')->references('agid')->on('artikelgruppe');
             $table->integer('mwst')->nullable();            
             $table->string('salePrice')->nullable();
-            $table->primary('aNr');
+            $table->primary('artid');
             
         });
     }

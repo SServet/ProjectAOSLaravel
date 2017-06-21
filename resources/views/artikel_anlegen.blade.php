@@ -103,7 +103,7 @@
                           <table id="inputTable">
                             <tr>
                               <td><p class="inputLabels">Artikelnummer</p></td>
-                              <td><input type="text" id="aNr" class="form-control input-lg" name="aNr"></td>
+                              <td><input type="text" id="artid" class="form-control input-lg" name="artid"></td>
                             </tr>
                             <tr>
                               <td><p class="inputLabels">Artikelname</p></td>

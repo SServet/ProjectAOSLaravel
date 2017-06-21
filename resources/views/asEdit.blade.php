@@ -132,10 +132,10 @@
               <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
                 <option value="" id="inputArtikel" onchange="newArtikel()"></option>
                  @foreach ($artikel as $artkl):
-                  @if ($artkl->aNr==$as->aNr)
-              <option selected>{{$artkl->aNr}}. {{$artkl->articlename}}</option>
+                  @if ($artkl->artid==$as->artid)
+              <option selected>{{$artkl->artid}}. {{$artkl->articlename}}</option>
                 @else
-                 <option>{{$artkl->aNr}}. {{$artkl->articlename}}</option>
+                 <option>{{$artkl->artid}}. {{$artkl->articlename}}</option>
                   @endif
                 @endforeach
             </select>

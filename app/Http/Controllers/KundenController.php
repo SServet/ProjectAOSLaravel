@@ -14,7 +14,7 @@ class KundenController extends Controller
     	$kunde = new Kunden;
 
 
-        $kunde->salutation = $request->get('anrede');
+        $kunde->salutation = $request->get('artidede');
         $kunde->title = $request->input('titel');
     	$kunde->firstname = $request->input('vorname');
     	$kunde->lastname = $request->input('nachname');

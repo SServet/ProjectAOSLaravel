@@ -20,7 +20,7 @@ class CreateProjekteTable extends Migration
             $table->integer('mid')->references('mid')->on('mitarbeter');
             $table->string('label');
             $table->string('description')->nullable();
-            $table->string('aNr')->references('aNr')->on('artikel');
+            $table->string('artid')->references('artid')->on('artikel');
             $table->integer('artAnz');
             $table->decimal('projectVolume',10,2)->nullable();
             $table->date('dateOfOrder');

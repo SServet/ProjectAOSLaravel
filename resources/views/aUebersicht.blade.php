@@ -92,7 +92,7 @@
          <hr>
          <table id="uebersicht_Table">
           <tr>
-            <th>ANr.</th>
+            <th>artid.</th>
             <th>BEZEICHNUNG</th>
             <th>KUNDENNAME</th>
             <th></th>

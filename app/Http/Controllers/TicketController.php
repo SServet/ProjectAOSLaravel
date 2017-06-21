@@ -61,17 +61,17 @@ class TicketController extends Controller
 
         if(count(explode('.',$request->get('artid'))) != 1){
             $artikel->articlename = explode('.',$request->get('artid'))[1];
-            $artikel->aNr = explode('.',$request->get('artid'))[0];
+            $artikel->artid = explode('.',$request->get('artid'))[0];
             $artikel->agid=14;
             $cache = explode('.',$request->get('artid'))[0];
 
         }
         else{
-            $artikel->aNr = $request->get('aNr');
+            $artikel->artid = $request->get('artid');
             $artikel->articlename = $request->get('artid');
             $artikel->agid=14;
             $artikel->save();
-            $cache = $request->get('aNr');
+            $cache = $request->get('artid');
             }
 
 		$ticket->kid = explode('.',$request->get('kid'))[0];
@@ -79,7 +79,7 @@ class TicketController extends Controller
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');
 		$ticket->creationDate = $request->get('creationDate');
-		$ticket->aNr = $cache;
+		$ticket->artid = $cache;
         $ticket->artAnz = $request->get('artAnz');
 		if($request->get('finishedOn') == ''){
             $ticket->finishedOn = null;
@@ -108,7 +108,7 @@ class TicketController extends Controller
 		$ticket->tid = $request->get('tid');
 		$ticket->kid = $request->get('kid');
 		$ticket->mid = $request->get('mid');
-        $ticket->aNr = explode('.',$request->get('artid'))[0];
+        $ticket->artid = explode('.',$request->get('artid'))[0];
         $ticket->artAnz = $request->get('artAnz');
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');
@@ -142,27 +142,27 @@ class TicketController extends Controller
 
         if(count(explode('.',$request->get('artid'))) != 1){
             $artikel->articlename = explode('.',$request->get('artid'))[1];
-            $artikel->aNr = explode('.',$request->get('artid'))[0];
+            $artikel->artid = explode('.',$request->get('artid'))[0];
             $artikel->agid=14;
             $cache = explode('.',$request->get('artid'))[0];
 
         }
         else{
-            $artikel->aNr = $request->get('aNr');
+            $artikel->artid = $request->get('artid');
             $artikel->articlename = $request->get('artid');
             $artikel->agid=14;
             $artikel->save();
-            $cache = $request->get('aNr');
+            $cache = $request->get('artid');
             }
 
 		$ATicket->tid = $request->get('tid');
 		$ATicket->mid = $request->get('mid');
-		$ATicket->aNr = $request->get('aid');
+		$ATicket->artid = $request->get('aid');
 		$ATicket->description = $request->get('description');
 		$ATicket->ttid = explode('.',$request->get('ttid'))[0];
 		$ATicket->tkid = explode('.',$request->get('tkid'))[0];
 		$ATicket->dateFrom = $request->get('dateFrom');
-		$ATicket->aNr = $cache;
+		$ATicket->artid = $cache;
         $ATicket->artAnz = $request->get('artAnz');
 
 		

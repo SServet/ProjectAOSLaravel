@@ -20,7 +20,7 @@ class Artikel extends Model
 
     public $table = 'Artikel';
     protected $fillable = [
-        'aNr','agid','articlename','salePrice','unit','mwst','description'
+        'artid','agid','articlename','salePrice','unit','mwst','description'
     ];
 
 

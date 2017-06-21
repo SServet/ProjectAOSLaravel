@@ -124,7 +124,7 @@
         <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select" style="width:350px;" tabindex="2" name="aid">
           <option value=""></option>
           @foreach ($artikel as $art)
-          <option>{{$art->aNr}}. {{$art->articlename}}</option>
+          <option>{{$art->artid}}. {{$art->articlename}}</option>
           @endforeach
         </select>
       </td>

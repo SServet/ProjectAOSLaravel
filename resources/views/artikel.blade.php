@@ -92,7 +92,7 @@
          <hr>
          <table id="uebersicht_ArtikelTable">
           <tr>
-            <th>ANr.</th>
+            <th>ARTID.</th>
             <th>ARTIKELNAME</th>
             <th>BESCHREIBUNG</th>
             <th>EINHEIT</th>
@@ -105,10 +105,10 @@
           
           <tr>
             <td>
-              {{$artikel->aNr}}
+              {{$artikel->artid}}
             </td>
             <td>
-              {{$artikel->articlename}}
+              {{$artikel->artid}}
             </td>
             <td>
               {{$artikel->description}}
@@ -128,7 +128,7 @@
             <td>
               <form action="{{ url('/artEdit') }}" method="post">
                   <button type="submit" class="btn">Bearbeiten</button>
-                  <input type="hidden" name="aNr" value="{{$artikel->aNr}}"/>
+                  <input type="hidden" name="artid" value="{{$artikel->artid}}"/>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>

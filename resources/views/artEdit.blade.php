@@ -36,8 +36,8 @@
        <?php
         use Illuminate\Support\Facades\Input;
         $user = Auth::user();
-        $aNr = Input::get('aNr');
-        $artikel = DB::table('Artikel')->where('aNr', $aNr)->get();
+        $artid = Input::get('artid');
+        $artikel = DB::table('Artikel')->where('artid', $artid)->get();
         $artikel = $artikel[0];
         $artikelgruppe = DB::table('artikelgruppe')->get();
        ?>
@@ -106,7 +106,7 @@
             <tr>
              <td><p class="inputLabels">Artikelnummer</p></td>
              <td>
-              <input type="text" id="aNr" class="form-control input-lg" name="aNr" value="{{$artikel->aNr}}">
+              <input type="text" id="artid" class="form-control input-lg" name="artid" value="{{$artikel->artid}}">
             </td>
           </tr>
            <tr>

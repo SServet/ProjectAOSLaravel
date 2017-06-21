@@ -19,7 +19,7 @@ class Arbeitsscheinticket extends Model
         'tid',
         'mid',
         'description',
-        'aNr',
+        'artid',
         'ttid',
         'tkid',
         'dateFrom',

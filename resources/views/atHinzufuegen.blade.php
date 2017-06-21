@@ -126,7 +126,7 @@
                 <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
                     <option value="" id="inputArtikel" onchange="newArtikel()"></option>
                     @foreach ($artikel as $art)
-                    <option>{{$art->aNr}}. {{$art->articlename}}</option>
+                    <option>{{$art->artid}}. {{$art->articlename}}</option>
                     @endforeach
                   </select>
               </td>
@@ -141,7 +141,7 @@
         <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select" style="width:350px;" tabindex="2" name="aid">
           <option value=""></option>
           @foreach ($artikel as $art)
-          <option>{{$art->aNr}}. {{$art->description}}</option>
+          <option>{{$art->artid}}. {{$art->description}}</option>
           @endforeach
         </select>
       </td>
@@ -276,7 +276,7 @@ $("#artikel_select").on('chosen:no_results', function(e, params) {
        $("#artikel_select").on('change', function(e) {
         $("#artikel").val(artikel);
         if($("#artikelTR td").length == 0)
-          $("#artikelTR").append('<td><p class="inputLabels">ArtikelNummer</p></td><td><input type="text" class="form-control input-lg" name="aNr"></td>');
+          $("#artikelTR").append('<td><p class="inputLabels">ArtikelNummer</p></td><td><input type="text" class="form-control input-lg" name="artid"></td>');
       });
   }
 });

@@ -22,7 +22,7 @@ class ArtikelController extends Controller
 
     	$artikel = new Artikel;
 
-        $artikel->aNr = $request->input('aNr');
+        $artikel->artid = $request->input('artid');
         $artikel->description= $request->get('description');
         $artikel->unit = $request->input('unit');
     
@@ -37,18 +37,54 @@ class ArtikelController extends Controller
 
     }
      public function submitEditArtikel(Request $request){
-        $artikel = Artikel::find($request->get('aNr'));
+  
+       $artikel = Artikel::where('artid', $request->get('artid'))->first();         
         //fehler
-        $artikel->aNr = $request->get('aNr');
-        $artikel->articlename = $request->get('articlename');
-        $artikel->description = $request->get('description');   
-        $artikel->unit = $request->get('unit');    
+        $artikel->artid = $request->input('artid');
+        
+        if($request->get('articlename')== ''){
+            $artikel->articlename  = null;
+            
+        } else {
+            $artikel->articlename = $request->input('articlename');
+        } 
+        
+        if($request->get('description')== ''){
+            $artikel->description  = null;
+            
+        } else {
+             $artikel->description = $request->input('description');   
+        } 
+       
+        if($request->get('unit')== ''){
+            $artikel->unit  = null;
+            
+        } else {
+             $artikel->unit = $request->input('unit'); 
+        } 
+
         $artikel->agid = explode('.',$request->get('agid'))[0];
-        $artikel->mwst = $request->get('mwst');
-        $artikel->salePrice = $request->get('salePrice');
+       
+
+        if($request->get('mwst')== ''){
+            $artikel->mwst  = 0;
+            
+        } else {
+             $artikel->mwst = $request->input('mwst');
+        }
+
+        if($request->get('salePrice')== ''){
+            $artikel->salePrice = 0;
+            
+        } else {
+            $artikel->salePrice = $request->input('salePrice');
+        }
+        
+
         $artikel->save();
 
-        return redirect('artikel');
+        return redirect('Artikel');
     }
+    
     
 }

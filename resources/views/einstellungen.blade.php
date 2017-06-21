@@ -245,7 +245,7 @@
                                 <select data-placeholder="Artikel auswählen..." id="artikel_select" name="ALoeschen" class="chosen-select" style="width:350px;" tabindex="2" >
                                     <option value=""></option>
                                     @foreach ($artikel as $a)
-                                    <option>{{$a->aNr}}. {{$a->articlename}}</option>
+                                    <option>{{$a->artid}}. {{$a->articlename}}</option>
                                     @endforeach
                                 </select>
                                     <button type="submit" class="btn .btn-default" id="submitButton" style="margin-left:10px;"> Löschen </button>

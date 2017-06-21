@@ -15,7 +15,7 @@ class Arbeitsscheinticket extends Authenticatable
         'tid',
         'mid',
         'description',
-        'aNr',
+        'artid',
         'ttid',
         'tkid',
         'dateFrom',

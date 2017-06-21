@@ -18,7 +18,7 @@ class Arbeitsscheinprojekt extends Model
     protected $fillable = [
         'mid',
         'description',
-        'aNr',
+        'artid',
         'ttid',
         'tkid',
         'dateFrom',

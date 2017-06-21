@@ -39,7 +39,7 @@ class EinstellungenController extends Controller
     }
 
      public function ALoeschen(Request $request){
-    	Artikel::where('aNr',explode('.',$request->get('ALoeschen'))[0])->delete();
+    	Artikel::where('artid',explode('.',$request->get('ALoeschen'))[0])->delete();
 
     	return redirect("Einstellungen");
     }
@@ -76,10 +76,10 @@ class EinstellungenController extends Controller
 				foreach ($data->toArray() as $v) {
 
 					if(!empty($v)){		
-							//$insert[] = ['aNr' => $v['artikelnummer'], 'description' => $v['beschreibung'], 'unit' => $v['einheit'], 'agid' => $v['agid'], 'mwst' => $v['mwst'], 'articlename' => $v['name'], 'saleprice' => $v['verkaufspreis']];
-							//$artikel = Artikel::where('aNr', $v['anr'])->take(1)->get();
+							//$insert[] = ['artid' => $v['artikelnummer'], 'description' => $v['beschreibung'], 'unit' => $v['einheit'], 'agid' => $v['agid'], 'mwst' => $v['mwst'], 'articlename' => $v['name'], 'saleprice' => $v['verkaufspreis']];
+							//$artikel = Artikel::where('artid', $v['artid'])->take(1)->get();
 
-								$insert[] = ['aNr' => $v['anr'], 'description' => $v['description'], 'unit' => $v['unit'], 'agid' => $v['agid'], 'mwst' => $v['mwst'], 'articlename' => $v['articlename'], 'saleprice' => $v['saleprice']];
+								$insert[] = ['artid' => $v['artid'], 'description' => $v['description'], 'unit' => $v['unit'], 'agid' => $v['agid'], 'mwst' => $v['mwst'], 'articlename' => $v['articlename'], 'saleprice' => $v['saleprice']];
 								if(!empty($insert)){
 						
 								DB::table('artikel')->insert($insert);
@@ -120,7 +120,7 @@ class EinstellungenController extends Controller
 		
 						$insert[] = ['kid' => $v['kid'], 'salutation' => $v['salutation'], 'title' => $v['title'], 'firstname' => $v['firstname'], 'lastname' => $v['lastname'],'companyname' => $v['companyname'],'country'  => $v['country'], 'plz'  => $v['plz'], 'city'  => $v['city'], 'street' => $v['street'], 'email'  => $v['email'],'telephone'  => $v['telephone'],'mobilephone' => $v['mobilephone'],'fax'  => $v['fax'],'web'  => $v['web'],'UIDNumber'  => $v['uidnumber'],'taxID'  => $v['taxid']];
 
-						//$insert[] = ['kid' => $v['kid'], 'salutation' => $v['anrede'], 'title' => $v['titel'], 'firstname' => $v['vorname'], 'lastname' => $v['nachname'],'companyname' => $v['firmenname'],'country'  => $v['land'], 'plz'  => $v['plz'], 'city'  => $v['ort'], 'street' => $v['strasse'], 'email'  => $v['email'],'telephone'  => $v['telefon'],'mobilephone' => $v['mobil'],'fax'  => $v['fax'],'web'  => $v['web'],'UIDNumber'  => $v['uidnummer'],'taxID'  => $v['steuernummer']];
+						//$insert[] = ['kid' => $v['kid'], 'salutation' => $v['artidede'], 'title' => $v['titel'], 'firstname' => $v['vorname'], 'lastname' => $v['nachname'],'companyname' => $v['firmenname'],'country'  => $v['land'], 'plz'  => $v['plz'], 'city'  => $v['ort'], 'street' => $v['strasse'], 'email'  => $v['email'],'telephone'  => $v['telefon'],'mobilephone' => $v['mobil'],'fax'  => $v['fax'],'web'  => $v['web'],'UIDNumber'  => $v['uidnummer'],'taxID'  => $v['steuernummer']];
 
 
 							if(!empty($insert)){
