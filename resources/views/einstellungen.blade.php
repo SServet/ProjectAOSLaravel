@@ -178,7 +178,7 @@
                                 <select data-placeholder="Termintyp auswählen..." id="termintyp_select" name="TUmbenennen" class="chosen-select" style="width:360px;" tabindex="2" >
                                     <option value=""></option>
                                     @foreach ($termintyp as $tt)
-                                    <option>{{$tt->description}}</option>
+                                    <option>{{$tt->ttid}}&nbsp;.{{$tt->description}}</option>
                                     @endforeach
                                 </select><br><br>
                                 Bezeichnung:
@@ -198,7 +198,7 @@
                                 <select data-placeholder="Termintyp auswählen..." id="termintyp_select" name="TLoeschen" class="chosen-select" style="width:350px;" tabindex="2" >
                                     <option value=""></option>
                                     @foreach ($termintyp as $tt)
-                                    <option>{{$tt->description}}</option>
+                                    <option>{{$tt->ttid}}&nbsp;.{{$tt->description}}</option>
                                     @endforeach
                                 </select>
                                     <button type="submit" class="btn .btn-default" id="submitButton" style="margin-left:10px;"> Löschen </button>
