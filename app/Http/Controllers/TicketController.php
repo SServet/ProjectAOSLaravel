@@ -110,7 +110,7 @@ class TicketController extends Controller
 		$ticket->mid = $request->get('mid');
         $ticket->artid = explode('.',$request->get('artid'))[0];
         $ticket->artAnz = $request->get('artAnz');
-        $ticket->label = $request->input('label');
+        $ticket->label = $request->get('label');
 		$ticket->description = $request->get('description');
 		$ticket->creationDate = $request->get('creationDate');
 

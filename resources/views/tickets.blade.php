@@ -117,7 +117,7 @@
               {{$ticket->tid}}
             </td>
             <td>
-              {{$ticket->description}}
+              {{$ticket->label}}
             </td>
             <td>
               @foreach ($kunden as $kunde)

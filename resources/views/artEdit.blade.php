@@ -194,6 +194,8 @@
 <!-- Menu Toggle Script  -->
 <script>
 
+  $(".chosen-select").chosen();
+  
   $("#menu-toggle").click(function(e) {
    e.preventDefault();
    $("#wrapper").toggleClass("toggled");

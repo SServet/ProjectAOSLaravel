@@ -171,7 +171,7 @@
 </tr>
 <tr>
  <td><p class="inputLabels">Uhrzeit von</p></td>
- <td><input type="time" id="UhrzeitVon" class="form-control input-lg" name="timeFrom"></td>
+ <td><input type="time" id="UhrzeitVon" class="form-control input-lg" name="timeFrom" value="00:00"></td>
 </tr>
 <tr>
  <td><p class="inputLabels">Uhrzeit bis</p></td>
@@ -183,11 +183,11 @@
 </tr>
 <tr>
   <td><p class="inputLabels">Kulanzzeit</p></td>
-  <td><input type="number" id="Kulanzzeit" class="form-control input-lg" step="0.5" min="0.0" name="kulanzzeit"></td>
+  <td><input type="number" id="Kulanzzeit" class="form-control input-lg" min="0.0" name="kulanzzeit"></td>
 </tr>
 <tr>
   <td><p class="inputLabels">Verrechnete Zeit</p></td>
-  <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" step="0.5" min="0.0" name="billedTime"></td>
+  <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" min="0.0" name="billedTime"></td>
 </tr>
 <tr></tr>
 <tr>
@@ -237,12 +237,54 @@
 
   $( "#DatumVon" ).datepicker({
     numberOfMonths: 2,
-    dateFormat: "yy-mm-dd" 
+    dateFormat: "yy-mm-dd",
+    onSelect: function() {
+      var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+      var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+      var minDiffTime = (timeEnd - timeStart)/1000/60;
+      var dateFrom = $("#DatumVon").datepicker("getDate");
+      var dateTo = $("#DatumBis").datepicker("getDate");
+      var diffMinsDate = (dateTo - dateFrom)/1000/60;
+      var totalMinutes = minDiffTime + diffMinsDate;
+      $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
+    }
   });
 
   $( "#DatumBis" ).datepicker({
     numberOfMonths: 2,
-    dateFormat: "yy-mm-dd" 
+    dateFormat: "yy-mm-dd",
+    onSelect: function() {
+      var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+      var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+      var minDiffTime = (timeEnd - timeStart)/1000/60;
+      var dateFrom = $("#DatumVon").datepicker("getDate");
+      var dateTo = $("#DatumBis").datepicker("getDate");
+      var diffMinsDate = (dateTo - dateFrom)/1000/60;      
+      var totalMinutes = minDiffTime + diffMinsDate;
+      $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
+    } 
+  });
+
+  $( "#UhrzeitVon" ).change(function() {
+    var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+    var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+    var minDiffTime = (timeEnd - timeStart)/1000/60;
+    var dateFrom = $("#DatumVon").datepicker("getDate");
+    var dateTo = $("#DatumBis").datepicker("getDate");
+    var diffMinsDate = (dateTo - dateFrom)/1000/60;
+    var totalMinutes = minDiffTime + diffMinsDate;
+    $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
+  });
+
+  $( "#UhrzeitBis" ).change(function() {
+    var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+    var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+    var minDiffTime = (timeEnd - timeStart)/1000/60;
+    var dateFrom = $("#DatumVon").datepicker("getDate");
+    var dateTo = $("#DatumBis").datepicker("getDate");
+    var diffMinsDate = (dateTo - dateFrom)/1000/60;
+    var totalMinutes = minDiffTime + diffMinsDate;
+    $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
   });
   
   $(".chosen-select").chosen();
