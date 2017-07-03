@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Artikel extends Model
 {
-    protected $table = 'artikel';
+    public $table = 'artikel';
 
     protected $primaryKey = 'artid';
 
