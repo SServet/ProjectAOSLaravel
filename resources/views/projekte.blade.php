@@ -91,12 +91,14 @@
          <br>
          <p id="LabelContent">PROJEKTE</p>
          <hr>
+         @if ($user-> isAdmin == 1)
          <form action="/Projekt_Hinzufuegen">
            <button id="bHinzufuegen">+PROJEKT HINZUFÜGEN</button>
          </form>
          <form action="/Projekte_Uebersicht">
            <button id="bUebersicht">ÜBERSICHT</button>
          </form>
+         @endif
          <br>
         <br>
         <br>

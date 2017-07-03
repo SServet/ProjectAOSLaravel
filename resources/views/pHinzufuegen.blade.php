@@ -115,7 +115,12 @@
               <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
                <td>
-                  <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
+                 <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="kid">
+                      <option value=""></option>
+                      @foreach ($mitarbeiter as $mitarbeiter):
+                      <option>{{$mitarbeiter->id}}. {{$mitarbeiter->lastname}} {{$mitarbeiter->firstname}}</option>
+                      @endforeach
+                  </select>
                </td>
             </tr>
             <tr id="artikelTR">
