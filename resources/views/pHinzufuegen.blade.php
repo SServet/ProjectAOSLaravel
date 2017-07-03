@@ -104,10 +104,10 @@
                <tr>
                  <td><p class="inputLabels">Kunde</p></td>
                  <td>
-                  <select data-placeholder="Kunde auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" tabindex="2" name="kid">
+                  <select data-placeholder="Kunde auswählen..." id="kunde_select" class="chosen-select" style="width:350px;" name="kid">
                     <option value=""></option>
                     @foreach ($kunden as $kunde):
-                    <option>{{$kunde->kid}}. {{$kunde->conmpanyname}}</option>
+                    <option>{{$kunde->companyname}}</option>
                     @endforeach
                   </select>
                 </td>

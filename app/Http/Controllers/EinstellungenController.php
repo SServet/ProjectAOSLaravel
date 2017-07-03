@@ -9,6 +9,7 @@ use App\Kunden;
 use App\Termintyp;
 use DB;
 use Excel;
+use File;
 
 class EinstellungenController extends Controller
 {
@@ -117,14 +118,14 @@ class EinstellungenController extends Controller
 				foreach ($data->toArray() as $v) {
 					
 					if(!empty($v)){
-		
+						
 						$insert[] = ['kid' => $v['kid'], 'salutation' => $v['salutation'], 'title' => $v['title'], 'firstname' => $v['firstname'], 'lastname' => $v['lastname'],'companyname' => $v['companyname'],'country'  => $v['country'], 'plz'  => $v['plz'], 'city'  => $v['city'], 'street' => $v['street'], 'email'  => $v['email'],'telephone'  => $v['telephone'],'mobilephone' => $v['mobilephone'],'fax'  => $v['fax'],'web'  => $v['web'],'UIDNumber'  => $v['uidnumber'],'taxID'  => $v['taxid']];
 
 						//$insert[] = ['kid' => $v['kid'], 'salutation' => $v['artidede'], 'title' => $v['titel'], 'firstname' => $v['vorname'], 'lastname' => $v['nachname'],'companyname' => $v['firmenname'],'country'  => $v['land'], 'plz'  => $v['plz'], 'city'  => $v['ort'], 'street' => $v['strasse'], 'email'  => $v['email'],'telephone'  => $v['telefon'],'mobilephone' => $v['mobil'],'fax'  => $v['fax'],'web'  => $v['web'],'UIDNumber'  => $v['uidnummer'],'taxID'  => $v['steuernummer']];
-
+						
 
 							if(!empty($insert)){
-						
+								
 								DB::table('kunden')->insert($insert);
 							}
 							$insert= array();
