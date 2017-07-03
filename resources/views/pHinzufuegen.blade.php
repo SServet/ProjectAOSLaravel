@@ -38,7 +38,7 @@
         $mitarbeiter = DB::table('mitarbeiter')->get();
         $projekte = DB::table('projekte')->get();
         $user = Auth::user();
-        $artikel = DB::table('Artikel')->get();
+        $artikel = DB::table('artikel')->get();
         ?>
 
         <div id="wrapper">
