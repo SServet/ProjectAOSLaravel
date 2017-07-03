@@ -39,7 +39,7 @@
        $arbeitsscheinticket = DB::table('arbeitsscheinTicket')->get();
        $user = Auth::user();
        $tickets = DB::table('ticket')->get();
-       $artikel = DB::table('Artikel')->get();
+       $artikel = DB::table('artikel')->get();
        ?>
 
        <div id="wrapper">

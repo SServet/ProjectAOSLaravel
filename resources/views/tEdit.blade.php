@@ -42,7 +42,7 @@
        $tid = Input::get('tid');
        $ticket = DB::table('ticket')->where('tid', $tid)->get();
        $ticket = $ticket[0];
-       $artikel = DB::table('Artikel')->get();
+       $artikel = DB::table('artikel')->get();
        ?>
 
        <div id="wrapper">

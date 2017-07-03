@@ -37,7 +37,7 @@
         use Illuminate\Support\Facades\Input;
         $user = Auth::user();
         $artid = Input::get('artid');
-        $artikel = DB::table('Artikel')->where('artid', $artid)->get();
+        $artikel = DB::table('artikel')->where('artid', $artid)->get();
         $artikel = $artikel[0];
         $artikelgruppe = DB::table('artikelgruppe')->get();
        ?>

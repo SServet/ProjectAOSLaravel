@@ -38,7 +38,7 @@
         $termintyp = DB::table('termintyp')->get();
         $taetigkeitsart = DB::table('taetigkeitsart')->get();
         $user = Auth::user();
-        $artikel = DB::table('Artikel')->get();
+        $artikel = DB::table('artikel')->get();
         ?>
 
 
