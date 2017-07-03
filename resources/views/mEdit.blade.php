@@ -35,14 +35,9 @@
 
        <?php
        use Illuminate\Support\Facades\Input;
-       $kunden = DB::table('kunden')->get();
-       $mitarbeiter = DB::table('mitarbeiter')->get();
-       $arbeitsscheinprojekt = DB::table('arbeitsscheinProjekt')->get();
-       $user = Auth::user();
-       $pid = Input::get('pid');
-       $projekt = DB::table('projekte')->where('pid', $pid)->get();
-       $projekt = $projekt[0];
-       $artikel = DB::table('artikel')->get();
+       $mid = Input::get('mid');
+       $mitarbeiter = DB::table('mitarbeiter')->where('id', $mid)->get()->first();       
+      $user = Auth::user();
        ?>
 
        <div id="wrapper">
@@ -97,7 +92,7 @@
        <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
        <br>
        <br>
-       <p id="LabelContent">PROJEKT BEARBEITEN</p>
+       <p id="LabelContent">MITARBEITER BEARBEITEN</p>
        <hr>
        <!-- Chosen -->
        <!-- CSS -->
@@ -107,72 +102,75 @@
          <table  id="inputTable">
            <table  id="inputTable">
             <tr>
-             <td><p class="inputLabels">Projekt-Referenz</p></td>
+             <td><p class="inputLabels">Mitarbeitrer-Referenz</p></td>
              <td>
-              <input type="text" id="Projekt-Referenz" class="form-control input-lg" name="pid" value="{{$projekt->pid}}" readonly>
-            </td>
-          </tr>
-          <tr>
-            <td><p class="inputLabels">Kunde</p></td>
-            <td>
-              <input type="text" id="kunde" class="form-control input-lg" name="kid" value="{{$projekt->kid}}" readonly>
-            </td>
-          </tr>
-          <tr>
-           <td><p class="inputLabels">Mitarbeiter</p></td>
-           <td>
-            <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="kid">
-              @foreach ($mitarbeiter as $mitarbeiter)
-              <option selected>
-                @if ($mitarbeiter->id == $projekt->mid)
-                  {{$mitarbeiter->id}}. {{$mitarbeiter->lastname}} {{$mitarbeiter->firstname}}
-                @endif
-              </option>
-                <option>{{$mitarbeiter->id}}. {{$mitarbeiter->lastname}} {{$mitarbeiter->firstname}}</option>
-              @endforeach
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td><p class="inputLabels">Artikel</p></td>
-          <td>
-            <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-              <option value="" id="inputArtikel" onchange="newArtikel()"></option>
-              @foreach ($artikel as $artkl):
-              @if ($artkl->artid==$projekt->artid)
-              <option selected>{{$artkl->artid}}. {{$artkl->articlename}}</option>
-              @else
-              <option>{{$artkl->artid}}. {{$artkl->articlename}}</option>
-              @endif
-              @endforeach
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td><p class="inputLabels">Artikelanzahl</p></td>
-          <td><input type="number" class="form-control input-lg" min="1" name="artAnz" value="{{$projekt->artAnz}}"></td>
-        </tr>
-        <tr>
-          <td><p class="inputLabels">Bezeichnung</p></td>
-          <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label" value="{{$projekt->label}}"></td>
-        </tr>
-        <tr>
-          <td><p class="inputLabels">Beschreibung</p></td>
-          <td><textarea id="Beschreibung" class="form-control input-lg" name="description">{{$projekt->description}}</textarea></td>
-        </tr>
+              <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mid" value="{{$mitarbeiter->id}}" readonly>
+             </td>
+            </tr>
 
-        <tr>
-         <td><p class="inputLabels">Erstelldatum</p></td>
-         <td><input type="date" id="Erstelldatum" class="form-control input-lg" name="dateOfOrder" value="{{$projekt->dateOfOrder}}"></td>
-       </tr>
-       <tr>
-         <td><p class="inputLabels">Abgeschlossen Am</p></td>
-         <td><input type="date" id="AbgeschlossenAm" class="form-control input-lg" name="finishedOn" value="{{$projekt->finishedOn}}"></td>
-       </tr>
-       <tr>
-         <td><p class="inputLabels">Abgerechnet Am</p></td>
-         <td><input type="date" id="AbgerechnetAm" class="form-control input-lg" name="settledOn" value="{{$projekt->settledOn}}"></td>
-       </tr>
+          <tr>
+            <td><p class="inputLabels">Administrator</p></td>
+            <td>
+              <select data-placeholder="ist Admin..." id="admin_select" class="chosen-select" style="width:350px;" name="isAdmin">
+                <option value=""></option>
+                  <option>Ja</option>
+                  <option>Nein</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td><p class="inputLabels">Vorname</p></td>
+            <td>
+              <input type="text" id="m_vorname" class="form-control input-lg" name="firstname" value="{{$mitarbeiter->firstname}}" required>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Nachname</p></td>
+            <td>
+              <input type="text" id="m_nachname" class="form-control input-lg" name="lastname" value="{{$mitarbeiter->lastname}}" required>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">E-Mail</p></td>
+            <td><input type="email" id="email" class="form-control input-lg" name="email" required value="{{$mitarbeiter->email}}" required></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Passwort</p></td>
+            <td><input type="password" id="pw" class="form-control input-lg" name="pw" required></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Land</p></td>
+            <td><input type="text" id="Land" class="form-control input-lg" name="land" value="{{$mitarbeiter->country}}"></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">PLZ</p></td>
+            <td><input type="text" id="PLZ" class="form-control input-lg" name="plz" value="{{$mitarbeiter->plz}}"></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Stadt</p></td>
+            <td><input type="text" id="Stadt" class="form-control input-lg" name="stadt" value="{{$mitarbeiter->city}}"></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Adresse</p></td>
+            <td><input type="text" id="Adresse" class="form-control input-lg" name="adresse" value="{{$mitarbeiter->address}}"></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Telefonnnumer</p></td>
+            <td><input type="text" id="Telefonnnumer" class="form-control input-lg" name="telefonnnumer" value="{{$mitarbeiter->telphone}}"></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Handynummer</p></td>
+            <td><input type="text" id="Handynummer" class="form-control input-lg" name="handynummer" value="{{$mitarbeiter->mobilephone}}"></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Fax</p></td>
+            <td><input type="text" id="Fax" class="form-control input-lg" name="fax" value="{{$mitarbeiter->fax}}"></td>
+          </tr>
+          <tr>
+            <td><p class="inputLabels">Web</p></td>
+            <td><input type="text" id="Web" class="form-control input-lg" name="web" value="{{$mitarbeiter->web}}"></td>
+          </tr>
        <tr></tr>
        <tr>
         <td></td>
@@ -180,7 +178,6 @@
           <button type="submit" class="btn .btn-default" id="submitButton"> Bearbeiten </button>
         </td>
       </tr>
-      <input type="hidden" name="mid" value="{{$user->id}}"/>
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </table>
 

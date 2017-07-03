@@ -10,6 +10,14 @@ class MitarbeiterController extends Controller
         return view('mitarbeiter_anlegen');
     }
 
+    public function showMitarbeiterUebersicht_Bearbeiten(){
+        return view('mitarbeiterUebersicht_Bearbeiten');
+    }
+
+    public function showMitarbeiterEdit(){
+        return view('mEdit');
+    }
+
     public function submit(Request $request){
     	$mitarbeiter = new Mitarbeiter;
 

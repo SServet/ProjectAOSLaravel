@@ -121,7 +121,7 @@
             <td>
               @foreach ($kunden as $kunde)
               @if($kunde->kid == $arbeitsschein->kid)
-              {{$kunde->firstname}} {{$kunde->lastname}}
+              {{$kunde->companyname}}
               @endif
               @endforeach
             </td>

@@ -17,11 +17,11 @@
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
-	<!-- Font-Links -->
-	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <!-- Font-Links -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -33,8 +33,8 @@
 
       <?php
         $user = Auth::user();
-        $tickets = DB::table('ticket')->get();
-        $kunden = DB::table('kunden')->get();
+        $projekte = DB::table('projekte')->get();
+        $mitarbeiter = DB::table('mitarbeiter')->get();
       ?>
 
        <div id="wrapper">
@@ -88,41 +88,39 @@
          </div>
          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
          <br>
-         <p id="LabelContent">TICKETS > ÜBERSICHT</p>
+         <p id="LabelContent">MITARBEITER > ÜBERSICHT</p>
          <table id="uebersicht_Table">
           <tr>
-            <th>TNr.</th>
-            <th>BEZEICHNUNG</th>
-            <th>KUNDENNAME</th>
+            <th>MID.</th>
+            <th>MITARBEITERNAME</th>
+            <th>E-MAIL</th>
             <th></th>
           </tr>
-          @foreach ($tickets as $ticket)
-          @if($ticket->isClosed == 1 and (!empty($ticket->settledOn)) and (!empty($ticket->finishedOn)))
+          @foreach ($mitarbeiter as $mitarbeiter)
           <tr>
             <td>
-              {{$ticket->tid}}
+              {{$mitarbeiter->id}}
             </td>
             <td>
-              {{$ticket->description}}
+              {{$mitarbeiter->firstname}}. {{$mitarbeiter->lastname}}
             </td>
             <td>
-              @foreach ($kunden as $kunde)
-                @if($kunde->kid == $ticket->kid)
-                  {{$kunde->companyname}}
-                @endif
-              @endforeach
+              {{$mitarbeiter->email}}
             </td>
-             <td><a href="#" onclick="showHide({{$ticket->tid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+           <td><a href="#" onclick="showHide({{$mitarbeiter->id}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
           </tr>
-          @endif
           <tr>
             <td style="background-color: #EBEBEB;" colspan="4">
-              <div id="details{{$ticket->tid}}" style="display:none;" value="{{$ticket->tid}}">
-                  <p> Abgeschlossen am: {{$ticket->finishedOn}}</p>
-                  <p> Abgerechnet am: {{$ticket->settledOn}}</p>
-                  <p> Beschreibung: {{$ticket->description}}</p>
-                </form>
+              <div id="details{{$mitarbeiter->id}}" style="display:none;" value="{{$mitarbeiter->id}}">
+                  <p> Adresse: {{$mitarbeiter->address}}</p>
+                  <p> Handynummer: {{$mitarbeiter->mobilephone}}</p>
                 <br\>
+                <form action="{{ url('/MitarbeiterEdit') }}" method="post">
+                  <button type="submit" class="btn">Mitarbeiter bearbeiten</button>
+                  <input type="hidden" name="mid" value="{{$mitarbeiter->id}}"/>
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
               </div>
             </td>
           </tr>
@@ -151,7 +149,7 @@
    $("#wrapper").toggleClass("toggled");
  });
    
-   if(document.getElementById("menu-toggle").textContent == ">"){
+if(document.getElementById("menu-toggle").textContent == ">"){
     document.getElementById("menu-toggle").innerHTML = "<";
   }else{
     document.getElementById("menu-toggle").innerHTML = ">";
@@ -163,6 +161,7 @@
       $("#details"+id).css('display','none');
     }
   }
+
 
 </script>
 

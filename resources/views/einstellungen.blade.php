@@ -258,27 +258,19 @@
                             </td>
                         </tr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <tr>
-                            <th id="labelImport">Mitarbeiter/Kunde Anlegen</th>
+                            <th id="labelImport">Mitarbeiter/Kunde </th>
                         </tr>
                         <tr>
                             <td style="float:left;">
                                 <form action="{{url('/Mitarbeiter_Hinzufuegen')}}" method="get" style="float:left;">
                                     <button  id="bUebersicht" type="submit" >Mitarbeiter anlegen</button>
                                 </form>
+
+                                <form action="{{url('/Mitarbeiter_Uebrsicht_Bearbeiten')}}" method="get" style="float: left;">
+                                    <button id="bUebersicht" type="submit">Mitarbeiter bearbeiten/anzeigen</button>
+                                </form>
+
                             </td>
                             
                             <td style="float:right;">

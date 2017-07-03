@@ -110,7 +110,7 @@
                    <select data-placeholder="Kunden auswählen..." id="kunden_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="kid">
                     <option value=""></option>
                     @foreach ($kunden as $kunde)
-                    <option>{{$kunde->kid}}. {{$kunde->lastname}} {{$kunde->firstname}}</option>
+                    <option>{{$kunde->kid}}. {{$kunde->companyname}}</option>
                     @endforeach
                   </select>
                 </td>

@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 
 	Route::get('/Mitarbeiter_Hinzufuegen', ['uses' => 'MitarbeiterController@showMitarbeiterAnlegen']);
+	Route::get('/Mitarbeiter_Uebrsicht_Bearbeiten', ['uses' => 'MitarbeiterController@showMitarbeiterUebersicht_Bearbeiten']);
+	Route::post('/MitarbeiterEdit', ['uses' => 'MitarbeiterController@showMitarbeiterEdit']);
 	Route::get('/Kunden_Hinzufuegen', ['uses' => 'KundenController@showKundeAnlegen']);
 	Route::get('/Artikel_Hinzufuegen', ['uses' => 'ArtikelController@showArtikelAnlegen']);
 	Route::get('/Artikel_Bearbeiten', ['uses' => 'ArtikelController@showArtikel']);

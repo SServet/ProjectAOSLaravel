@@ -123,7 +123,7 @@
             <td>
               @foreach ($kunden as $kunde)
               @if($kunde->kid == $projekt->kid)
-              {{$kunde->firstname}} {{$kunde->lastname}}
+              {{$kunde->companyname}}
               @endif
               @endforeach
             </td>
