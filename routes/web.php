@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/SubmitEditTicket', ['as' => 'SubmitEditTicket', 'uses' => 'TicketController@submitEditTicket']);
 	Route::post('/SubmitEditArtikel', ['as' => 'SubmitEditArtikel', 'uses' => 'ArtikelController@SubmitEditArtikel']);
 	Route::post('/SubmitEditProjekt', ['as' => 'SubmitEditProjekt', 'uses' => 'ProjektController@submitEditProjekt']);
+	Route::post('/SubmitEditMitarbeiter', ['as' => 'SubmitEditMitarbeiter', 'uses' => 'MitarbeiterController@submitEditMitarbeiter']);
 	Route::post('/SubmitEditArbeitsschein', ['as' => 'SubmitEditArbeitsschein', 'uses' => 'ArbeitsscheinController@submitEditArbeitsschein']);
 	Route::post('/SubmitATicket', ['as' => 'SubmitATicket', 'uses' => 'TicketController@submitATicket']);
 	Route::post('/SubmitAProjekt', ['as' => 'SubmitAProjekt', 'uses' => 'ProjektController@submitAProjekt']);
@@ -87,6 +88,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('pdfview',array('as'=>'pdfview','uses'=>'ItemController@pdfview'));
 
 	Route::get('pdfviewAT',array('as'=>'pdfviewAT','uses'=>'AT_ItemController@pdfview'));
+
+	Route::get('pdfviewAP', array('as'=>'pdfviewAP', 'uses' => 'AP_ItemController@pdfview'));
 
 
 });

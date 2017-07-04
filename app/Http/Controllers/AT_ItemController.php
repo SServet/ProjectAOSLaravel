@@ -10,6 +10,7 @@ use App\Kunden;
 use App\Ticket;
 use App\Termintyp;
 use App\Taetigkeitsart;
+use App\Artikel;
 use Illuminate\Http\Request;
 
 class AT_ItemController extends Controller
@@ -22,8 +23,8 @@ class AT_ItemController extends Controller
      */
     public function pdfview(Request $request)
     {
-        $at = Arbeitsscheinticket::orderBy('atID', 'DESC')->take(1)->get();
-        view()->share('arbeitsscheinTicket',$at);        
+        $at = Arbeitsscheinticket::orderBy('atid', 'DESC')->take(1)->get();
+        view()->share('at',$at);        
         
         
         $tid;
@@ -79,6 +80,15 @@ class AT_ItemController extends Controller
         foreach ($mitarbeiter as $i) {
             $lastname = $i->lastname;
         }
+
+        $artid;
+
+        foreach ($at as $i) {
+            $artid = $i->artid;
+        }
+
+        $artikel = Artikel::where('artid', $artid)->take(1)->get();
+        view()->share('artikel', $artikel);
 
         $filename = 'Arbeitsschein_Ticket_'.$tid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
 

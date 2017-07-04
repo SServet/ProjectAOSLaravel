@@ -70,7 +70,7 @@
           @endif
           <li>
             <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-            document.getElementById('logout-form').submit();"> Logout
+            document.getElementById('logout-form').submit();"> LOGOUT
           </a>
           <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
@@ -98,7 +98,7 @@
        <!-- CSS -->
        <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
 
-       <form action="{{ route('SubmitEditProjekt') }}" method="post">
+       <form action="{{ route('SubmitEditMitarbeiter') }}" method="post">
          <table  id="inputTable">
            <table  id="inputTable">
             <tr>
@@ -107,7 +107,16 @@
               <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mid" value="{{$mitarbeiter->id}}" readonly>
              </td>
             </tr>
-
+          <tr>
+            <td><p class="inputLabels">Anrede</p></td>
+            <td>
+              <select data-placeholder="Anrede auswählen..." id="anrede_select" class="chosen-select" style="width:350px;" tabindex="2" name="anrede">
+                <option value=""></option>
+                <option>Herr</option>
+                <option>Frau</option>
+              </select>
+            </td>
+          </tr>
           <tr>
             <td><p class="inputLabels">Administrator</p></td>
             <td>
@@ -118,7 +127,10 @@
               </select>
             </td>
           </tr>
-
+          <tr>
+            <td><p class="inputLabels">Titel</p></td>
+            <td><input type="text" id="Titel" class="form-control input-lg" name="titel"></td>
+          </tr>
           <tr>
             <td><p class="inputLabels">Vorname</p></td>
             <td>
@@ -137,7 +149,7 @@
           </tr>
           <tr>
             <td><p class="inputLabels">Passwort</p></td>
-            <td><input type="password" id="pw" class="form-control input-lg" name="pw" required></td>
+            <td><input type="password" id="pw" class="form-control input-lg" name="pw" value="{{$mitarbeiter->password}}" required></td>
           </tr>
           <tr>
             <td><p class="inputLabels">Land</p></td>

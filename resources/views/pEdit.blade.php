@@ -75,7 +75,7 @@
           @endif
           <li>
             <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-            document.getElementById('logout-form').submit();"> Logout
+            document.getElementById('logout-form').submit();"> LOGOUT
           </a>
           <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
@@ -121,7 +121,7 @@
           <tr>
            <td><p class="inputLabels">Mitarbeiter</p></td>
            <td>
-            <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="kid">
+            <select data-placeholder="Mitarbeiter auswählen..." id="mitarbeiter_select" class="chosen-select" style="width:350px;" tabindex="2" name="mid">
               @foreach ($mitarbeiter as $mitarbeiter)
               <option selected>
                 @if ($mitarbeiter->id == $projekt->mid)

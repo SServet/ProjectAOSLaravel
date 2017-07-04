@@ -10,6 +10,7 @@ use App\Kunden;
 use App\Projekt;
 use App\Termintyp;
 use App\Taetigkeitsart;
+use App\Artikel;
 use Illuminate\Http\Request;
 
 class AP_ItemController extends Controller
@@ -23,7 +24,7 @@ class AP_ItemController extends Controller
     public function pdfview(Request $request)
     {
         $ap = Arbeitsscheinprojekt::orderBy('apid', 'DESC')->take(1)->get();
-        view()->share('arbeitsscheinTicket',$ap);        
+        view()->share('ap',$ap);        
         
         
         $pid;
@@ -80,14 +81,23 @@ class AP_ItemController extends Controller
             $lastname = $i->lastname;
         }
 
-        $filename = 'Arbeitsschein_Ticket_'.$tid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
+        $artid;
+
+        foreach ($ap as $i) {
+            $artid = $i->artid;
+        }
+
+        $artikel = Artikel::where('artid', $artid)->take(1)->get();
+        view()->share('artikel', $artikel);
+
+        $filename = 'Arbeitsschein_Projekt_'.$pid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
 
        if($request->has('download')){
-            $pdf = \PDF::loadView('pdfviewAT');
+            $pdf = \PDF::loadView('pdfviewAP');
             \App::call('App\Http\Controllers\MailController@sendMailArbeitsscheinProjekt');
             return $pdf->download($filename);
         }
 
-        return view('pdfviewAT');*/
+        return view('pdfviewAP');
     }
 }

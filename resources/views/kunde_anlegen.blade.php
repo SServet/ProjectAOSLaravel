@@ -62,7 +62,7 @@
                         </li>
                         <li>
                             <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-                                document.getElementById('logout-form').submit();"> Logout
+                                document.getElementById('logout-form').submit();"> LOGOUT
                             </a>
                             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
@@ -95,9 +95,9 @@
                         <form action="{{ route('SubmitKunde') }}" method="post">
                           <table id="inputTable">
                             <tr>
-                              <td><p class="inputLabels">artidede</p></td>
+                              <td><p class="inputLabels">Anrede</p></td>
                               <td>
-                                <select data-placeholder="artidede auswählen..." id="artidede_select" class="chosen-select" style="width:350px;" tabindex="2" name="artidede">
+                                <select data-placeholder="Anrede auswählen..." id="anrede_select" class="chosen-select" style="width:350px;" tabindex="2" name="anrede">
                                   <option value=""></option>
                                   <option>Herr</option>
                                   <option>Frau</option>

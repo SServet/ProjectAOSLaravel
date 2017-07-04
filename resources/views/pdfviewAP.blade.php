@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  @foreach ($arbeitsscheinTicket as $at)
-  <title>Arbeitsschein {{$at->atID}}</title>
+  @foreach ($ap as $a)
+  <title>Arbeitsschein {{$a->apID}}</title>
   @endforeach
 
   <!-- Latest compiled and minified CSS -->
@@ -63,7 +64,7 @@
 
 <script type="text/javascript">
     function download(){
-      window.location = "{{ route('pdfviewAT',['download'=>'pdf']) }}";
+      window.location = "{{ route('pdfviewAP',['download'=>'pdf']) }}";
     }
 </script>
 
@@ -94,7 +95,7 @@
       <table class="meta">
           <tr>
             <th><span>Arbeitsscheinnummer</span></th>
-            <td><span>{{$arbeitsscheine->asid}}</span></td>
+            <td><span>{{$a->asid}}</span></td>
           </tr>
           <tr>
             <th><span>Datum</span></th>
@@ -119,47 +120,47 @@
 
             <tr>
               <th><span>Datum von</span></th>
-              <td><span>{{$arbeitsscheine->dateFrom}}</span></td>
+              <td><span>{{$a->dateFrom}}</span></td>
             </tr>
 
             <tr>
               <th><span>Datum bis</span></th>
-              <td><span>{{$arbeitsscheine->dateTo}}</span></td>
+              <td><span>{{$a->dateTo}}</span></td>
             </tr>  
               
             <tr>  
               <th><span>Zeit von</span></th>
-              <td><span>{{$arbeitsscheine->timeFrom}}</span></td>
+              <td><span>{{$a->timeFrom}}</span></td>
             </tr>
               
             <tr>
               <th><span>Zeit bis</span></th>
-               <td><span>{{$arbeitsscheine->timeTo}}</span></td>
+               <td><span>{{$a->timeTo}}</span></td>
             </tr>
               
             <tr>
               <th><span>Verrechnete Zeit</span></th>
-              <td><span>{{$arbeitsscheine->billedTime}}</span></td>
+              <td><span>{{$a->billedTime}}</span></td>
             </tr>  
               
             <tr>
               <th><span>Kulanzzeit</span></th>
-              <td><span>{{$arbeitsscheine->kulanzzeit}}</span></td>
+              <td><span>{{$a->kulanzzeit}}</span></td>
             </tr>  
             <tr>
               <th><span>Kulanzgrund</span></th>
-              <td><span>{{$arbeitsscheine->kulanzgrund}}</span></td>
+              <td><span>{{$a->kulanzgrund}}</span></td>
             </tr>
             
             <tr>
               <th><span>Beschreibung</span></th>
-              <td><span>{{$arbeitsscheine->description}}</span></td>
+              <td><span>{{$a->description}}</span></td>
             </tr>
             
             <tr>
               <th><span>Artikel</span></th>
               @foreach($artikel as $artikel)
-              <td><span>{{$arbeitsscheine->artAnz}}x {{$artikel->articlename}}</span></td>
+              <td><span>{{$artikel->artAnz}}x {{$artikel->articlename}}</span></td>
               @endforeach
             </tr>
 

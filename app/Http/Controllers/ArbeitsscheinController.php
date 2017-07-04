@@ -26,6 +26,7 @@ class ArbeitsscheinController extends Controller
 
     public function closeArbeitsschein(Request $request){
         $arbeitsschein = Arbeitsschein::where('asid', '=', $request->get('asid'))->first();
+        date_default_timezone_set('Europe/Vienna');
         $arbeitsschein->dateTo = date('Y-m-d');
         $arbeitsschein->timeTo = date('H:i:s');
         $arbeitsschein->save();
@@ -171,6 +172,10 @@ class ArbeitsscheinController extends Controller
 
 
         $as->save();
+
+        if($as->dateTo != null){
+            return \App::call('App\Http\Controllers\ItemController@pdfview');
+        }
 
         return redirect('Arbeitsschein');
     }

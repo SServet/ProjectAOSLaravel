@@ -77,7 +77,7 @@
           @endif
           <li>
             <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-            document.getElementById('logout-form').submit();"> Logout
+            document.getElementById('logout-form').submit();"> LOGOUT
           </a>
           <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
@@ -99,7 +99,7 @@
        <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
        <br>
        <br>
-       <p id="LabelContent">PROJEKT BEARBEITEN</p>
+       <p id="LabelContent">ARBEISSCHEIN BEARBEITEN</p>
        <hr>
        <!-- Chosen -->
        <!-- CSS -->
@@ -155,7 +155,11 @@
                 <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
                   <option value=""></option>
                   @foreach ($termintyp as $tt)
+                  @if($tt->ttid == $as->ttid)
+                  <option selected>{{$tt->ttid}}. {{$tt->description}}</option>
+                  @else
                   <option>{{$tt->ttid}}. {{$tt->description}}</option>
+                  @endif
                   @endforeach
                 </select>
               </td>
@@ -165,8 +169,12 @@
               <td>
                 <select data-placeholder="Tätigkeit auswählen..." id="taetigkeit_select" class="chosen-select" style="width:350px;" tabindex="2" name="tkid">
                   <option value=""></option>
-                  @foreach ($taetigkeitsart as $tk)
+                  @foreach($taetigkeitsart as $tk)
+                  @if($tk->tkid == $as->tkid)
+                  <option selected>{{$tk->tkid}}. {{$tk->description}}</option>
+                  @else
                   <option>{{$tk->tkid}}. {{$tk->description}}</option>
+                  @endif
                   @endforeach
                 </select>
               </td>
@@ -229,7 +237,6 @@
 <script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.js') }}"></script>
 
-
 <script>
 
  $(document).ready(function() {
@@ -243,24 +250,92 @@
   if (day < 10) day = "0" + day;
 
   var today = year + "-" + month + "-" + day;       
-  $("#Erstelldatum").attr("value", today);
+  $("#DatumVon").attr("value", today);
 
-  $( "#Erstelldatum" ).datepicker({
+  $( "#DatumVon" ).datepicker({
     numberOfMonths: 2,
-    dateFormat: "yy-mm-dd" 
+    dateFormat: "yy-mm-dd",
+    onSelect: function() {
+      var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+      var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+      var minDiffTime = (timeEnd - timeStart)/1000/60;
+      var dateFrom = $("#DatumVon").datepicker("getDate");
+      var dateTo = $("#DatumBis").datepicker("getDate");
+      var diffMinsDate = (dateTo - dateFrom)/1000/60;
+      var totalMinutes = minDiffTime + diffMinsDate;
+      $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
+    }
   });
 
-  $( "#AbgeschlossenAm" ).datepicker({
+  $( "#DatumBis" ).datepicker({
     numberOfMonths: 2,
-    dateFormat: "yy-mm-dd" 
+    dateFormat: "yy-mm-dd",
+    onSelect: function() {
+      var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+      var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+      var minDiffTime = (timeEnd - timeStart)/1000/60;
+      var dateFrom = $("#DatumVon").datepicker("getDate");
+      var dateTo = $("#DatumBis").datepicker("getDate");
+      var diffMinsDate = (dateTo - dateFrom)/1000/60;      
+      var totalMinutes = minDiffTime + diffMinsDate;
+      $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
+    } 
   });
-  
-  $( "#AbgerechnetAm" ).datepicker({
-    numberOfMonths: 2,
-    dateFormat: "yy-mm-dd"
+
+  $( "#UhrzeitVon" ).change(function() {
+    var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+    var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+    var minDiffTime = (timeEnd - timeStart)/1000/60;
+    var dateFrom = $("#DatumVon").datepicker("getDate");
+    var dateTo = $("#DatumBis").datepicker("getDate");
+    var diffMinsDate = (dateTo - dateFrom)/1000/60;
+    var totalMinutes = minDiffTime + diffMinsDate;
+    $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
   });
+
+  $( "#UhrzeitBis" ).change(function() {
+    var timeStart = new Date('2015-01-01 ' + document.getElementById("UhrzeitVon").value);    
+    var timeEnd = new Date('2015-01-01 ' + document.getElementById("UhrzeitBis").value);
+    var minDiffTime = (timeEnd - timeStart)/1000/60;
+    var dateFrom = $("#DatumVon").datepicker("getDate");
+    var dateTo = $("#DatumBis").datepicker("getDate");
+    var diffMinsDate = (dateTo - dateFrom)/1000/60;
+    var totalMinutes = minDiffTime + diffMinsDate;
+    $("#VerrechneteZeit").val((totalMinutes/60).toFixed(2)); // durch 60 damit z.b. 90 minuten als 1.5 angezeigt werden
+  });
+
   $(".chosen-select").chosen();
+  });
+ $('#UhrzeitVon, #UhrzeitBis').on('change',function() 
+  {
+    var start_time = $('#UhrzeitVon').val();
+    var end_time = $('#UhrzeitBis').val();
+
+    var diff = new Date("1970-1-1" + end_time) - new Date("1970-1-1" + start_time);
+    document.getElementById('VerrechneteZeit').innerHTML = diff;
 });
+    var chosen = $("#artikel_select").chosen().data('chosen');
+chosen.container.bind('keydown', function (e) {
+    if(e.which==187){
+      window.searchNow=true;
+    }else{
+      window.searchNow=false;
+    }
+});
+
+$("#artikel_select").on('chosen:no_results', function(e, params) {
+   var artikel = params.chosen.search_results[0].textContent.match(/No results match "(.+)"/)[1];
+  
+  if(window.searchNow){
+    $("#artikel_select").append('<option>'+artikel.slice(0,-1)+'</option>').trigger("chosen:updated");
+      
+       $("#artikel_select").on('change', function(e) {
+        $("#artikel").val(artikel);
+        if($("#artikelTR td").length == 0)
+          $("#artikelTR").append('<td><p class="inputLabels">ArtikelNummer</p></td><td><input type="text" class="form-control input-lg" name="artid"></td>');
+      });
+  }
+  });
 </script>
 
 

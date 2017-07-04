@@ -27,20 +27,5 @@ class MitarbeiterTableSeeder extends Seeder
             'city' => 'Ternitz',
             'address' => 'Dr. Karl Renner Straße 91/o/3'
         ]);
-
-        user::create([
-            'id' => '2',
-            'firstname' => 'Enes',
-            'lastname' => 'Adiguezel',
-            'email' => 'i12001@student.htlwrn.ac.at',
-            'password' => bcrypt('adi'),
-            'isAdmin' => 0,
-            'salutation' => 'Herr',
-            'title' => '',
-            'country' => 'Oesterreich',
-            'plz' => '2700',
-            'city' => 'Wiener Neustadt',
-            'address' => 'Doktor Eckenergasse 25'
-        ]);
     }
 }

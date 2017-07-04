@@ -76,7 +76,7 @@
           @endif
           <li>
             <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-            document.getElementById('logout-form').submit();"> Logout
+            document.getElementById('logout-form').submit();"> LOGOUT
           </a>
           <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
@@ -135,17 +135,6 @@
               <td><p class="inputLabels">Artikelanzahl</p></td>
               <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz"></td>
             </tr>
-      <tr>
-       <td><p class="inputLabels">Artikel</p></td>
-       <td>
-        <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select" style="width:350px;" tabindex="2" name="aid">
-          <option value=""></option>
-          @foreach ($artikel as $art)
-          <option>{{$art->artid}}. {{$art->description}}</option>
-          @endforeach
-        </select>
-      </td>
-    </tr>
     <tr>
       <td><p class="inputLabels">Beschreibung</p></td>
       <td><textarea id="Beschreibung" class="form-control input-lg" style="" name="description"></textarea></td>
