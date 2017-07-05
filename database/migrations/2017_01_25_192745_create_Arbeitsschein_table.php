@@ -19,7 +19,7 @@ class CreateArbeitsscheinTable extends Migration
             $table->string('mid')->references('MID')->on('mitarbeiter');
             $table->string('description');
             $table->string('artid')->references('artid')->on('artikel')->nullable();
-            $table->integer('artAnz');
+            $table->integer('artAnz')->nullable();
             $table->integer('ttid')->references('ttid')->on('termintyp');
             $table->integer('tkid')->references('tkid')->on('taetigkeitsart');
             $table->date('dateFrom');

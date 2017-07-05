@@ -88,16 +88,20 @@ class TicketController extends Controller
             $artikel->artid = $request->get('artid');
             $artikel->articlename = $request->get('artid');
             $artikel->agid=14;
-            $artikel->save();
-            $cache = $request->get('artid');
+            if($artikel->artid != '' and $artikel->articlename != ''){
+                $artikel->save();
+                $cache = $request->get('artid');
             }
+        }
 
 		$ticket->kid = explode('.',$request->get('kid'))[0];
 		$ticket->mid = $request->get('mid');
         $ticket->label = $request->input('label');
 		$ticket->description = $request->get('description');
 		$ticket->creationDate = $request->get('creationDate');
-		$ticket->artid = $cache;
+		if($ticket->artid != ''){
+                $ticket->artid = $cache;
+        }
         $ticket->artAnz = $request->get('artAnz');
 		if($request->get('finishedOn') == ''){
             $ticket->finishedOn = null;
@@ -193,9 +197,11 @@ class TicketController extends Controller
             $artikel->artid = $request->get('artid');
             $artikel->articlename = $request->get('artid');
             $artikel->agid=14;
-            $artikel->save();
-            $cache = $request->get('artid');
+            if($artikel->artid != '' and $artikel->articlename != ''){
+                $artikel->save();
+                $cache = $request->get('artid');
             }
+        }
 
 		$ATicket->tid = $request->get('tid');
 		$ATicket->mid = $request->get('mid');
@@ -204,7 +210,9 @@ class TicketController extends Controller
 		$ATicket->ttid = explode('.',$request->get('ttid'))[0];
 		$ATicket->tkid = explode('.',$request->get('tkid'))[0];
 		$ATicket->dateFrom = $request->get('dateFrom');
-		$ATicket->artid = $cache;
+		if($artikel->artid != '' and $artikel->articlename != ''){
+                $ATicket->artid = $cache;
+        }
         $ATicket->artAnz = $request->get('artAnz');
 
 		

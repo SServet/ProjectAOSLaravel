@@ -118,49 +118,61 @@
           <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
         </td>
       </tr>
-      <tr id="artikelTR">
-      </tr>
-      <tr>
-        <td><p class="inputLabels">Artikel</p></td>
-        <td>
-          <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-            <option value="" id="inputArtikel" onchange="newArtikel()"></option>
-            @foreach ($artikel as $art)
-            <option>{{$art->artid}}. {{$art->articlename}}</option>
-            @endforeach
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><p class="inputLabels">Artikelanzahl</p></td>
-        <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz"></td>
-      </tr>
-    <tr>
-      <td><p class="inputLabels">Beschreibung</p></td>
-      <td><textarea id="Beschreibung" class="form-control input-lg" style="" name="description"></textarea></td>
-    </tr>
-    <tr>
-     <td><p class="inputLabels">Termintyp</p></td>
-     <td>
-      <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
-        <option value=""></option>
-        @foreach ($termintyp as $typ)
-        <option>{{$typ->ttid}}. {{$typ->description}}</option>
-        @endforeach
-      </select>
-    </td>
-  </tr>
-  <tr>
-   <td><p class="inputLabels">Tätigkeitsart</p></td>
-   <td>
-    <select data-placeholder="Tätigkeitsart auswählen..." id="taetigkeitsart_select" class="chosen-select" style="width:350px;" tabindex="2" name="tkid">
-      <option value=""></option>
-      @foreach ($taetigkeitsart as $art)
-      <option>{{$art->tkid}}. {{$art->description}}</option>
-      @endforeach
-    </select>
-  </td>
-</tr>
+      <!--
+            <tr id="artikelTR">
+            </tr>
+            
+            <tr>
+              <td><p class="inputLabels">Artikel</p></td>
+              <td>
+                <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
+                    <option value="" id="inputArtikel" onchange="newArtikel()"></option>
+                    @foreach ($artikel as $art)
+                    <option>{{$art->artid}}. {{$art->articlename}}</option>
+                    @endforeach
+                  </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td><p class="inputLabels">Artikelanzahl</p></td>
+              <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz"></td>
+            </tr>
+            -->
+            <tr>
+             <td><p class="inputLabels">Beschreibung</p></td>
+             <td><textarea id="Beschreibung" class="form-control input-lg" name="description"></textarea></td>
+            </tr>
+            <tr>
+              <td><p class="inputLabels">Termintyp</p></td>
+              <td>
+                <select data-placeholder="Termintyp auswählen..." id="termintyp_select" class="chosen-select" style="width:350px;" tabindex="2" name="ttid">
+                  @foreach ($termintyp as $tt)
+                  <option value=""></option>
+                  @if($tt->ttid == 1)
+                  <option selected>{{$tt->ttid}}. {{$tt->description}}</option>
+                  @else
+                  <option>{{$tt->ttid}}. {{$tt->description}}</option>
+                  @endif
+                  @endforeach
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><p class="inputLabels">Tätigkeit</p></td>
+              <td>
+                <select data-placeholder="Tätigkeit auswählen..." id="taetigkeit_select" class="chosen-select" style="width:350px;" tabindex="2" name="tkid">
+                  @foreach ($taetigkeitsart as $tk)
+                  <option value=""></option>
+                  @if($tk->tkid == 1)
+                  <option selected>{{$tk->tkid}}. {{$tk->description}}</option>
+                  @else
+                  <option>{{$tk->tkid}}. {{$tk->description}}</option>
+                  @endif
+                  @endforeach
+                </select>
+              </td>
+            </tr>
 <tr>
  <td><p class="inputLabels">Datum von</p></td>
  <td><input type="date" id="DatumVon" class="form-control input-lg" name="dateFrom"></td>
@@ -234,6 +246,18 @@
 
   var today = year + "-" + month + "-" + day;       
   $("#DatumVon").attr("value", today);
+  $("#DatumBis").attr("value", today);
+
+  var hour = date.getHours();
+  var min = date.getMinutes();
+
+  if(hour < 10) hour = "0" + hour;
+  if(min < 10) min = "0" + min;
+
+  var time = hour + ":" + min;
+
+  $("#UhrzeitVon").attr("value", time);
+  $("#UhrzeitBis").attr("value", time);
 
   $( "#DatumVon" ).datepicker({
     numberOfMonths: 2,

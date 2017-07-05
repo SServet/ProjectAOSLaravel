@@ -39,7 +39,7 @@ class ArbeitsscheinController extends Controller
         $artikel = new Artikel;
         $cache;
 
-        if(count(explode('.',$request->get('artid'))) != 1){
+        if(count(explode('.',$request->get('artid'))) != 1 && $artikel != null){
             $artikel->articlename = explode('.',$request->get('artid'))[1];
             $artikel->artid = explode('.',$request->get('artid'))[0];
             $artikel->agid=14;
@@ -50,10 +50,11 @@ class ArbeitsscheinController extends Controller
             $artikel->artid = $request->get('artid');
             $artikel->articlename = $request->get('artid');
             $artikel->agid=14;
-            $artikel->save();
-
-            $cache = $request->get('artid');
+            if($artikel->artid != '' and $artikel->articlename != ''){
+                $artikel->save();
+                $cache = $request->get('artid');
             }
+        }
 
 		$arbeit->kid = explode('.',$request->get('kid'))[0];
 		$arbeit->mid = $request->get('mid');
@@ -61,7 +62,9 @@ class ArbeitsscheinController extends Controller
 		$arbeit->ttid = explode('.',$request->get('ttid'))[0];
 		$arbeit->tkid = explode('.',$request->get('tkid'))[0];
 		$arbeit->dateFrom = $request->get('dateFrom');
-        $arbeit->artid = $cache;
+        if($artikel->artid != ''){
+                $arbeit->artid = $cache;
+        }
         $arbeit->artAnz = $request->get('artAnz');
 
 		if($request->get('dateTo') == ''){

@@ -90,8 +90,10 @@ public function submitAProjekt(Request $request){
         $artikel->artid = $request->get('artid');
         $artikel->articlename = $request->get('artid');
         $artikel->agid=14;
-        $artikel->save();
-        $cache = $request->get('artid');
+        if($artikel->artid != '' and $artikel->articlename != ''){
+            $artikel->save();
+            $cache = $request->get('artid');
+        }
     }
 
     $AProjekt->pid = $request->get('pid');
@@ -180,8 +182,10 @@ public function submit(Request $request){
         $artikel->artid = $request->get('artid');
         $artikel->articlename = $request->get('artid');
         $artikel->agid=14;
-        $artikel->save();
-        $cache = $request->get('artid');
+        if($artikel->artid != '' and $artikel->articlename != ''){
+            $artikel->save();
+            $cache = $request->get('artid');
+        }
     }
 
     $projekt->kid = explode('.',$request->get('kid'))[0];
@@ -191,7 +195,9 @@ public function submit(Request $request){
     $projekt->projectType = $request->get('projectType');
 
     $projekt->dateOfOrder = $request->get('dateOfOrder');
-    $projekt->artid = $cache;
+    if($projekt->artid != ''){
+        $projekt->artid = $cache;
+    }
     $projekt->artAnz = $request->get('artAnz');
 
     if($request->get('projectVolume') == ''){
