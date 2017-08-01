@@ -32,5 +32,8 @@ class Arbeitsschein extends Model
 
     protected $guarded = [];
 
+    public function artikel(){
+        return $this->belongsToMany('App\Models\Artikel', 'arbeitsschein_artikel');
+    }
         
 }

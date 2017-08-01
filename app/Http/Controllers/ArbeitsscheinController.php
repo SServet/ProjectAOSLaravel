@@ -39,7 +39,7 @@ class ArbeitsscheinController extends Controller
         $artikel = new Artikel;
         $cache;
 
-        if(count(explode('.',$request->get('artid'))) != 1 && $artikel != null){
+        /*if(count(explode('.',$request->get('artid'))) != 1 && $artikel != null){
             $artikel->articlename = explode('.',$request->get('artid'))[1];
             $artikel->artid = explode('.',$request->get('artid'))[0];
             $artikel->agid=14;
@@ -54,7 +54,9 @@ class ArbeitsscheinController extends Controller
                 $artikel->save();
                 $cache = $request->get('artid');
             }
-        }
+        }*/
+
+        
 
 		$arbeit->kid = explode('.',$request->get('kid'))[0];
 		$arbeit->mid = $request->get('mid');
@@ -62,9 +64,14 @@ class ArbeitsscheinController extends Controller
 		$arbeit->ttid = explode('.',$request->get('ttid'))[0];
 		$arbeit->tkid = explode('.',$request->get('tkid'))[0];
 		$arbeit->dateFrom = $request->get('dateFrom');
-        if($artikel->artid != ''){
-                $arbeit->artid = $cache;
+        
+        if($request->get('artid') == ''){
+            $arbeit->artid = null;
+        }else{
+            $arbeit->artid = explode('.', $request->get('artid'))[0];
         }
+
+        
         $arbeit->artAnz = $request->get('artAnz');
 
 		if($request->get('dateTo') == ''){
@@ -112,10 +119,10 @@ class ArbeitsscheinController extends Controller
 		$arbeit->save();
 
 		if($arbeit->dateTo != null){
-            return \App::call('App\Http\Controllers\ItemController@pdfview');
+            return \App::call('App\Http\Controllers\ItemController@pdfview')->with('message', 'ggg');
         }
 
-		return redirect('Arbeitsschein');
+		return redirect('Arbeitsschein')->with('message', 'ggg');
 	}
 
     public function submitEditArbeitsschein(Request $request){

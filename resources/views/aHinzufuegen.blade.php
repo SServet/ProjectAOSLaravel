@@ -27,82 +27,78 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+  
+</head>
 
-      </head>
+<body>
 
-      <body>
+  <?php
+    $kunden = DB::table('kunden')->get();
+    $mitarbeiter = DB::table('mitarbeiter')->get();
+    $termintyp = DB::table('termintyp')->get();
+    $taetigkeitsart = DB::table('taetigkeitsart')->get();
+    $user = Auth::user();
+    $artikel = DB::table('artikel')->get();
+  ?>
+  <div id="wrapper">
+  
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <div id="divLabelAOS">
+          <a href="/home"/>
+          <p id="LabelAOS">AOS</p>
+          <p id="SubtitleAOS">Arbeitsschein Online Service</p>
+        </div>
+        <li>
+          <a href="/home">STARTSEITE</a>
+        </li>
+        <li>
+          <a href="/Tickets">TICKETS</a>
+        </li>
+        <li>
+          <a href="/Projekte">PROJEKTE</a>
+        </li>
+        <li>
+          <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
+        </li>
+        @if ($user->isAdmin == 1)
+        <li>
+          <a href="/Einstellungen">EINSTELLUNGEN</a>
+        </li>
+        @endif
+        <li>
+          <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+            document.getElementById('logout-form').submit();"> LOGOUT
+          </a>
+          <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+          </form>
+        </li>
+      </li>
+   </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
 
-        <?php
-        $kunden = DB::table('kunden')->get();
-        $mitarbeiter = DB::table('mitarbeiter')->get();
-        $termintyp = DB::table('termintyp')->get();
-        $taetigkeitsart = DB::table('taetigkeitsart')->get();
-        $user = Auth::user();
-        $artikel = DB::table('artikel')->get();
-        ?>
-
-
-        <div id="wrapper">
-
-
-
-          <!-- Sidebar -->
-          <div id="sidebar-wrapper">
-           <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-             <div id="divLabelAOS">
-              <a href="/home"/>
-              <p id="LabelAOS">AOS</p>
-              <p id="SubtitleAOS">Arbeitsschein Online Service</p>
-            </div>
-            <li>
-              <a href="/home">STARTSEITE</a>
-            </li>
-            <li>
-              <a href="/Tickets">TICKETS</a>
-            </li>
-            <li>
-              <a href="/Projekte">PROJEKTE</a>
-            </li>
-            <li>
-              <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
-            </li>
-            @if ($user->isAdmin == 1)
-            <li>
-              <a href="/Einstellungen">EINSTELLUNGEN</a>
-            </li>
-            @endif
-            <li>
-              <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-              document.getElementById('logout-form').submit();"> LOGOUT
-            </a>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-              {{ csrf_field() }}
-            </form>
-          </li>
-        </ul>
-      </div>
-      <!-- /#sidebar-wrapper -->
-
-      <!-- Page Content -->
-      <div id="page-content-wrapper">
-       <div class="container-fluid">
-        <div class="row">
-         <div class="col-lg-12">
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
           <div id="menu-toggle-div">
-           <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
-         </div>
-         <br>
-         <br>
-         <div>
-           <p id="LabelContent">ARBEITSSCHEIN > HINZUFÜGEN</p>
-           <hr>
-           <!-- Chosen -->
-           <!-- CSS -->
-           <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
+            <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
+          </div>
+          <br>
+          <br>
+          <div>
+            <p id="LabelContent">ARBEITSSCHEIN > HINZUFÜGEN</p>
+            <hr>
+            <!-- Chosen -->
+            <!-- CSS -->
+            <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
 
-
-           <form action="{{ route('SubmitArbeitS') }}" method="post">
+            <form action="{{ route('SubmitArbeitS') }}" method="post">
              <table id="inputTable">
                <tr>
                  <td><p class="inputLabels">Kunde</p></td>
@@ -117,16 +113,33 @@
               </tr>
               <tr>
                <td><p class="inputLabels">Mitarbeiter</p></td>
-               <td>
-                   
-                   <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
+               <td>   
+                  <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
               </td>
             </tr>
-            
-            <!--
+
             <tr id="artikelTR">
             </tr>
             
+            <tr>
+              <td><p class="inputLabels">Artikel </p></td>
+              <td>
+                <button type="button" class="btn .btn-default" style="width:350px;"><a href="{{url('Artikel_Hinzufuegen')}}" target="_blank">Artikel anlegen</a></button>
+              
+                <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
+                    <option value="" id="inputArtikel"></option>
+                    @foreach ($artikel as $art)
+                    <option>{{$art->artid}}. {{$art->articlename}}</option>
+                    @endforeach
+                </select>
+              </td>
+            </tr>
+                <!--
+                <button type="button" class="btn .btn-default" style="width: 350px;" onclick="add()">Artikel hinzufügen</button>
+
+              </td>
+            </tr>
+
             <tr>
               <td><p class="inputLabels">Artikel</p></td>
               <td>
@@ -138,12 +151,12 @@
                   </select>
               </td>
             </tr>
-
+            -->
             <tr>
               <td><p class="inputLabels">Artikelanzahl</p></td>
-              <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz"></td>
+              <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz" id="artAnz"></td>
             </tr>
-            -->
+            
             <tr>
              <td><p class="inputLabels">Beschreibung</p></td>
              <td><textarea id="Beschreibung" class="form-control input-lg" name="description"></textarea></td>
@@ -188,7 +201,7 @@
            </tr>
            <tr>
              <td><p class="inputLabels">Uhrzeit von</p></td>
-             <td><input type="time" id="UhrzeitVon" class="form-control input-lg" name="timeFrom" value="00:00"></td>
+             <td><input type="time" id="UhrzeitVon" class="form-control input-lg" name="timeFrom" ></td>
            </tr>
            <tr>
              <td><p class="inputLabels">Uhrzeit bis</p></td>
@@ -206,6 +219,15 @@
             <td><p class="inputLabels">Verrechnete Zeit</p></td>
             <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" step="0.5" name="billedTime"></td>
           </tr>
+          
+          <!--
+          <table id="uebersicht_ArtikelTable" name="selectedArtikel">
+            <th>ArtikelID</th>
+            <th>Artikelname</th>
+            <th>Artikelanzahl</th>
+            <th>X</th>
+          </table>
+          -->
           <tr></tr>
           <tr>
             <td></td>
@@ -213,9 +235,13 @@
               <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
             </td>
           </tr>
+
           <input type="hidden" name="mid" value="{{$user->id}}"/>
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </table>
+        <br>
+        
+        
       </form> 
     </div>
   </div>
@@ -342,6 +368,39 @@ $("#artikel_select").on('chosen:no_results', function(e, params) {
   });
 </script>
 
+  <script>
+
+    function add(){
+      var table = document.getElementById("uebersicht_ArtikelTable");
+
+      var e = document.getElementById("artikel_select");
+
+      var row = table.insertRow();
+
+      var artId = row.insertCell();
+      var artname = row.insertCell();
+      var artanz = row.insertCell();
+      var loeschen = row.insertCell();
+      var artikel = e.options[e.selectedIndex].value;
+      var res = artikel.split(".");
+      if(artikel != ""){
+        artId.innerHTML = res[0];
+        artname.innerHTML = res[1];
+        artanz.innerHTML = document.getElementById("artAnz").value;
+        loeschen.innerHTML = '<input type="button" onclick="deleteRow(this)" value="X"></input>';
+      }
+    };
+    
+  </script>
+
+
+<script>
+    function deleteRow(r){
+      var i = r.parentNode.parentNode.rowIndex;
+      document.getElementById("uebersicht_ArtikelTable").deleteRow(i);
+    };
+    
+  </script>
 
 <!-- /#page-content-wrapper -->
 
@@ -361,8 +420,3 @@ $("#artikel_select").on('chosen:no_results', function(e, params) {
 </body>
 
 </html>
-
-
-
-
-

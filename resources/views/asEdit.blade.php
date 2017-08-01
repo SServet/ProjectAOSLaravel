@@ -126,6 +126,22 @@
             <input type="text" id="Mitarbeiter-Referenz" class="form-control input-lg" name="mitarbeiter_name" value="{{$user->firstname . ' ' . $user->lastname}}" readonly>
           </td>
         </tr>
+
+        <tr>
+          <td><p class="inputLabels">Artikel </p></td>
+          <td>
+            <button type="button" class="btn .btn-default" style="width:350px;"><a href="{{url('Artikel_Hinzufuegen')}}" target="_blank">Artikel anlegen</a></button>
+              
+            <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
+              <option value="" id="inputArtikel"></option>
+              @foreach ($artikel as $art)
+                <option>{{$art->artid}}. {{$art->articlename}}</option>
+              @endforeach
+            </select>
+          </td>
+        </tr>
+
+        <!--
          <tr>
           <td><p class="inputLabels">Artikel</p></td>
             <td>
@@ -141,6 +157,7 @@
             </select>
             </td>
           </tr>
+          -->
             <tr>
               <td><p class="inputLabels">Artikelanzahl</p></td>
               <td><input type="number" class="form-control input-lg" min="1" name="artAnz" value="{{$as->artAnz}}"></td>

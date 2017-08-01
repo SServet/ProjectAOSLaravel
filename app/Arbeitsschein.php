@@ -21,5 +21,6 @@ class Arbeitsschein extends Authenticatable
     ];
 
     public $timestamps = false;
+
     
 }
