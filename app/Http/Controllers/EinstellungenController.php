@@ -47,7 +47,7 @@ class EinstellungenController extends Controller
 
 	public function exportArtikeltoCSV($type)
 	{
-		$data = artikel::get()->toArray();
+		$data = Artikel::get()->toArray();
 		return Excel::create('ArtikelExport', function($excel) use ($data) {
 			$excel->sheet('mySheet', function($sheet) use ($data)
 	        {

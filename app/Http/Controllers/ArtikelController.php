@@ -26,7 +26,11 @@ class ArtikelController extends Controller
         $artikel->description= $request->get('description');
         $artikel->unit = $request->input('unit');
     
-    	$artikel->agid = explode('.',$request->input('agid'))[0];
+        if($request->input('agid') == ''){
+            $artikel->agid = null;
+        }else{
+            $artikel->agid = explode('.',$request->input('agid'))[0];
+        }    	
     	$artikel->mwst = $request->input('mwst');
         $artikel->articlename = $request->input('articlename');
     	$artikel->salePrice = $request->input('salePrice');
