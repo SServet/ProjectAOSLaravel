@@ -40,7 +40,7 @@ class EinstellungenController extends Controller
     }
 
      public function ALoeschen(Request $request){
-    	artikel::where('artid',explode('.',$request->get('ALoeschen'))[0])->delete();
+    	Artikel::where('artid',explode('.',$request->get('ALoeschen'))[0])->delete();
 
     	return redirect("Einstellungen");
     }

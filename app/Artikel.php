@@ -18,7 +18,7 @@ class Artikel extends Model
      * @var array
      */
 
-    public $table = 'Artikel';
+    public $table = 'artikel';
     protected $fillable = [
         'artid','agid','articlename','salePrice','unit','mwst','description'
     ];
