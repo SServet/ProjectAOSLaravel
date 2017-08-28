@@ -128,19 +128,16 @@
             </tr>
         <tr>
           <td><p class="inputLabels">Artikelgruppe</p></td>
-          
-          <td>
-
-            <select id="artikelgruppe_select" class="chosen-select" style="width:350px;" tabindex="2" name="agid">
-              <option value="{{$artikel->agid}}"></option>
-              
-                 @foreach ($artikelgruppe as $artikelgruppe):
-                  @if ($artikel->agid==$artikelgruppe->agid)
-              <option selected>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
+          <td> 
+            <select data-placeholder="Artikelgruppe auswählen .." id="artikelgruppe_select" class="chosen-select" style="width:350px;" tabindex="2" name="agid">
+              <option value=""></option>
+              @foreach ($artikelgruppe as $artikelgruppe):
+                @if ($artikel->agid==$artikelgruppe->agid)
+                  <option selected>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
                 @else
-                 <option>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
-                  @endif
-                @endforeach
+                  <option>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
+                @endif
+              @endforeach
             </select>
           </td>
         </tr>

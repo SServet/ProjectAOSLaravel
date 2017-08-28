@@ -67,7 +67,11 @@ class ArtikelController extends Controller
              $artikel->unit = $request->input('unit'); 
         } 
 
-        $artikel->agid = explode('.',$request->get('agid'))[0];
+        if($request->input('agid') == ''){
+            $artikel->agid = null;
+        }else{
+            $artikel->agid = explode('.',$request->input('agid'))[0];
+        } 
        
 
         if($request->get('mwst')== ''){
