@@ -146,12 +146,12 @@
         </tr>
         <tr>
           <td><p class="inputLabels">Mwst</p></td>
-          <td><input type="text" id="mwst" class="form-control input-lg" name="label" value="{{$artikel->mwst}}"></td>
+          <td><input type="text" id="mwst" class="form-control input-lg" name="mwst" value="{{$artikel->mwst}}"></td>
         </tr>
 
         <tr>
          <td><p class="inputLabels">Verkaufspreis</p></td>
-         <td><input type="text" id="saleprice" class="form-control input-lg" name="saleprice" value="{{$artikel->salePrice}}"></td>
+         <td><input type="text" id="saleprice" class="form-control input-lg" name="salePrice" value="{{$artikel->salePrice}}"></td>
        </tr>
       <tr>
         <td></td>
