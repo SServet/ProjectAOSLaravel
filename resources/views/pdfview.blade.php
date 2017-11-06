@@ -17,22 +17,22 @@
 <style type="text/css">
   
   #logo{
-    width: 20%;
     position: absolute;
-    top: 50px;
     right: 10px;
+    top: 20px;
+    width: 45%;
   }
 
 
   /* heading */
 
-      h1 { font: bold 100% Ubuntu, Arial, sans-serif; text-align: center; text-transform: uppercase; }
+      h1 { font: bold 250% Ubuntu, Arial, sans-serif; text-align: left; text-transform: uppercase; margin-left: 25px;}
 
   /* table */
 
       table { font-size: 75%; width: 100%; }
       table { border-collapse: separate; border-spacing: 2px; }
-      th, td { border-width: 1px; padding: 0.5em; position: relative; text-align: left; }
+      th, td { border-width: 1px; padding: 0.5em; position: relative;}
       th, td { border-radius: 0.25em; border-style: solid; }
       th { background: #EEE; border-color: #BBB; }
       td { border-color: #DDD; }
@@ -48,7 +48,6 @@
       header { margin: 0 0 3em; }
       header:after { clear: both; content: ""; display: table; }
 
-      header h1 { background: #000; border-radius: 0.25em; color: #FFF; margin: 0 0 1em; padding: 0.5em 0; }
       header address { float: left; font-size: 75%; font-style: normal; line-height: 1.25; margin: 0 1em 1em 0; }
       header address p { margin: 0 0 0.25em; }
       header span, header img { display: block; float: right; }
@@ -85,9 +84,21 @@
 </style>
 
 <script type="text/javascript">
-    function download(){
-      window.location = "{{ route('pdfview',['download'=>'pdf']) }}";
-    }
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
+    } 
+    if(mm<10){
+        mm='0'+mm;
+    } 
+    var today = dd+'/'+mm+'/'+yyyy;
+
+    document.getElementById('date').innerHTML = today;
+    
 </script>
 
 </head>
@@ -103,7 +114,6 @@
           <p>{{$mitarbeiter->firstname}} {{$mitarbeiter->lastname}}</p>
           <p>Viktor-Kaplan-Str 2A<br>Wiener Neustadt, A2700</p>
         </address>
-        <span><img src=""></span>
     </header>
     @endforeach
 
@@ -121,7 +131,7 @@
           </tr>
           <tr>
             <th><span>Datum</span></th>
-            <td><span>{{date('Y-m-d H:i:s')}}</span></td>
+            <td><p id='date'></p></td>
           </tr>
       </table>
 
@@ -194,7 +204,7 @@
         </div>
 
         <div id="signature">
-          <p id="date"><span>{{date('Y-m-d H:i:s')}}</span></p>
+          <p id="date"></p>
         </div>
 
 
