@@ -19,8 +19,6 @@ class CreateTicketTable extends Migration
             $table->integer('mid')->references('mid')->on('mitarbeter');
             $table->string('label');
             $table->string('description')->nullable();
-            $table->string('artid')->references('artid')->on('artikel')->nullable();
-            $table->integer('artAnz');
             $table->date('creationDate');
             $table->date('finishedOn')->nullable();
             $table->date('settledOn')->nullable();

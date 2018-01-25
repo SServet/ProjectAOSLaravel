@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Models\Arbeitsscheinprojekt;
-use App\Models\Projekte;
-use App\Models\Artikel;
+use App\Models\Arbeitsschein;
+use App\Models\Projects;
+use App\Models\Article;
+use Illuminate\Support\Facades\DB;
 
 
 class ProjektController extends Controller
@@ -32,7 +33,7 @@ class ProjektController extends Controller
 }
 
 public function closeProjekt(Request $request){
-    $projekt = Projekte::where('pid', '=', $request->get('pid'))->first();
+    $projekt = projects::where('pid', '=', $request->get('pid'))->first();
     $projekt->finishedOn = date('Y-m-d');
     
     if(!empty($projekt->settledOn)){
@@ -44,7 +45,7 @@ public function closeProjekt(Request $request){
     $projekt->save();
 
     if($projekt->isClosed === 1){
-        $p = Projekte::orderBy('lastUpdatedAt', 'DESC')->take(1)->get();
+        $p = projects::orderBy('lastUpdatedAt', 'DESC')->take(1)->get();
         view()->share('p',$p);
         \App::call('App\Http\Controllers\MailController@sendMailProjektClosed');
     }
@@ -53,7 +54,7 @@ public function closeProjekt(Request $request){
 }
 
 public function settleProjekt(Request $request){
-    $projekt = Projekte::where('pid', '=', $request->get('pid'))->first();
+    $projekt = projects::where('pid', '=', $request->get('pid'))->first();
     $projekt->settledOn = date('Y-m-d');
     $projekt->finishedOn = date('Y-m-d');
 
@@ -66,7 +67,7 @@ public function settleProjekt(Request $request){
     $projekt->save();
 
     if($projekt->isClosed === 1){
-        $p = Projekte::orderBy('lastUpdatedAt', 'DESC')->take(1)->get();
+        $p = projects::orderBy('lastUpdatedAt', 'DESC')->take(1)->get();
         view()->share('p',$p);
         \App::call('App\Http\Controllers\MailController@sendMailProjektClosed');
     }
@@ -76,7 +77,7 @@ public function settleProjekt(Request $request){
 
 public function submitAProjekt(Request $request){
     $AProjekt = new Arbeitsscheinprojekt;
-    $artikel = new Artikel;
+    $artikel = new Article;
     $cache;
 
     if(count(explode('.',$request->get('artid'))) != 1){
@@ -167,38 +168,15 @@ public function submitAProjekt(Request $request){
 
 public function submit(Request $request){
 
-  $projekt = new Projekte;
-  $artikel = new Artikel;
-  $cache;
-
-  if(count(explode('.',$request->get('artid'))) != 1){
-    $artikel->articlename = explode('.',$request->get('artid'))[1];
-    $artikel->artid = explode('.',$request->get('artid'))[0];
-    $artikel->agid=14;
-    $cache = explode('.',$request->get('artid'))[0];
-
-    }
-    else{
-        $artikel->artid = $request->get('artid');
-        $artikel->articlename = $request->get('artid');
-        $artikel->agid=14;
-        if($artikel->artid != '' and $artikel->articlename != ''){
-            $artikel->save();
-            $cache = $request->get('artid');
-        }
-    }
-
+    $projekt = new projects;
+ 
     $projekt->kid = explode('.',$request->get('kid'))[0];
     $projekt->mid = $request->get('mid');
     $projekt->label = $request->input('label');
     $projekt->description = $request->get('description');
     $projekt->projectType = $request->get('projectType');
 
-    $projekt->dateOfOrder = $request->get('dateOfOrder');
-    if($projekt->artid != ''){
-        $projekt->artid = $cache;
-    }
-    $projekt->artAnz = $request->get('artAnz');
+    $projekt->creationDate = $request->get('creationDate');
 
     if($request->get('projectVolume') == ''){
       $projekt->projectVolume = null;
@@ -206,7 +184,6 @@ public function submit(Request $request){
     } else {
        $projekt->projectVolume = $request->get('projectVolume');
     }
-
 
     if($request->get('finishedOn') == ''){
        $projekt->finishedOn = null;
@@ -222,18 +199,7 @@ public function submit(Request $request){
         $projekt->settledOn = $request->get('settledOn');
     }
 
-    if($request->get('artid') == ''){
-        $projekt->artid = null;
-    }else{
-        $projekt->artid = $cache;
-    }
-
-    if($request->get('artAnz') == ''){
-        $projekt->artAnz = null;
-    }else{
-        $projekt->artAnz = $request->get('artAnz');
-    }
-
+  
     if($projekt->finisehOn != null and $projekt->settledOn != null){
         $projekt->isClosed = 1;
     }
@@ -255,14 +221,11 @@ public function submitEditProjekt(Request $request){
     $projekt->pid = $request->get('pid');
     $projekt->kid = $request->get('kid');
     $projekt->mid = $request->get('mid');   
-    $projekt->artid = explode('.',$request->get('artid'))[0];
-    $projekt->artAnz = $request->get('artAnz');
-
 
 
     $projekt->label = $request->input('label');
     $projekt->description = $request->get('description');
-    $projekt->dateOfOrder = $request->get('dateOfOrder');
+    $projekt->creationDate = $request->get('creationDate');
 
     if($request->get('finishedOn') == ''){
         $projekt->finishedOn = null;

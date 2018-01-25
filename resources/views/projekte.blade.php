@@ -33,7 +33,7 @@
 
       <?php
         $user = Auth::user();
-        $projekte = DB::table('projekte')->get();
+        $projekte = DB::table('projects')->get();
         $kunden = DB::table('kunden')->get();
         $mitarbeiter = DB::table('mitarbeiter')->get();
       ?>

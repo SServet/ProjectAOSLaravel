@@ -33,7 +33,7 @@
 
       <?php
         $user = Auth::user();
-        $artikel = DB::table('artikel')->get();
+        $artikel = DB::table('article')->get();
         
       ?>
         
@@ -108,7 +108,7 @@
               {{$artikel->artid}}
             </td>
             <td>
-              {{$artikel->artid}}
+              {{$artikel->articlename}}
             </td>
             <td>
               {{$artikel->description}}

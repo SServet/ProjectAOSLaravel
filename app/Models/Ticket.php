@@ -16,6 +16,7 @@ class Ticket extends Model
 	public $timestamps = false;
 
     protected $fillable = [
+        'tid',
         'atid',
         'kid',
         'mid',

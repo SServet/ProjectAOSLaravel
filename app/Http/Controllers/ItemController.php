@@ -9,7 +9,7 @@ use App\User;
 use App\Kunden;
 use App\Termintyp;
 use App\Taetigkeitsart;
-use App\Artikel;
+use App\Article;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -72,7 +72,7 @@ class ItemController extends Controller
             $artId = $i->artid;
         }
 
-        $artikel = Artikel::where('artid', $artId)->take(1)->get();
+        $artikel = Article::where('artid', $artId)->take(1)->get();
         view()->share('artikel', $artikel);
 
        if($request->has('download')){

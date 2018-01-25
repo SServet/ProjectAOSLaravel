@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'hello@example.com',
+        'address' => 'fbenes42@hotmail.com',
         'name' => 'NoReply',
     ],
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION'),
+    'encryption' => env('MAIL_ENCRYPTION', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,5 @@ return [
     | been provided here, which will work well on most of your systems.
     |
     */
-
-    'sendmail' => '/usr/sbin/sendmail -bs',
 
 ];

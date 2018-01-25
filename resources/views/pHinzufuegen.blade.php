@@ -36,9 +36,9 @@
         <?php
         $kunden = DB::table('kunden')->get();
         $mitarbeiter = DB::table('mitarbeiter')->get();
-        $projekte = DB::table('projekte')->get();
+        $projekte = DB::table('projects')->get();
         $user = Auth::user();
-        $artikel = DB::table('artikel')->get();
+       
         ?>
 
         <div id="wrapper">
@@ -123,38 +123,6 @@
                   </select>
                </td>
             </tr>
-            <tr id="artikelTR">
-            </tr>
-            <tr>
-                <td><p class="inputLabels">Artikel </p></td>
-                <td>
-                  <button type="button" class="btn .btn-default" style="width:350px;"><a href="{{url('Artikel_Hinzufuegen')}}" target="_blank">Artikel anlegen</a></button>
-              
-                  <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-                    <option value="" id="inputArtikel"></option>
-                    @foreach ($artikel as $art)
-                      <option>{{$art->artid}}. {{$art->articlename}}</option>
-                    @endforeach
-                  </select>
-                </td>
-            </tr>
-            <!--
-            <tr>
-              <td><p class="inputLabels">Artikel</p></td>
-              <td>
-                <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-                    <option value="" id="inputArtikel" onchange="newArtikel()"></option>
-                    @foreach ($artikel as $art)
-                    <option>{{$art->artid}}. {{$art->articlename}}</option>
-                    @endforeach
-                  </select>
-              </td>
-            </tr>
-            -->
-            <tr>
-              <td><p class="inputLabels">Artikelanzahl</p></td>
-              <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz"></td>
-            </tr>
             <tr>
               <td><p class="inputLabels">Bezeichnung</p></td>
               <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label"></td>
@@ -179,7 +147,7 @@
           </tr>
           <tr>
            <td><p class="inputLabels">Bestelldatum</p></td>
-           <td><input type="date" id="Bestelldatum" class="form-control input-lg" name="dateOfOrder"></td>
+           <td><input type="date" id="Bestelldatum" class="form-control input-lg" name="creationDate"></td>
          </tr>
          <tr>
            <td><p class="inputLabels">Abgeschlossen Am</p></td>

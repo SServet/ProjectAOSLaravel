@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Artikel;
+use App\Article;
 use App\Kunden;
 use App\Termintyp;
 use DB;
@@ -47,7 +47,7 @@ class EinstellungenController extends Controller
 
 	public function exportArtikeltoCSV($type)
 	{
-		$data = Artikel::get()->toArray();
+		$data = Article::get()->toArray();
 		return Excel::create('ArtikelExport', function($excel) use ($data) {
 			$excel->sheet('mySheet', function($sheet) use ($data)
 	        {
@@ -83,7 +83,7 @@ class EinstellungenController extends Controller
 								$insert[] = ['artid' => $v['artid'], 'description' => $v['description'], 'unit' => $v['unit'], 'agid' => $v['agid'], 'mwst' => $v['mwst'], 'articlename' => $v['articlename'], 'saleprice' => $v['saleprice']];
 								if(!empty($insert)){
 						
-								DB::table('artikel')->insert($insert);
+								DB::table('article')->insert($insert);
 							}
 
 							

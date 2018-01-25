@@ -33,7 +33,7 @@
 
       <?php
         $user = Auth::user();
-        $arbeitsscheine = DB::table('arbeitsschein')->get();
+        $arbeitsscheine = DB::table('arbeitsschein')->get(); //where pid und tid = 0
         $kunden = DB::table('kunden')->get();
       ?>
         

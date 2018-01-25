@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Artikel;
+use App\Models\Article;
 class ArtikelController extends Controller
 {
     public function showArtikelAnlegen(){
@@ -20,7 +20,7 @@ class ArtikelController extends Controller
 
     public function submit(Request $request){
 
-    	$artikel = new Artikel;
+    	$artikel = new Article;
 
         $artikel->artid = $request->input('artid');
         $artikel->description= $request->get('description');
@@ -42,10 +42,14 @@ class ArtikelController extends Controller
     }
      public function submitEditArtikel(Request $request){
   
-       $artikel = Artikel::where('artid', $request->get('artid'))->first();         
+       $artikel = Article::where('artid', $request->get('artid'))->first();         
         //fehler
-        $artikel->artid = $request->input('artid');
-        
+        if($request->get('artid') == ''){
+              $artikel->artid = null;
+        } else {
+            $artikel->artid = $request->input('artid');
+        }
+
         if($request->get('articlename')== ''){
             $artikel->articlename  = null;
             

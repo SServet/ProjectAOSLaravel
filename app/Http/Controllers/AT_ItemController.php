@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use \PDF;
 use App\Http\Requests;
 use App\User;
-use App\Arbeitsscheinticket;
+use App\Arbeitsschein;
 use App\Kunden;
 use App\Ticket;
 use App\Termintyp;
 use App\Taetigkeitsart;
-use App\Artikel;
+use App\Article;
 use Illuminate\Http\Request;
 
 class AT_ItemController extends Controller
@@ -23,7 +23,8 @@ class AT_ItemController extends Controller
      */
     public function pdfview(Request $request)
     {
-        $at = Arbeitsscheinticket::orderBy('atid', 'DESC')->take(1)->get();
+       // $at = Arbeitsschein::orderBy('atid', 'DESC')->take(1)->get();
+        $at = Arbeitsschein::where('tid', '>', 0)->take(1)->get();
         view()->share('at',$at);        
         
         
@@ -87,17 +88,17 @@ class AT_ItemController extends Controller
             $artid = $i->artid;
         }
 
-        $artikel = Artikel::where('artid', $artid)->take(1)->get();
+        $artikel = Article::where('artid', $artid)->take(1)->get();
         view()->share('artikel', $artikel);
 
         $filename = 'Arbeitsschein_Ticket_'.$tid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';
 
        if($request->has('download')){
             $pdf = \PDF::loadView('pdfviewAT');
-            \App::call('App\Http\Controllers\MailController@sendMailArbeitsscheinTicket');
+            //\App::call('App\Http\Controllers\MailController@sendMailArbeitsscheinTicket');
             return $pdf->download($filename);
-        }
-
+        } 
+ 
         return view('pdfviewAT');
     }
 }

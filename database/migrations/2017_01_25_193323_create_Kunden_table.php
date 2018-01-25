@@ -24,7 +24,7 @@ class CreateKundenTable extends Migration
             $table->string('country')->nullable();  
             $table->string('plz')->nullable();          
             $table->string('city')->nullable();            
-            $table->string('street')->nullable();            
+            $table->string('address')->nullable();            
             $table->string('telephone')->nullable();
             $table->string('mobilephone')->nullable();
             $table->string('fax')->nullable();           

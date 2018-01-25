@@ -49,7 +49,7 @@
 
         <?php
         $termintyp = DB::table('termintyp')->get();
-        $artikel = DB::table('artikel')->get();
+        $artikel = DB::table('article')->get();
         ?>
 
     	<div id="wrapper">

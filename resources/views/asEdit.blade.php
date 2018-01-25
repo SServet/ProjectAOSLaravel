@@ -44,7 +44,7 @@
        $asid = Input::get('asid');
        $as = DB::table('arbeitsschein')->where('asid', $asid)->get();
        $as = $as[0];
-       $artikel = DB::table('Artikel')->get();
+       $artikel = DB::table('article')->get();
        ?>
 
        <div id="wrapper">

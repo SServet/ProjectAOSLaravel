@@ -14,7 +14,7 @@ class CreateMitarbeiterTable extends Migration
     public function up()
     {
         Schema::create('mitarbeiter', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id'); //id lassen wegen loging
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();

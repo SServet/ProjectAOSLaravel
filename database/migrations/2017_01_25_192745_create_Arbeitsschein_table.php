@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArbeitsscheinTable extends Migration
+class CreatearbeitsscheinTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,12 +16,10 @@ class CreateArbeitsscheinTable extends Migration
         Schema::create('arbeitsschein', function (Blueprint $table) {
             $table->increments('asid');
             $table->string('kid')->references('kid')->on('kunden');
-            $table->string('mid')->references('MID')->on('mitarbeiter');
-            $table->string('description');
-            $table->string('artid')->references('artid')->on('artikel')->nullable();
-            $table->integer('artAnz')->nullable();
-            $table->integer('ttid')->references('ttid')->on('termintyp');
+            $table->string('mid')->references('mid')->on('mitarbeiter');
+             $table->integer('ttid')->references('ttid')->on('termintyp');
             $table->integer('tkid')->references('tkid')->on('taetigkeitsart');
+            $table->string('description');           
             $table->date('dateFrom');
             $table->date('dateTo')->nullable();
             $table->time('timeFrom')->nullable();
@@ -29,6 +27,9 @@ class CreateArbeitsscheinTable extends Migration
             $table->decimal('billedTime',6,2)->nullable();
             $table->decimal('kulanzzeit',6,2)->nullable();
             $table->string('kulanzgrund')->nullable();
+            //überlegen mit NULL oder 0 wegen reference
+            $table->string('pid')->references('pid')->on('projects');
+            $table->string('tid')->references('tid')->on('ticket');
            });
     }
 

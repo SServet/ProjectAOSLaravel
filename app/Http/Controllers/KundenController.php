@@ -23,7 +23,7 @@ class KundenController extends Controller
     	$kunde->country = $request->input('land');
     	$kunde->plz = $request->input('plz');
     	$kunde->city = $request->input('stadt');
-    	$kunde->street = $request->input('strasse');
+    	$kunde->address = $request->input('strasse');
     	$kunde->telephone = $request->input('telefonnumer');
     	$kunde->mobilephone = $request->input('handynummer');
     	$kunde->fax = $request->input('fax');

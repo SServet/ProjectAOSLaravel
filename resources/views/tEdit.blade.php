@@ -37,12 +37,12 @@
        use Illuminate\Support\Facades\Input;
        $kunden = DB::table('kunden')->get();
        $mitarbeiter = DB::table('mitarbeiter')->get();
-       $arbeitsscheinticket = DB::table('arbeitsscheinTicket')->get();
+       $arbeitsscheinticket = DB::table('arbeitsschein')->where('tid',1)->get();
        $user = Auth::user();
        $tid = Input::get('tid');
        $ticket = DB::table('ticket')->where('tid', $tid)->get();
        $ticket = $ticket[0];
-       $artikel = DB::table('artikel')->get();
+       $artikel = DB::table('article')->get();
        ?>
 
        <div id="wrapper">

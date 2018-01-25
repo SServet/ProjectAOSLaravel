@@ -27,173 +27,178 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+      <![endif]-->
 
-</head>
+    </head>
 
 
-<body>
-  
-    <?php
-        $artikelgruppe = DB::table('artikelgruppe')->get();
-        $user = Auth::user();
-        ?>
+    <body>
 
-  <div id="wrapper">
+      <?php
+      $artikelgruppe = DB::table('articlegroup')->get();
+      $user = Auth::user();
+      ?>
+
+      <div id="wrapper">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
             <li class="sidebar-brand">
               <div id="divLabelAOS">
-                            <a href="/home"/>
-                            <p id="LabelAOS">AOS</p>
-                            <p id="SubtitleAOS">Arbeitsschein Online Service</p>
-                        </div>
-                        <li>
-                            <a href="/home">STARTSEITE</a>
-                        </li>
-                        <li>
-                            <a href="/Tickets">TICKETS</a>
-                        </li>
-                        <li>
-                            <a href="/Projekte">PROJEKTE</a>
-                        </li>
-                        <li>
-                            <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
-                        </li>
-                        @if ($user->isAdmin == 1)
-                        <li>
-                            <a href="/Einstellungen">EINSTELLUNGEN</a>
-                        </li>
-                        @endif
-                        <li>
-                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
-                                document.getElementById('logout-form').submit();"> LOGOUT
-                            </a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                 <!-- /#sidebar-wrapper -->
+                <a href="/home"/>
+                <p id="LabelAOS">AOS</p>
+                <p id="SubtitleAOS">Arbeitsschein Online Service</p>
+              </div>
+              <li>
+                <a href="/home">STARTSEITE</a>
+              </li>
+              <li>
+                <a href="/Tickets">TICKETS</a>
+              </li>
+              <li>
+                <a href="/Projekte">PROJEKTE</a>
+              </li>
+              <li>
+                <a href="/Arbeitsschein">ARBEITSSCHEINE</a>
+              </li>
+              @if ($user->isAdmin == 1)
+              <li>
+                <a href="/Einstellungen">EINSTELLUNGEN</a>
+              </li>
+              @endif
+              <li>
+                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); 
+                document.getElementById('logout-form').submit();"> LOGOUT
+              </a>
+              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+              </form>
+            </li>
+          </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
 
 
-                <!-- Page Content -->
-                <div id="page-content-wrapper">
-                 <div class="container-fluid">
-                    <div class="row">
-                       <div class="col-lg-12">
-                        <div id="menu-toggle-div">
-                          <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
-                          </div>
-                       </div>
-                       <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
-                       <br>
-                       <br>
-                       <p id="LabelContent">Artikel > HINZUFÜGEN</p>
-                       <hr>
-                       <!-- Chosen -->
-                       <!-- CSS -->
-                       <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
-                        
-                        <form action="{{ route('SubmitArtikel') }}" method="post">
-                          <table id="inputTable">
-                            <tr>
-                              <td><p class="inputLabels">Artikelnummer</p></td>
-                              <td><input type="text" id="artid" class="form-control input-lg" name="artid"></td>
-                            </tr>
-                            <tr>
-                              <td><p class="inputLabels">Artikelname</p></td>
-                              <td><input type="text" id="articlename" class="form-control input-lg" name="articlename"></td>
-                            </tr>
-                            <tr>
-                              <td><p class="inputLabels">Beschreibung</p></td>
-                              <td><textarea id="description" class="form-control input-lg" name="description">   </textarea>
-                             </td>
-                            </tr>
-                            <tr>
-                              <td><p class="inputLabels">Einheit</p></td>
-                              <td><input type="text" id="unit" class="form-control input-lg" name="unit" ></td>
-                            </tr>
-                            <tr>
-                              <td><p class="inputLabels">Artikelgruppe</p></td>
-                              <td> <select data-placeholder="Artikelgruppe auswählen .." id="artikelgruppe_select" class="chosen-select" style="width:350px;" tabindex="2" name="agid">
-                                  <option value=""></option>
-                                    @foreach ($artikelgruppe as $artikelgruppe):
-                                  <option>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
-                                    @endforeach
-                                  </select>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+         <div class="container-fluid">
+          <div class="row">
+           <div class="col-lg-12">
+            <div id="menu-toggle-div">
+              <a href="#"><img src="{{ asset('assets/img/grayBurger.png') }}" href="#menu-toggle" style="width: 40px" id="menu-toggle"></a>
+            </div>
+          </div>
+          <img src="{{ asset('assets/img/rz_logo.jpg') }}" id="logoRight">
+          <br>
+          <br>
+          <p id="LabelContent">Artikel > HINZUFÜGEN</p>
+          <hr>
+          <!-- Chosen -->
+          <!-- CSS -->
+          <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
 
-                              </td>
-                            </tr>
-                            <tr>
-                              <td><p class="inputLabels">Mwst</p></td>
-                              <td><select data-placeholder="Mwst" id="mwst" class="chosen-select" style="width:350px;"  name="mwst">
-                                <option>0</option>
-                                <option>10</option>
-                                  <option>20</option>
-                                  </select>
-                              </td>
+          <form action="{{ route('SubmitArtikel') }}" method="post">
+            <table id="inputTable">
+              <tr>
+                <td><p class="inputLabels">Artikelnummer</p></td>
+                <td><input type="text" id="artid" class="form-control input-lg" name="artid"></td>
+              </tr>
+              <tr>
+                <td><p class="inputLabels">Artikelname</p></td>
+                <td><input type="text" id="articlename" class="form-control input-lg" name="articlename"></td>
+              </tr>
+              <tr>
+                <td><p class="inputLabels">Beschreibung</p></td>
+                <td><textarea id="description" class="form-control input-lg" name="description">   </textarea>
+                </td>
+              </tr>
+              <tr>
+                <td><p class="inputLabels">Einheit</p></td>
+                <td>
+                  <select data-placeholder="Einheit auswählen..." id="einheit_select" class="chosen-select" style="width:350px;" tabindex="2" name="unit">
+                    <option value="Stück">Stück</option>
+                    <option value="Stunden">Stunden</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><p class="inputLabels">Artikelgruppe</p></td>
+                <td> <select data-placeholder="Artikelgruppe auswählen .." id="artikelgruppe_select" class="chosen-select" style="width:350px;" tabindex="2" name="agid">
+                  <option value=""></option>
+                  @foreach ($artikelgruppe as $artikelgruppe):
+                  <option>{{$artikelgruppe->agid}}. {{$artikelgruppe->description}}</option>
+                  @endforeach
+                </select>
 
-                            </tr>
-                            
-                            <tr>
-                              <td><p class="inputLabels">Verkaufspreis</p></td>
-                              <td><input type="number" id="salePrice" value="0" class="form-control input-lg" placeholder="in Euro" step="0.01" name="salePrice"></td>                           
-                            </tr>
-                           
-                            <tr></tr>
-                            <tr>
-                              <td></td>
-                              <td>
-                                <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
-                              </td>
-                            </tr>
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          </table>
-                        </form>
+              </td>
+            </tr>
+            <tr>
+              <td><p class="inputLabels">Mwst</p></td>
+              <td><select data-placeholder="Mwst" id="mwst" class="chosen-select" style="width:350px;"  name="mwst">
+                <option>0</option>
+                <option>10</option>
+                <option>20</option>
+              </select>
+            </td>
 
-                    </div>
-                <!-- /#page-content-wrapper -->
+          </tr>
 
-                </div>
-              <!-- /#wrapper -->
+          <tr>
+            <td><p class="inputLabels">Verkaufspreis</p></td>
+            <td><input type="number" id="salePrice" value="0" class="form-control input-lg" placeholder="in Euro" step="0.01" name="salePrice"></td>                           
+          </tr>
+
+          <tr></tr>
+          <tr>
+            <td></td>
+            <td>
+              <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
+            </td>
+          </tr>
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        </table>
+      </form>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
 
 
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.js') }}"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/css/chosen.jquery.js') }}"></script>
 
-<script>
+  <script>
 
- $(document).ready(function() {
-  var date = new Date();
+   $(document).ready(function() {
+    var date = new Date();
 
-  var day = date.getDate();
-  var month = date.getMonth() + 1;
-  var year = date.getFullYear();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
 
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
 
-  var today = year + "-" + month + "-" + day;       
-  $("#DatumVon").attr("value", today);
+    var today = year + "-" + month + "-" + day;       
+    $("#DatumVon").attr("value", today);
 
-  $( "#DatumVon" ).datepicker({
-    numberOfMonths: 2,
-    dateFormat: "yy-mm-dd" 
+    $( "#DatumVon" ).datepicker({
+      numberOfMonths: 2,
+      dateFormat: "yy-mm-dd" 
+    });
+
+    $( "#DatumBis" ).datepicker({
+      numberOfMonths: 2,
+      dateFormat: "yy-mm-dd"
+    });
+    $(".chosen-select").chosen();
   });
-  
-  $( "#DatumBis" ).datepicker({
-    numberOfMonths: 2,
-    dateFormat: "yy-mm-dd"
-  });
-  $(".chosen-select").chosen();
-});
 </script>
 
 
