@@ -146,23 +146,6 @@
             </select>
           </td>
         </tr>
-        <!--
-        <tr>
-          <td><p class="inputLabels">Artikel</p></td>
-          <td>
-            <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-              <option value="" id="inputArtikel" onchange="newArtikel()"></option>
-              @foreach ($artikel as $artkl):
-              @if ($artkl->artid==$projekt->artid)
-              <option selected>{{$artkl->artid}}. {{$artkl->articlename}}</option>
-              @else
-              <option>{{$artkl->artid}}. {{$artkl->articlename}}</option>
-              @endif
-              @endforeach
-            </select>
-          </td>
-        </tr>
-        -->
         <tr>
           <td><p class="inputLabels">Artikelanzahl</p></td>
           <td><input type="number" class="form-control input-lg" min="1" name="artAnz" value="{{$projekt->artAnz}}"></td>

@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'fbenes42@hotmail.com',
+        'address' => 'noreplyssit@gmail.com',
         'name' => 'NoReply',
     ],
 
@@ -109,5 +109,11 @@ return [
     | been provided here, which will work well on most of your systems.
     |
     */
-
+'stream' => [
+'ssl' => [
+    'allow_self_signed' => true,
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+],
+],
 ];

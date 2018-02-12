@@ -210,17 +210,7 @@
                             </div>
                             </td>
                         </tr>
-
-
-
-
-
-
-
-
-
-
-                        <tr>
+        <tr>
                             <th id="labelImport" style="bottom:-100px;">Artikel</th>
                         </tr>
                         <tr>

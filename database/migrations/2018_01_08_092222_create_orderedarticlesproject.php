@@ -14,7 +14,7 @@ class CreateOrderedarticlesproject extends Migration
     public function up()
     {
         Schema::create('orderedarticlesproject', function (Blueprint $table) {
-            $table->string('PID')->references('PID')->on('arbeitsschein');
+            $table->string('PID')->references('PID')->on('Projects');
             $table->string('artID')->references('artID')->on('article');
             $table->string('unit');
             $table->integer('count');                       

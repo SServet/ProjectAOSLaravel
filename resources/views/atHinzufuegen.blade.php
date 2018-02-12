@@ -139,28 +139,30 @@
                       </select>
                     </td>
                   </tr>
-                <!--
-                <button type="button" class="btn .btn-default" style="width: 350px;" onclick="add()">Artikel hinzufügen</button>
-
-              </td>
-            </tr>
-
-            <tr>
-              <td><p class="inputLabels">Artikel</p></td>
-              <td>
-                <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
-                    <option value="" id="inputArtikel" onchange="newArtikel()"></option>
-                    @foreach ($artikel as $art)
-                    <option>{{$art->artid}}. {{$art->articlename}}</option>
-                    @endforeach
-                  </select>
-              </td>
-            </tr>
-          -->
           <tr>
             <td><p class="inputLabels">Artikelanzahl</p></td>
             <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz" id="artAnz"></td>
           </tr>
+           <tr >
+                  <td colspan="2" style="padding-top:1em; padding-bottom:1em;"> 
+
+                    <table id="artTable" class="blueTable" style="border-style:hidden;width:680px;" name="articles">
+                      <thead>
+                        <tr style="border-style:hidden;">
+                          <th>Artikel</th>
+                          <th style="width:22.5%;">
+                            Einheit
+                          </th>
+                          <th style="width:20%;">Anzahl</th>
+                          <th style="width:5%;"></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
           <tr>
            <td><p class="inputLabels">Beschreibung</p></td>
            <td><textarea id="Beschreibung" class="form-control input-lg" name="description"></textarea></td>
@@ -233,15 +235,6 @@
       <td><p class="inputLabels">Verrechnete Zeit</p></td>
       <td><input type="number" id="VerrechneteZeit" class="form-control input-lg" step="0.5" name="billedTime"></td>
     </tr>
-
-          <!--
-          <table id="uebersicht_ArtikelTable" name="selectedArtikel">
-            <th>ArtikelID</th>
-            <th>Artikelname</th>
-            <th>Artikelanzahl</th>
-            <th>X</th>
-          </table>
-        -->
         <tr></tr>
         <tr>
           <td></td>
@@ -255,21 +248,6 @@
 
         <input type="hidden" name="mid" value="{{$user->id}}"/>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      </table>
-      <br>
-      <table id="artTable" class="blueTable" style="border-style:hidden;width:480px;" name="articles">
-        <thead>
-          <tr style="border-style:hidden;">
-            <th>Artikel</th>
-            <th style="width:22.5%;">
-              Einheit
-            </th>
-            <th style="width:20%;">Anzahl</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-        </tbody>
       </table>
       
     </form> 
@@ -319,8 +297,21 @@
     $('.clockpicker').clockpicker();
 
 
+    var tbody = $("#artTable tbody");
+    if (tbody.children().length == 0) {
+      $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+    }else{
+      $('#noArticles').remove();
+    }
     var array = [];
     $("#artikel_select").on('change', function(){
+      var tbody = $("#artTable tbody");
+      if (tbody.children().length == 0) {
+        $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+      }else{
+        $('#noArticles').remove();
+      }
+
 
       var artikel = $('#artikel_select').val();
       var einheit = $("#einheit_select").val();
@@ -333,11 +324,13 @@
 
       if(jQuery.inArray(artikel, articles) == -1){
         articles.push(artikel);
-        $('.blueTable > tbody:last-child').append('<tr id="'+artikel+'"><td>'+artikel+'</td><td>'+einheit2+'</td><td contenteditable style="text-align-last:center;">'+anz+'</td><td style="border-style:hidden;width:50px;"><input type="button" onclick="deleteData(\''+artikel+'\')" value="Löschen"></input></td></tr>');
+        $('.blueTable > tbody:last-child').append('<tr id="'+artikel+'"><td>'+artikel+'</td><td>'+einheit2+'</td><td contenteditable style="text-align-last:center;">'+anz+'</td><td style="border-style:hidden;width:50px;"><input type="button" class="buttonToDelete" onclick="deleteData(\''+artikel+'\')" value="Löschen"></input></td></tr>');
       }
 
     
       });
+
+
     $("#submitButton").on("click", function(){
      var myTableArray = [];
      $("table#artTable tr").each(function() {
@@ -449,30 +442,14 @@
     articles.splice($.inArray(toDelete, articles), 1);
     var row = document.getElementById(toDelete);
     row.parentNode.removeChild(row);
+    
+     var tbody = $("#artTable tbody");
+      if (tbody.children().length == 0) {
+        $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+      }else{
+        $('#noArticles').remove();
+      }
   }
-/**
-  function add(){
-    var table = document.getElementById("uebersicht_ArtikelTable");
-
-    var e = document.getElementById("artikel_select");
-
-    var row = table.insertRow();
-
-    var artId = row.insertCell();
-    var artname = row.insertCell();
-    var artanz = row.insertCell();
-    var loeschen = row.insertCell();
-    var artikel = e.options[e.selectedIndex].value;
-    var res = artikel.split(".");
-    if(artikel != ""){
-      artId.innerHTML = res[0];
-      artname.innerHTML = res[1];
-      artanz.innerHTML = document.getElementById("artAnz").value;
-      loeschen.innerHTML = '<input type="button" onclick="deleteRow(this)" value="X"></input>';
-    }
-  };
-  **/
-
 
 </script>
 
@@ -482,25 +459,6 @@
     var i = r.parentNode.parentNode.rowIndex;
     document.getElementById("uebersicht_ArtikelTable").deleteRow(i);
   };
-/*
-   function getTableData() {
-        document.getElementById('info').innerHTML = "";
-        var myTab = document.getElementById('artTable');
-
-        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
-        for (i = 1; i < myTab.rows.length; i++) {
-
-            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
-            var objCells = myTab.rows.item(i).cells;
-
-            // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
-            for (var j = 0; j < objCells.length; j++) {
-                info.innerHTML = info.innerHTML + ',' + objCells.item(j).innerHTML;
-            }
-            info.innerHTML = info.innerHTML + '/';     // ADD A BREAK (TAG).
-        }
-    }
-    */
   </script>
 
   <!-- /#page-content-wrapper -->

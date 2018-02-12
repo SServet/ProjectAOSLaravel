@@ -14,7 +14,7 @@ class CreateOrderedarticlesticket extends Migration
     public function up()
     {
          Schema::create('orderedarticlesticket', function (Blueprint $table) {
-            $table->string('AsID')->references('AsID')->on('arbeitsschein');
+            $table->string('TID')->references('TID')->on('Ticket');
             $table->string('artID')->references('artID')->on('article');
             $table->string('unit');
             $table->integer('count');                       

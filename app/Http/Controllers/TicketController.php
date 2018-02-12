@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\Arbeitsschein;
 use App\Models\Article;
+use App\Models\Orderedarticlesticket;
 use App\Models\Orderedarticlesarbeitsschein;
 use Illuminate\Support\Facades\DB;
 
@@ -76,7 +77,8 @@ return redirect('Tickets');
 
 public function submit(Request $request){
   $ticket = new Ticket;
-
+  $artikeltabelle = new Orderedarticlesticket;
+  $tableContent = $request->get('articleInfo');
   $ticket->kid = explode('.',$request->get('kid'))[0];
   $ticket->mid = $request->get('mid');
   $ticket->label = $request->input('label');
@@ -105,6 +107,22 @@ if($ticket->finishedOn != null and $ticket->settledOn != null){
 
 
 $ticket->save();
+
+
+
+$articleRows = explode(';',$tableContent);
+     
+      for($i=0; $i < count($articleRows)-1; $i++){
+        $articleCell = explode(',',$articleRows[$i]);
+        
+        $artikeltabelle->tid = $ticket->tid;
+
+        $artikeltabelle->artid = $articleCell[0];
+        $artikeltabelle->unit = $articleCell[1];
+        $artikeltabelle->count = (int)$articleCell[2];
+        $artikeltabelle->save();
+        $artikeltabelle = new Orderedarticlesticket;
+      } 
 
 if($ticket->isClosed === 1){
     $t = Ticket::orderBy('tid', 'DESC')->take(1)->get();
@@ -166,7 +184,10 @@ public function submitATicket(Request $request){
   $tableContent = $request->get('articleInfo');
 
   $ATicket->tid = $request->get('tid');
-  $ATicket->kid = DB::table('ticket')->select('kid')->where('tid', $ATicket->tid)->get();
+  $kid1 = explode(':',DB::table('ticket')->select('kid')->where('tid', $ATicket->tid)->get());
+  $kid2 = explode('}',$kid1[1]);
+  $ATicket->kid = $kid2[0];
+
   $ATicket->mid = $request->get('mid');
   $ATicket->description = $request->get('description');
   $ATicket->ttid = explode('.',$request->get('ttid'))[0];

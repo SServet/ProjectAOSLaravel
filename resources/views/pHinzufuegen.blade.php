@@ -19,6 +19,11 @@
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
 
+  
+  <!-- Artikeltabelle -->
+  <link href="{{ asset('assets/css/articleTable.css') }}" rel="stylesheet"
+
+
   <!-- Font-Links -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 
@@ -37,6 +42,7 @@
         $kunden = DB::table('kunden')->get();
         $mitarbeiter = DB::table('mitarbeiter')->get();
         $projekte = DB::table('projects')->get();
+        $artikel = DB::table('article')->get();
         $user = Auth::user();
        
         ?>
@@ -123,6 +129,45 @@
                   </select>
                </td>
             </tr>
+
+          <tr>
+          <td><p class="inputLabels">Artikel </p></td>
+          <td>
+            <button type="button" class="btn .btn-default" style="width:350px;"><a href="{{url('Artikel_Hinzufuegen')}}" target="_blank">Artikel anlegen</a></button>
+
+            <select data-placeholder="Artikel auswählen..." id="artikel_select" class="chosen-select form-control input-lg" style="width:350px; height: 400px;" tabindex="2" name="artid">
+              <option value="" id="inputArtikel"></option>
+              @foreach ($artikel as $art)
+              <option>{{$art->artid}}. {{$art->articlename}}</option>
+              @endforeach
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><p class="inputLabels">Artikelanzahl</p></td>
+          <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz" id="artAnz"></td>
+        </tr>
+        <tr >
+                  <td colspan="2" style="padding-top:1em; padding-bottom:1em;"> 
+
+                    <table id="artTable" class="blueTable" style="border-style:hidden;width:680px;" name="articles">
+                      <thead>
+                        <tr style="border-style:hidden;">
+                          <th>Artikel</th>
+                          <th style="width:22.5%;">
+                            Einheit
+                          </th>
+                          <th style="width:20%;">Anzahl</th>
+                          <th style="width:5%;"></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
             <tr>
               <td><p class="inputLabels">Bezeichnung</p></td>
               <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label"></td>
@@ -164,6 +209,9 @@
           <button type="submit" class="btn .btn-default" id="submitButton"> Senden </button>
           </td>
         </tr>
+                <tr>
+          <td><input type="text" name="articleInfo" id="info" hidden></td>
+        </tr>
       <input type="hidden" name="mid" value="{{$user->id}}"/>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
       </table>
@@ -185,6 +233,7 @@
 
 <script>
 
+var articles = [];
  $(document).ready(function() {
   var date = new Date();
 
@@ -211,6 +260,58 @@
     numberOfMonths: 2,
     dateFormat: "yy-mm-dd" 
   });
+
+    var tbody = $("#artTable tbody");
+    if (tbody.children().length == 0) {
+      $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+    }else{
+      $('#noArticles').remove();
+    }
+
+    var array = [];
+    $("#artikel_select").on('change', function(){
+      var tbody = $("#artTable tbody");
+      if (tbody.children().length == 0) {
+        $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+      }else{
+        $('#noArticles').remove();
+      }
+
+
+      var artikel = $('#artikel_select').val();
+      var einheit = $("#einheit_select").val();
+      var einheit2 = '<select id="einheit_select" class="chosen-select form-control input-lg">'+
+      '<option value="Stück">Stück</option>'+
+      '<option value="Stunden">Stunden</option>'+
+      '</select>';
+      var anz = '<input type="number" class="artAnzTable" min="1" value="'+$("#artAnz").val()+'">';
+
+
+      if(jQuery.inArray(artikel, articles) == -1){
+        articles.push(artikel);
+        $('.blueTable > tbody:last-child').append('<tr id="'+artikel+'"><td>'+artikel+'</td><td>'+einheit2+'</td><td contenteditable style="text-align-last:center;">'+anz+'</td><td style="border-style:hidden;width:50px;"><input type="button" onclick="deleteData(\''+artikel+'\')" value="Löschen"></input></td></tr>');
+      }
+
+      });
+
+      $("#submitButton").on("click", function(){
+     var myTableArray = [];
+     $("table#artTable tr").each(function() {
+      var arrayOfThisRow = [];
+      var tableData = $(this).find('td:first-child');
+      if (tableData.length > 0) {
+        var articlename = tableData.text().split(".")[0];
+
+        var einheit = $(this).find('option:selected').text();
+        var anz = $(this).find('[type=number]').val();
+        
+        $("#info").val($("#info").val() + articlename+","+einheit+","+anz+";");
+         
+         }
+
+    }); 
+   });
+
   $(".chosen-select").chosen();
   });
   var chosen = $("#artikel_select").chosen().data('chosen');
@@ -221,6 +322,9 @@ chosen.container.bind('keydown', function (e) {
       window.searchNow=false;
     }
 });
+
+
+  
 
 $("#artikel_select").on('chosen:no_results', function(e, params) {
    var artikel = params.chosen.search_results[0].textContent.match(/No results match "(.+)"/)[1];
@@ -238,7 +342,20 @@ $("#artikel_select").on('chosen:no_results', function(e, params) {
 </script>
 
 
+<script type="text/javascript">
 
+  function deleteData(toDelete){
+    articles.splice($.inArray(toDelete, articles), 1);
+    var row = document.getElementById(toDelete);
+    row.parentNode.removeChild(row);
+     var tbody = $("#artTable tbody");
+      if (tbody.children().length == 0) {
+        $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+      }else{
+        $('#noArticles').remove();
+      }
+  }
+</script>
 
 
 

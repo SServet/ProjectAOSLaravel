@@ -105,8 +105,7 @@
        <link rel="stylesheet" href="{{ asset('assets/css/chosen.css') }}">
 
        <form action="{{ route('SubmitTicket') }}" method="post">
-   <div class="row">   
-       <div class="col-sm-4">
+       
          <table  id="inputTable">
            <tr>
             <td><p class="inputLabels">Kunde</p></td>
@@ -144,6 +143,26 @@
           <td><p class="inputLabels">Artikelanzahl</p></td>
           <td><input type="number" class="form-control input-lg" min="0" value="1" name="artAnz" id="artAnz"></td>
         </tr>
+        <tr >
+                  <td colspan="2" style="padding-top:1em; padding-bottom:1em;"> 
+
+                    <table id="artTable" class="blueTable" style="border-style:hidden;width:680px;" name="articles">
+                      <thead>
+                        <tr style="border-style:hidden;">
+                          <th>Artikel</th>
+                          <th style="width:22.5%;">
+                            Einheit
+                          </th>
+                          <th style="width:20%;">Anzahl</th>
+                          <th style="width:5%;"></th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
         <tr>
           <td><p class="inputLabels">Bezeichnung</p></td>
           <td><input type="text" id="Bezeichnung" class="form-control input-lg" name="label"></td>
@@ -179,27 +198,9 @@
       <input type="hidden" name="mid" value="{{$user->id}}"/>
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </table>
-</div>
- <div class="col-sm-4">
-    <table id="artTable" class="blueTable" style="border-style:hidden;width:480px" name="articles">
-      <thead>
-        <tr style="border-style:hidden;">
-          <th>Artikel</th>
-          <th style="width:22.5%;">
-            Einheit
-          </th>
-          <th style="width:20%;">Anzahl</th>
-        </tr>
-      </thead>
 
-      <tbody>
-      </tbody>
-    </table>
-
-  </div>
-</div>
+  
   </form> 
-</div>
 </div>
 </div>
 </div>
@@ -221,8 +222,35 @@
   var articles = [];
   $(document).ready(function() {
 
+    var date = new Date();
+
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;       
+    $("#Erstelldatum").attr("value", today);
+
+
+
+    var tbody = $("#artTable tbody");
+    if (tbody.children().length == 0) {
+      $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+    }else{
+      $('#noArticles').remove();
+    }
     var array = [];
     $("#artikel_select").on('change', function(){
+      var tbody = $("#artTable tbody");
+      if (tbody.children().length == 0) {
+        $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+      }else{
+        $('#noArticles').remove();
+      }
 
       var artikel = $('#artikel_select').val();
       var einheit = $("#einheit_select").val();
@@ -282,8 +310,15 @@
     articles.splice($.inArray(toDelete, articles), 1);
     var row = document.getElementById(toDelete);
     row.parentNode.removeChild(row);
+     var tbody = $("#artTable tbody");
+      if (tbody.children().length == 0) {
+        $('.blueTable > tbody:last-child').append('<tr id="noArticles"><td colspan="4">Keine Artikel enthalten!</td></tr>');
+      }else{
+        $('#noArticles').remove();
+      }
   }
 </script>
+
 
 <!-- Menu Toggle Script  -->
 <script>

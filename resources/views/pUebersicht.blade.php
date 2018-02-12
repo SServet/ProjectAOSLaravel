@@ -35,7 +35,9 @@
         $user = Auth::user();
         $projekte = DB::table('projects')->get();
         $kunden = DB::table('kunden')->get();
-      ?>
+        $test = DB::connection('mysql2')->table('icinga_contacts')->get();
+    ?>
+
 
        <div id="wrapper">
 
@@ -94,8 +96,11 @@
             <th>PNr.</th>
             <th>BEZEICHNUNG</th>
             <th>KUNDENNAME</th>
-            <th></th>
+            <th>    @foreach ($test as $t)
+            {{$t->alias}}
+            @endforeach</th>
           </tr>
+
           @foreach ($projekte as $projekt)
           @if(!empty($projekt->finishedOn) and (!empty($projekt->settledOn)))
           <tr>

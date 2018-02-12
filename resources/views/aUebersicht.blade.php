@@ -90,15 +90,17 @@
          <br>
          <p id="LabelContent">ARBEITSSCHEINE > ÜBERSICHT</p>
          <hr>
+         <p style="text-align: left;"> Arbeitsscheinprojekt </p>
          <table id="uebersicht_Table">
           <tr>
-            <th>artid.</th>
+            <th>AID</th>
             <th>BEZEICHNUNG</th>
             <th>KUNDENNAME</th>
+            <th> PID </th>
             <th></th>
           </tr>
           @foreach ($arbeitsscheine as $arbeitsschein)
-          @if(!empty($arbeitsschein->dateTo) and (!empty($arbeitsschein->timeTo)))
+          @if(!empty($arbeitsschein->dateTo) and (!empty($arbeitsschein->timeTo)) and ($arbeitsschein->pid >0))
           <tr>
             <td>
               {{$arbeitsschein->asid}}
@@ -113,12 +115,61 @@
                 @endif
               @endforeach
             </td>
+            <td>
+                {{$arbeitsschein->pid}}
+            </td>
+            <td><a href="#" onclick="showHide1({{$arbeitsschein->asid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
+          </tr>
+          @endif
+          <tr>
+            <td style="background-color: #EBEBEB;" colspan="5">
+              <div id="detailsProjekt{{$arbeitsschein->asid}}" style="display:none;" value="{{$arbeitsschein->asid}}">
+                  <p> Beschreibung: {{$arbeitsschein->description}}</p>
+                  <p> Abgeschlossen am: {{$arbeitsschein->dateTo}}</p>
+                </form>
+                <br\>
+              </div>
+            </td>
+          </tr>
+          @endforeach
+        </table>
+
+
+        <br> <br>
+        <p style="text-align: left;"> Arbeitsscheinticket </p>
+         <table id="uebersicht_Table">
+          <tr>
+            <th>AID</th>
+            <th>BEZEICHNUNG</th>
+            <th>KUNDENNAME</th>
+            <th>TID </th>
+            <th></th>
+          </tr>
+          @foreach ($arbeitsscheine as $arbeitsschein)
+          @if(!empty($arbeitsschein->dateTo) and (!empty($arbeitsschein->timeTo)) and ($arbeitsschein->tid >0))
+          <tr>
+            <td>
+              {{$arbeitsschein->asid}}
+            </td>
+            <td>
+              {{$arbeitsschein->description}}
+            </td>
+            <td>
+              @foreach ($kunden as $kunde)
+                @if($kunde->kid == $arbeitsschein->kid)
+                  {{$kunde->companyname}}
+                @endif
+              @endforeach
+            </td>
+            <td>
+                {{$arbeitsschein->tid}}
+            </td>
             <td><a href="#" onclick="showHide({{$arbeitsschein->asid}})"><img src="{{ asset('assets/img/grayBurger.png') }}" style="width: 20px"/></a></td>
           </tr>
           @endif
           <tr>
-            <td style="background-color: #EBEBEB;" colspan="4">
-              <div id="details{{$arbeitsschein->asid}}" style="display:none;" value="{{$arbeitsschein->asid}}">
+            <td style="background-color: #EBEBEB;" colspan="5">
+              <div id="detailsTicket{{$arbeitsschein->asid}}" style="display:none;" value="{{$arbeitsschein->asid}}">
                   <p> Beschreibung: {{$arbeitsschein->description}}</p>
                   <p> Abgeschlossen am: {{$arbeitsschein->dateTo}}</p>
                 </form>
@@ -157,10 +208,18 @@ if(document.getElementById("menu-toggle").textContent == ">"){
     document.getElementById("menu-toggle").innerHTML = ">";
   }       
   function showHide(id){
-    if($("#details"+id).css('display')=='none'){
-      $("#details"+id).css('display','inline');
+    if($("#detailsTicket"+id).css('display')=='none'){
+      $("#detailsTicket"+id).css('display','inline');
     }else{
-      $("#details"+id).css('display','none');
+      $("#detailsTicket"+id).css('display','none');
+    }
+  }
+
+  function showHide1(id){
+    if($("#detailsProjekt"+id).css('display')=='none'){
+      $("#detailsProjekt"+id).css('display','inline');
+    }else{
+      $("#detailsProjekt"+id).css('display','none');
     }
   }
 

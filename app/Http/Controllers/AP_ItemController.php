@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use \PDF;
 use App\Http\Requests;
 use App\User;
-use App\Arbeitsscheinprojekt;
+use App\Arbeitsschein;
 use App\Kunden;
-use App\Projekt;
+use App\Projects;
 use App\Termintyp;
 use App\Taetigkeitsart;
-use App\Artikel;
+use App\Article;
 use Illuminate\Http\Request;
 
 class AP_ItemController extends Controller
@@ -23,7 +23,7 @@ class AP_ItemController extends Controller
      */
     public function pdfview(Request $request)
     {
-        $ap = Arbeitsscheinprojekt::orderBy('apid', 'DESC')->take(1)->get();
+        $ap = Arbeitsschein::orderBy('pid', 'DESC')->take(1)->get();
         view()->share('ap',$ap);        
         
         
@@ -33,7 +33,7 @@ class AP_ItemController extends Controller
             $pid = $i->pid;
         }
 
-        $projekt = Projekt::where('pid', $pid)->take(1)->get();
+        $projekt = Projects::where('pid', $pid)->take(1)->get();
         view()->share('projekt', $projekt);
 
         $mid;
@@ -87,7 +87,7 @@ class AP_ItemController extends Controller
             $artid = $i->artid;
         }
 
-        $artikel = Artikel::where('artid', $artid)->take(1)->get();
+        $artikel = Article::where('artid', $artid)->take(1)->get();
         view()->share('artikel', $artikel);
 
         $filename = 'Arbeitsschein_Projekt_'.$pid.'_'.$lastname.'_'.date('Y-m-d H:i:s').'.pdf';

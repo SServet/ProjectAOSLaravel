@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Input;
 use App\Models\Arbeitsschein;
 use App\Models\Projects;
 use App\Models\Article;
+use App\Models\Orderedarticlesarbeitsschein;
+use App\Models\Orderedarticlesproject;
 use Illuminate\Support\Facades\DB;
 
 
@@ -76,30 +78,17 @@ public function settleProjekt(Request $request){
 }
 
 public function submitAProjekt(Request $request){
-    $AProjekt = new Arbeitsscheinprojekt;
+    $AProjekt = new Arbeitsschein;
     $artikel = new Article;
-    $cache;
-
-    if(count(explode('.',$request->get('artid'))) != 1){
-        $artikel->articlename = explode('.',$request->get('artid'))[1];
-        $artikel->artid = explode('.',$request->get('artid'))[0];
-        $artikel->agid=14;
-        $cache = explode('.',$request->get('artid'))[0];
-
-    }
-    else{
-        $artikel->artid = $request->get('artid');
-        $artikel->articlename = $request->get('artid');
-        $artikel->agid=14;
-        if($artikel->artid != '' and $artikel->articlename != ''){
-            $artikel->save();
-            $cache = $request->get('artid');
-        }
-    }
+    $tableContent = $request->get('articleInfo');
 
     $AProjekt->pid = $request->get('pid');
+
+    $kid1 = explode(':',DB::table('projects')->select('kid')->where('pid', $AProjekt->pid)->get());
+    $kid2 = explode('}',$kid1[1]);
+    $AProjekt->kid = $kid2[0];
+
     $AProjekt->mid = $request->get('mid');
-    $AProjekt->artAnz = $request->get('artAnz');
 
     $AProjekt->description = $request->get('description');
     $AProjekt->ttid = explode('.',$request->get('ttid'))[0];
@@ -152,11 +141,8 @@ public function submitAProjekt(Request $request){
     } else {
         $AProjekt->kulanzgrund = $request->get('kulanzzeit');
     }
-    if($request->get('artid') == ''){
-        $AProjekt->artid = null;
-    }else{
-        $AProjekt->artid = $cache;
-    }
+    $AProjekt->tid = 0;
+
     $AProjekt->save();
 
 
@@ -169,6 +155,8 @@ public function submitAProjekt(Request $request){
 public function submit(Request $request){
 
     $projekt = new projects;
+    $artikeltabelle = new Orderedarticlesproject;
+    $tableContent = $request->get('articleInfo');
  
     $projekt->kid = explode('.',$request->get('kid'))[0];
     $projekt->mid = $request->get('mid');
@@ -205,6 +193,21 @@ public function submit(Request $request){
     }
 
     $projekt->save();
+
+
+     $articleRows = explode(';',$tableContent);
+     
+      for($i=0; $i < count($articleRows)-1; $i++){
+        $articleCell = explode(',',$articleRows[$i]);
+        
+        $artikeltabelle->pid = $projekt->pid;
+
+        $artikeltabelle->artid = $articleCell[0];
+        $artikeltabelle->unit = $articleCell[1];
+        $artikeltabelle->count = (int)$articleCell[2];
+        $artikeltabelle->save();
+        $artikeltabelle = new Orderedarticlesproject;
+      } 
 
     if($projekt->isClosed === 1){
             $p = Projekte::orderBy('pid', 'DESC')->take(1)->get();

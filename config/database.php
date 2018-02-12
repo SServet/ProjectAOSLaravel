@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -66,6 +67,19 @@ return [
             'engine' => null,
         ],
 
+       'mysql2' => [
+            'driver' => 'mysql',
+            'host' => '94.130.168.58:3307',
+            'database' => 'icinga',
+            'username' => 'phpmyadmin',
+            'password' => 'Runirun1!',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+        ],
+
+
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
@@ -119,3 +133,5 @@ return [
     ],
 
 ];
+
+
